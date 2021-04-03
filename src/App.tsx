@@ -1,7 +1,9 @@
 import React from 'react';
+import Bars from './Bars/Bars';
+import ParentSize from '@visx/responsive/lib/components/ParentSize';
 
 const App: React.FC = () => (
-  <h1>hello world</h1>
+  <ParentSize>{({ width, height }) => <Bars />}</ParentSize>
 );
 
 export default App;

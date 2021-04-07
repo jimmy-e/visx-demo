@@ -1,15 +1,17 @@
 import React from 'react';
-import { BarStack } from '@visx/shape';
-import { SeriesPoint } from '@visx/shape/lib/types';
-import { Group } from '@visx/group';
-import { Grid } from '@visx/grid';
-import { AxisBottom } from '@visx/axis';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { AxisBottom } from '@visx/axis';
+import { BarStack } from '@visx/shape';
+import { Grid } from '@visx/grid';
+import { Group } from '@visx/group';
+import { LegendOrdinal } from '@visx/legend';
+import { SeriesPoint } from '@visx/shape/lib/types';
+import { localPoint } from '@visx/event';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
-import { useTooltip, useTooltipInPortal, defaultStyles } from '@visx/tooltip';
-import { LegendOrdinal } from '@visx/legend';
-import { localPoint } from '@visx/event';
+import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
+import config from './config';
+import * as styles from './BarStack.styles';
 
 type CityName = 'New York' | 'San Francisco' | 'Austin';
 
@@ -25,21 +27,11 @@ type TooltipData = {
 };
 
 export type BarStackProps = {
-  margin?: { top: number; right: number; bottom: number; left: number };
   events?: boolean;
 };
 
-const purple1 = '#6c5efb';
-const purple2 = '#c998ff';
-export const purple3 = '#a44afe';
-export const background = '#eaedff';
-const defaultMargin = { top: 40, right: 0, bottom: 0, left: 0 };
-const tooltipStyles = {
-  ...defaultStyles,
-  minWidth: 60,
-  backgroundColor: 'rgba(0,0,0,0.9)',
-  color: 'white',
-};
+const { purple1, purple2, purple3 } = config.theme.colors;
+const { background } = config.theme;
 
 const data = cityTemperature.slice(0, 12);
 const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
@@ -76,10 +68,8 @@ const colorScale = scaleOrdinal<CityName, string>({
 
 let tooltipTimeout: number;
 
-const BarStackComponent: React.FC<BarStackProps> = ({
-  events = false,
-  margin = defaultMargin,
-}) => {
+const BarStackComponent: React.FC<BarStackProps> = ({ events = false }) => {
+  const { margin } = config.dimensions;
   const {
     tooltipOpen,
     tooltipLeft,
@@ -99,15 +89,13 @@ const BarStackComponent: React.FC<BarStackProps> = ({
   const width = 500;
   const height = 500;
 
-  if (width < 10) return null;
-  // bounds
   const xMax = width;
   const yMax = height - margin.top - 100;
 
   dateScale.rangeRound([0, xMax]);
   temperatureScale.range([yMax, 0]);
 
-  return width < 10 ? null : (
+  return (
     <div style={{ position: 'relative' }}>
       <svg ref={containerRef} width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
@@ -181,21 +169,11 @@ const BarStackComponent: React.FC<BarStackProps> = ({
           })}
         />
       </svg>
-      <div
-        style={{
-          position: 'absolute',
-          top: margin.top / 2 - 10,
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          fontSize: '14px',
-        }}
-      >
+      <div style={styles.legendStyle}>
         <LegendOrdinal scale={colorScale} direction="row" labelMargin="0 15px 0 0" />
       </div>
-
       {tooltipOpen && tooltipData && (
-        <TooltipInPortal top={tooltipTop} left={tooltipLeft} style={tooltipStyles}>
+        <TooltipInPortal top={tooltipTop} left={tooltipLeft} style={styles.tooltipStyle}>
           <div style={{ color: colorScale(tooltipData.key) }}>
             <strong>{tooltipData.key}</strong>
           </div>

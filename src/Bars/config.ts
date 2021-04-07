@@ -2,8 +2,8 @@ import {Bar} from "@visx/shape";
 import React from "react";
 
 const measurements = {
-  width: 500,
   height: 500,
+  width: 500,
   margin: {
     top: 20,
     bottom: 20,

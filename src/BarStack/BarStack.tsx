@@ -26,10 +26,6 @@ type TooltipData = {
   color: string;
 };
 
-export type BarStackProps = {
-  events?: boolean;
-};
-
 const { purple1, purple2, purple3 } = config.theme.colors;
 const { background } = config.theme;
 
@@ -68,8 +64,7 @@ const colorScale = scaleOrdinal<CityName, string>({
 
 let tooltipTimeout: number;
 
-const BarStackComponent: React.FC<BarStackProps> = ({ events = false }) => {
-  const { margin } = config.dimensions;
+const BarStackComponent: React.FC = () => {
   const {
     tooltipOpen,
     tooltipLeft,
@@ -86,7 +81,7 @@ const BarStackComponent: React.FC<BarStackProps> = ({ events = false }) => {
     scroll: true,
   });
 
-  const { height, width, xMax, yMax } = config.dimensions;
+  const { height, margin, width, xMax, yMax } = config.dimensions;
 
   dateScale.rangeRound([0, xMax]);
   temperatureScale.range([yMax, 0]);
@@ -125,9 +120,7 @@ const BarStackComponent: React.FC<BarStackProps> = ({ events = false }) => {
                     height={bar.height}
                     width={bar.width}
                     fill={bar.color}
-                    onClick={() => {
-                      if (events) alert(`clicked: ${JSON.stringify(bar)}`);
-                    }}
+                    onClick={() => alert(`clicked: ${JSON.stringify(bar)}`)}
                     onMouseLeave={() => {
                       tooltipTimeout = window.setTimeout(() => {
                         hideTooltip();

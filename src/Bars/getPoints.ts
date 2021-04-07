@@ -22,7 +22,7 @@ const getYScale = (data: LetterFrequency[], accessor: Accessor): YScale => scale
 
 // ----- GET POINTS ----- //
 
-const compose = (scale: Scale, accessor: Accessor) => (data: LetterFrequency[]) => scale(accessor(data));
+const compose = (scale: Scale, accessor: Accessor) => (datum: LetterFrequency) => scale(accessor(datum));
 
 export default (data: LetterFrequency[], xAccessor: Accessor, yAccessor: Accessor) => {
   const xScale = getXScale(data, xAccessor);

@@ -86,11 +86,7 @@ const BarStackComponent: React.FC<BarStackProps> = ({ events = false }) => {
     scroll: true,
   });
 
-  const width = 500;
-  const height = 500;
-
-  const xMax = width;
-  const yMax = height - margin.top - 100;
+  const { height, width, xMax, yMax } = config.dimensions;
 
   dateScale.rangeRound([0, xMax]);
   temperatureScale.range([yMax, 0]);
@@ -157,7 +153,7 @@ const BarStackComponent: React.FC<BarStackProps> = ({ events = false }) => {
           </BarStack>
         </Group>
         <AxisBottom
-          top={yMax + margin.top}
+          top={yMax + config.dimensions.margin.top}
           scale={dateScale}
           tickFormat={formatDate}
           stroke={purple3}

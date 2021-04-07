@@ -1,6 +1,5 @@
 import { defaultStyles } from '@visx/tooltip';
 import config from './config';
-import React from "react";
 
 export const tooltipStyle = {
   ...defaultStyles,

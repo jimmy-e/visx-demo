@@ -1,13 +1,13 @@
 import { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
 import { scaleBand, scaleLinear } from '@visx/scale';
-import dimensions from './dimensions';
+import config from './config';
 import { Accessor, Scale, XScale, YScale } from './barsTypes';
 
 // ----- GET SCALES ----- //
 
 // returns the x-axis band scale
 const getXScale = (data: LetterFrequency[], accessor: Accessor): XScale => scaleBand({
-  range: [0, dimensions.xMax],
+  range: [0, config.dimensions.xMax],
   round: true,
   domain: data.map(accessor),
   padding: 0.4,
@@ -15,7 +15,7 @@ const getXScale = (data: LetterFrequency[], accessor: Accessor): XScale => scale
 
 // returns the y-axis linear scale
 const getYScale = (data: LetterFrequency[], accessor: Accessor): YScale => scaleLinear({
-  range: [dimensions.yMax, 0],
+  range: [config.dimensions.yMax, 0],
   round: true,
   domain: [0, Math.max(...data.map(accessor))],
 });

@@ -16,7 +16,10 @@ export default {
     yMax: measurements.height - measurements.margin.top - 100,
   },
   theme: {
-    background: '#EAEDFF',
+    background: {
+      backgroundColor: '#EAEDFF',
+      radius: 14,
+    },
     colors: {
       purple1: '#6C5EFB',
       purple2: '#C998FF',

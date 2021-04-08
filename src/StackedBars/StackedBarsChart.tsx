@@ -1,15 +1,13 @@
 import React from 'react';
-import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-import { BarStack } from '@visx/shape';
-import { Group } from '@visx/group';
-import { localPoint } from '@visx/event';
+import cityTemperature from '@visx/mock-data/lib/mocks/cityTemperature';
 import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import AxisBottom from './AxisBottom';
+import Background from './Background';
 import Grid from './Grid';
 import Legend from './Legend';
 import StackedBars from './StackedBars';
 import config from './config';
-import { CityName, TooltipData } from './types';
+import { TooltipData } from './types';
 import { formatDate, getDate, getKeys } from './utils';
 import { getColorScale, getDateScale, getTemperatureScale } from './getScales';
 import * as styles from './StackedBars.styles';
@@ -21,8 +19,6 @@ const StackedBarsChart: React.FC = () => {
   const dateScale = getDateScale(data);
   const temperatureScale = getTemperatureScale(data);
   const colorScale = getColorScale(data);
-
-  let tooltipTimeout: number;
 
   const {
     tooltipOpen,
@@ -40,12 +36,12 @@ const StackedBarsChart: React.FC = () => {
     scroll: true,
   });
 
-  const { height, margin, width } = config.dimensions;
+  const { height, width } = config.dimensions;
 
   return (
     <div style={styles.containerStyle}>
       <svg ref={containerRef} width={width} height={height}>
-        <rect x={0} y={0} width={width} height={height} fill={config.theme.background} rx={14} />
+        <Background />
         <Grid dateScale={dateScale} temperatureScale={temperatureScale} />
         <StackedBars
           colorScale={colorScale}

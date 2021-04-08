@@ -39,7 +39,7 @@ const StackedBars: React.FC = () => {
     scroll: true,
   });
 
-  const { height, margin, width, yMax } = config.dimensions;
+  const { height, margin, width } = config.dimensions;
 
   return (
     <div style={styles.containerStyle}>

@@ -16,29 +16,35 @@ import * as styles from './StackedBars.styles';
 interface Props {
   TooltipInPortal: React.FC<TooltipInPortalProps>;
   colorScale: ColorScale;
-  data: TooltipData;
   left: number | undefined;
+  tooltipData: TooltipData | undefined;
+  tooltipOpen: boolean;
   top: number | undefined;
 }
 
 const Tooltip: React.FC<Props> = ({
   TooltipInPortal,
   colorScale,
-  data,
   left,
+  tooltipData,
+  tooltipOpen,
   top,
 }) => {
-  return (
-    <TooltipInPortal left={left} top={top} style={styles.tooltipStyle}>
-      <div style={{ color: colorScale(data.key) }}>
-        <strong>{data.key}</strong>
-      </div>
-      <div>{data.bar.data[data.key]}℉</div>
-      <div>
-        <small>{formatDate(getDate(data.bar.data))}</small>
-      </div>
-    </TooltipInPortal>
-  );
+  if (tooltipOpen && tooltipData) {
+    return (
+      <TooltipInPortal left={left} top={top} style={styles.tooltipStyle}>
+        <div style={{ color: colorScale(tooltipData.key) }}>
+          <strong>{tooltipData.key}</strong>
+        </div>
+        <div>{tooltipData.bar.data[tooltipData.key]}℉</div>
+        <div>
+          <small>{formatDate(getDate(tooltipData.bar.data))}</small>
+        </div>
+      </TooltipInPortal>
+    );
+  }
+
+  return null;
 };
 
 const StackedBarsChart: React.FC = () => {
@@ -84,17 +90,14 @@ const StackedBarsChart: React.FC = () => {
         <AxisBottom dateScale={dateScale} />
       </svg>
       <Legend colorScale={colorScale} />
-      {tooltipOpen && tooltipData && (
-        <>
-          <Tooltip
-            TooltipInPortal={TooltipInPortal}
-            colorScale={colorScale}
-            data={tooltipData}
-            top={tooltipTop}
-            left={tooltipLeft}
-          />
-        </>
-      )}
+      <Tooltip
+        TooltipInPortal={TooltipInPortal}
+        colorScale={colorScale}
+        left={tooltipLeft}
+        tooltipData={tooltipData}
+        tooltipOpen={tooltipOpen}
+        top={tooltipTop}
+      />
     </div>
   );
 };

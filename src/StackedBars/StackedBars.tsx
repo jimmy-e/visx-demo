@@ -5,14 +5,15 @@ import { Group } from '@visx/group';
 import { localPoint } from '@visx/event';
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
 import config from './config';
-import {CityName, ColorScale, DateScale, TemperatureScale, TooltipData} from './types';
-import { getDate, getKeys } from './utils';
+import { CityName, ColorScale, DateScale, Keys, TemperatureScale, TooltipData } from './types';
+import { getDate } from './utils';
 
 interface Props {
   colorScale: ColorScale;
   data: CityTemperature[];
   dateScale: DateScale;
   hideTooltip: UseTooltipParams<TooltipData>['hideTooltip'];
+  keys: Keys;
   showTooltip: UseTooltipParams<TooltipData>['showTooltip'];
   temperatureScale: TemperatureScale;
 }
@@ -22,11 +23,10 @@ const StackedBars: React.FC<Props> = ({
   data,
   dateScale,
   hideTooltip,
+  keys,
   showTooltip,
   temperatureScale,
 }) => {
-  const keys = getKeys(data);
-
   let tooltipTimeout: number;
 
   const { margin } = config.dimensions;

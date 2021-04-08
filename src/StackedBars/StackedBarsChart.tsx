@@ -1,51 +1,17 @@
 import React from 'react';
 import cityTemperature from '@visx/mock-data/lib/mocks/cityTemperature';
 import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
-import { TooltipInPortalProps } from '@visx/tooltip/lib/hooks/useTooltipInPortal';
 import AxisBottom from './AxisBottom';
 import Background from './Background';
 import Grid from './Grid';
 import Legend from './Legend';
 import StackedBars from './StackedBars';
+import Tooltip from './Tooltip';
 import config from './config';
-import { ColorScale, TooltipData } from './types';
-import { formatDate, getDate, getKeys } from './utils';
+import { TooltipData } from './types';
+import { getKeys } from './utils';
 import { getColorScale, getDateScale, getTemperatureScale } from './getScales';
 import * as styles from './StackedBars.styles';
-
-interface Props {
-  TooltipInPortal: React.FC<TooltipInPortalProps>;
-  colorScale: ColorScale;
-  left: number | undefined;
-  tooltipData: TooltipData | undefined;
-  tooltipOpen: boolean;
-  top: number | undefined;
-}
-
-const Tooltip: React.FC<Props> = ({
-  TooltipInPortal,
-  colorScale,
-  left,
-  tooltipData,
-  tooltipOpen,
-  top,
-}) => {
-  if (tooltipOpen && tooltipData) {
-    return (
-      <TooltipInPortal left={left} top={top} style={styles.tooltipStyle}>
-        <div style={{ color: colorScale(tooltipData.key) }}>
-          <strong>{tooltipData.key}</strong>
-        </div>
-        <div>{tooltipData.bar.data[tooltipData.key]}℉</div>
-        <div>
-          <small>{formatDate(getDate(tooltipData.bar.data))}</small>
-        </div>
-      </TooltipInPortal>
-    );
-  }
-
-  return null;
-};
 
 const StackedBarsChart: React.FC = () => {
   const data = cityTemperature.slice(0, 12);

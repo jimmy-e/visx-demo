@@ -2,9 +2,10 @@ import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { SeriesPoint } from '@visx/shape/lib/types';
 import { ScaleBand, ScaleLinear, ScaleOrdinal } from '../types';
 
-export type ColorScale = ScaleOrdinal<CityName, string>;
 export type CityName = 'New York' | 'San Francisco' | 'Austin';
+export type ColorScale = ScaleOrdinal<CityName, string>;
 export type DateScale = ScaleBand<string>;
+export type Keys = CityName[];
 export type TemperatureScale = ScaleLinear<number>;
 
 export type TooltipData = {

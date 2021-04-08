@@ -1,10 +1,10 @@
 import React from 'react';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-import { AxisBottom } from '@visx/axis';
 import { BarStack } from '@visx/shape';
 import { Group } from '@visx/group';
 import { localPoint } from '@visx/event';
 import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
+import AxisBottom from './AxisBottom';
 import Grid from './Grid';
 import Legend from './Legend';
 import config from './config';
@@ -90,18 +90,7 @@ const StackedBars: React.FC = () => {
             }
           </BarStack>
         </Group>
-        <AxisBottom
-          top={yMax + config.dimensions.margin.top}
-          scale={dateScale}
-          tickFormat={formatDate}
-          stroke={config.theme.colors.purple3}
-          tickStroke={config.theme.colors.purple3}
-          tickLabelProps={() => ({
-            fill: config.theme.colors.purple3,
-            fontSize: 11,
-            textAnchor: 'middle',
-          })}
-        />
+        <AxisBottom dateScale={dateScale} />
       </svg>
       <Legend colorScale={colorScale} />
       {tooltipOpen && tooltipData && (

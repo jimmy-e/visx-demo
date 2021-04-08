@@ -5,46 +5,24 @@ import { BarStack } from '@visx/shape';
 import { Grid } from '@visx/grid';
 import { Group } from '@visx/group';
 import { localPoint } from '@visx/event';
-import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import Legend from './Legend';
 import config from './config';
 import { CityName, TooltipData } from './types';
-import { getDate, formatDate } from './utils';
+import { formatDate, getDate, getKeys } from './utils';
+import { getColorScale, getDateScale, getTemperatureScale } from './getScales';
 import * as styles from './BarStack.styles';
 
-const { purple1, purple2, purple3 } = config.theme.colors;
-const { background } = config.theme;
+const StackedBars: React.FC = () => {
+  const data = cityTemperature.slice(0, 12);
+  const keys = getKeys(data);
 
-const data = cityTemperature.slice(0, 12);
-const keys = Object.keys(data[0]).filter(d => d !== 'date') as CityName[];
+  const dateScale = getDateScale(data);
+  const temperatureScale = getTemperatureScale(data);
+  const colorScale = getColorScale(data);
 
-const temperatureTotals = data.reduce((allTotals, currentDate) => {
-  const totalTemperature = keys.reduce((dailyTotal, k) => {
-    dailyTotal += Number(currentDate[k]);
-    return dailyTotal;
-  }, 0);
-  allTotals.push(totalTemperature);
-  return allTotals;
-}, [] as number[]);
+  let tooltipTimeout: number;
 
-// scales
-const dateScale = scaleBand<string>({
-  domain: data.map(getDate),
-  padding: 0.2,
-});
-const temperatureScale = scaleLinear<number>({
-  domain: [0, Math.max(...temperatureTotals)],
-  nice: true,
-});
-const colorScale = scaleOrdinal<CityName, string>({
-  domain: keys,
-  range: [purple1, purple2, purple3],
-});
-
-let tooltipTimeout: number;
-
-const BarStackComponent: React.FC = () => {
   const {
     tooltipOpen,
     tooltipLeft,
@@ -69,7 +47,7 @@ const BarStackComponent: React.FC = () => {
   return (
     <div style={styles.containerStyle}>
       <svg ref={containerRef} width={width} height={height}>
-        <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
+        <rect x={0} y={0} width={width} height={height} fill={config.theme.background} rx={14} />
         <Grid
           top={margin.top}
           left={margin.left}
@@ -129,10 +107,10 @@ const BarStackComponent: React.FC = () => {
           top={yMax + config.dimensions.margin.top}
           scale={dateScale}
           tickFormat={formatDate}
-          stroke={purple3}
-          tickStroke={purple3}
+          stroke={config.theme.colors.purple3}
+          tickStroke={config.theme.colors.purple3}
           tickLabelProps={() => ({
-            fill: purple3,
+            fill: config.theme.colors.purple3,
             fontSize: 11,
             textAnchor: 'middle',
           })}
@@ -154,4 +132,4 @@ const BarStackComponent: React.FC = () => {
   );
 }
 
-export default BarStackComponent;
+export default StackedBars;

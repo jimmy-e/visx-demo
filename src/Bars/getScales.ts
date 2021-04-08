@@ -1,7 +1,7 @@
 import { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
 import { scaleBand, scaleLinear } from '@visx/scale';
 import config from './config';
-import { Accessor, XScale, YScale } from './barsTypes';
+import { Accessor, XScale, YScale } from './types';
 
 // returns the x-axis band scale
 export const getXScale = (data: LetterFrequency[], accessor: Accessor): XScale => scaleBand({

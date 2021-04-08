@@ -1,5 +1,5 @@
 import { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
-import { Accessor, Scale, XScale, YScale } from './barsTypes';
+import { Accessor, Scale, XScale, YScale } from './types';
 
 interface Props {
   xAccessor: Accessor;

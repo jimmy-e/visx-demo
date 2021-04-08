@@ -22,6 +22,10 @@ export default {
       purple2: '#C998FF',
       purple3: '#A44AFE',
     },
+    grid: {
+      stroke: '#000000',
+      stokeOpacity: 0.1,
+    },
     tooltip: {
       background: '#000000',
       color: '#FFFFFF',

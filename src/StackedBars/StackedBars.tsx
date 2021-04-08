@@ -2,10 +2,10 @@ import React from 'react';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { AxisBottom } from '@visx/axis';
 import { BarStack } from '@visx/shape';
-import { Grid } from '@visx/grid';
 import { Group } from '@visx/group';
 import { localPoint } from '@visx/event';
 import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
+import Grid from './Grid';
 import Legend from './Legend';
 import config from './config';
 import { CityName, TooltipData } from './types';
@@ -39,26 +39,13 @@ const StackedBars: React.FC = () => {
     scroll: true,
   });
 
-  const { height, margin, width, xMax, yMax } = config.dimensions;
-
-  dateScale.rangeRound([0, xMax]);
-  temperatureScale.range([yMax, 0]);
+  const { height, margin, width, yMax } = config.dimensions;
 
   return (
     <div style={styles.containerStyle}>
       <svg ref={containerRef} width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill={config.theme.background} rx={14} />
-        <Grid
-          top={margin.top}
-          left={margin.left}
-          xScale={dateScale}
-          yScale={temperatureScale}
-          width={xMax}
-          height={yMax}
-          stroke="black"
-          strokeOpacity={0.1}
-          xOffset={dateScale.bandwidth() / 2}
-        />
+        <Grid dateScale={dateScale} temperatureScale={temperatureScale} />
         <Group top={margin.top}>
           <BarStack<CityTemperature, CityName>
             data={data}

@@ -11,7 +11,7 @@ import config from './config';
 import { CityName, TooltipData } from './types';
 import { formatDate, getDate, getKeys } from './utils';
 import { getColorScale, getDateScale, getTemperatureScale } from './getScales';
-import * as styles from './BarStack.styles';
+import * as styles from './StackedBars.styles';
 
 const StackedBars: React.FC = () => {
   const data = cityTemperature.slice(0, 12);

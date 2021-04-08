@@ -1,7 +1,7 @@
 import React from 'react';
 import { LegendOrdinal } from '@visx/legend';
 import { ColorScale } from './types';
-import * as styles from './BarStack.styles';
+import * as styles from './StackedBars.styles';
 
 interface Props {
   colorScale: ColorScale;

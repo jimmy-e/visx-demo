@@ -4,27 +4,14 @@ import { AxisBottom } from '@visx/axis';
 import { BarStack } from '@visx/shape';
 import { Grid } from '@visx/grid';
 import { Group } from '@visx/group';
-import { LegendOrdinal } from '@visx/legend';
-import { SeriesPoint } from '@visx/shape/lib/types';
 import { localPoint } from '@visx/event';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { timeParse, timeFormat } from 'd3-time-format';
 import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
+import Legend from './Legend';
 import config from './config';
+import { CityName, TooltipData } from './types';
 import * as styles from './BarStack.styles';
-
-type CityName = 'New York' | 'San Francisco' | 'Austin';
-
-type TooltipData = {
-  bar: SeriesPoint<CityTemperature>;
-  key: CityName;
-  index: number;
-  height: number;
-  width: number;
-  x: number;
-  y: number;
-  color: string;
-};
 
 const { purple1, purple2, purple3 } = config.theme.colors;
 const { background } = config.theme;
@@ -158,9 +145,7 @@ const BarStackComponent: React.FC = () => {
           })}
         />
       </svg>
-      <div style={styles.legendStyle}>
-        <LegendOrdinal scale={colorScale} direction="row" labelMargin="0 15px 0 0" />
-      </div>
+      <Legend colorScale={colorScale} />
       {tooltipOpen && tooltipData && (
         <TooltipInPortal top={tooltipTop} left={tooltipLeft} style={styles.tooltipStyle}>
           <div style={{ color: colorScale(tooltipData.key) }}>

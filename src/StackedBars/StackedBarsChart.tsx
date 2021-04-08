@@ -7,6 +7,7 @@ import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import AxisBottom from './AxisBottom';
 import Grid from './Grid';
 import Legend from './Legend';
+import StackedBars from './StackedBars';
 import config from './config';
 import { CityName, TooltipData } from './types';
 import { formatDate, getDate, getKeys } from './utils';
@@ -46,50 +47,15 @@ const StackedBarsChart: React.FC = () => {
       <svg ref={containerRef} width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill={config.theme.background} rx={14} />
         <Grid dateScale={dateScale} temperatureScale={temperatureScale} />
-        <Group top={margin.top}>
-          <BarStack<CityTemperature, CityName>
-            data={data}
-            keys={keys}
-            x={getDate}
-            xScale={dateScale}
-            yScale={temperatureScale}
-            color={colorScale}
-          >
-            {barStacks =>
-              barStacks.map(barStack =>
-                barStack.bars.map(bar => (
-                  <rect
-                    key={`bar-stack-${barStack.index}-${bar.index}`}
-                    x={bar.x}
-                    y={bar.y}
-                    height={bar.height}
-                    width={bar.width}
-                    fill={bar.color}
-                    onClick={() => alert(`clicked: ${JSON.stringify(bar)}`)}
-                    onMouseLeave={() => {
-                      tooltipTimeout = window.setTimeout(() => {
-                        hideTooltip();
-                      }, 300);
-                    }}
-                    onMouseMove={event => {
-                      if (tooltipTimeout) clearTimeout(tooltipTimeout);
-                      // TooltipInPortal expects coordinates to be relative to containerRef
-                      // localPoint returns coordinates relative to the nearest SVG, which
-                      // is what containerRef is set to in this example.
-                      const eventSvgCoords = localPoint(event);
-                      const left = bar.x + bar.width / 2;
-                      showTooltip({
-                        tooltipData: bar,
-                        tooltipTop: eventSvgCoords?.y,
-                        tooltipLeft: left,
-                      });
-                    }}
-                  />
-                )),
-              )
-            }
-          </BarStack>
-        </Group>
+        <StackedBars
+          colorScale={colorScale}
+          data={data}
+          dateScale={dateScale}
+          hideTooltip={hideTooltip}
+          keys={keys}
+          showTooltip={showTooltip}
+          temperatureScale={temperatureScale}
+        />
         <AxisBottom dateScale={dateScale} />
       </svg>
       <Legend colorScale={colorScale} />

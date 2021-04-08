@@ -1,6 +1,10 @@
 import { defaultStyles } from '@visx/tooltip';
 import config from './config';
 
+export const containerStyle = {
+  position: 'relative',
+};
+
 export const tooltipStyle = {
   ...defaultStyles,
   minWidth: config.theme.tooltip.minWidth,

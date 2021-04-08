@@ -6,11 +6,11 @@ import { Grid } from '@visx/grid';
 import { Group } from '@visx/group';
 import { localPoint } from '@visx/event';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
-import { timeParse, timeFormat } from 'd3-time-format';
 import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import Legend from './Legend';
 import config from './config';
 import { CityName, TooltipData } from './types';
+import { getDate, formatDate } from './utils';
 import * as styles from './BarStack.styles';
 
 const { purple1, purple2, purple3 } = config.theme.colors;
@@ -27,13 +27,6 @@ const temperatureTotals = data.reduce((allTotals, currentDate) => {
   allTotals.push(totalTemperature);
   return allTotals;
 }, [] as number[]);
-
-const parseDate = timeParse('%Y-%m-%d');
-const format = timeFormat('%b %d');
-const formatDate = (date: string) => format(parseDate(date) as Date);
-
-// accessors
-const getDate = (d: CityTemperature) => d.date;
 
 // scales
 const dateScale = scaleBand<string>({
@@ -74,7 +67,7 @@ const BarStackComponent: React.FC = () => {
   temperatureScale.range([yMax, 0]);
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={styles.containerStyle}>
       <svg ref={containerRef} width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
         <Grid

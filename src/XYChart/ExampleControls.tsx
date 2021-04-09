@@ -11,6 +11,7 @@ import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import customTheme from './customTheme';
 import userPrefersReducedMotion from './userPrefersReducedMotion';
 import getAnimatedOrUnanimatedComponents from './getAnimatedOrUnanimatedComponents';
+import { DataKey, XYChartProps } from './types';
 
 const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
 const temperatureScaleConfig = { type: 'linear' } as const;
@@ -31,70 +32,14 @@ const getAustinTemperature = (d: CityTemperature) => Number(d.Austin);
 const defaultAnnotationDataIndex = 13;
 const selectedDatumPatternId = 'xychart-selected-datum';
 
-type Accessor = (d: CityTemperature) => number | string;
-
-interface Accessors {
-  'San Francisco': Accessor;
-  'New York': Accessor;
-  Austin: Accessor;
-}
-
-type DataKey = keyof Accessors;
-
-type SimpleScaleConfig = { type: 'band' | 'linear'; paddingInner?: number };
-
-export type ProvidedProps = {
-  accessors: {
-    x: Accessors;
-    y: Accessors;
-    date: Accessor;
-  };
-  animationTrajectory?: AnimationTrajectory;
-  annotationDataKey: DataKey | null;
-  annotationDatum?: CityTemperature;
-  annotationLabelPosition: { dx: number; dy: number };
-  annotationType?: 'line' | 'circle';
-  colorAccessorFactory: (key: DataKey) => (d: CityTemperature) => string | null;
-  config: {
-    x: SimpleScaleConfig;
-    y: SimpleScaleConfig;
-  };
-  curve: typeof curveLinear | typeof curveCardinal | typeof curveStep;
-  data: CityTemperature[];
-  editAnnotationLabelPosition: boolean;
-  numTicks: number;
-  setAnnotationDataIndex: (index: number) => void;
-  setAnnotationDataKey: (key: DataKey | null) => void;
-  setAnnotationLabelPosition: (position: { dx: number; dy: number }) => void;
-  renderAreaSeries: boolean;
-  renderAreaStack: boolean;
-  renderBarGroup: boolean;
-  renderBarSeries: boolean;
-  renderBarStack: boolean;
-  renderGlyph: React.FC<GlyphProps<CityTemperature>>;
-  renderGlyphSeries: boolean;
-  renderHorizontally: boolean;
-  renderLineSeries: boolean;
-  sharedTooltip: boolean;
-  showGridColumns: boolean;
-  showGridRows: boolean;
-  showHorizontalCrosshair: boolean;
-  showTooltip: boolean;
-  showVerticalCrosshair: boolean;
-  snapTooltipToDatumX: boolean;
-  snapTooltipToDatumY: boolean;
-  stackOffset?: 'wiggle' | 'expand' | 'diverging' | 'silhouette';
-  theme: XYChartTheme;
-  xAxisOrientation: 'top' | 'bottom';
-  yAxisOrientation: 'left' | 'right';
-} & ReturnType<typeof getAnimatedOrUnanimatedComponents>;
-
-type ControlsProps = {
-  children: (props: ProvidedProps) => React.ReactElement;
+type Props = {
+  children: (props: XYChartProps) => React.ReactElement;
+  height: number;
+  width: number;
 };
 
-export default function ExampleControls({ children }: ControlsProps) {
-  const [useAnimatedComponents, setUseAnimatedComponents] = useState(!userPrefersReducedMotion());
+export default function ExampleControls({ children, height, width }: Props) {
+  const [isAnimated, setIsAnimated] = useState<XYChartProps['isAnimated']>(!userPrefersReducedMotion());
   const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
   const [animationTrajectory, setAnimationTrajectory] = useState<AnimationTrajectory | undefined>(
     'center',
@@ -105,10 +50,10 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [yAxisOrientation, setYAxisOrientation] = useState<'left' | 'right'>('right');
   const [renderHorizontally, setRenderHorizontally] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);
-  const [annotationDataKey, setAnnotationDataKey] = useState<ProvidedProps['annotationDataKey']>(
+  const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
     null,
   );
-  const [annotationType, setAnnotationType] = useState<ProvidedProps['annotationType']>('circle');
+  const [annotationType, setAnnotationType] = useState<XYChartProps['annotationType']>('circle');
   const [showVerticalCrosshair, setShowVerticalCrosshair] = useState(true);
   const [showHorizontalCrosshair, setShowHorizontalCrosshair] = useState(false);
   const [snapTooltipToDatumX, setSnapTooltipToDatumX] = useState(true);
@@ -120,7 +65,7 @@ export default function ExampleControls({ children }: ControlsProps) {
   const [renderAreaLineOrStack, setRenderAreaLineOrStack] = useState<
     'line' | 'area' | 'areastack' | 'none'
     >('areastack');
-  const [stackOffset, setStackOffset] = useState<ProvidedProps['stackOffset']>();
+  const [stackOffset, setStackOffset] = useState<XYChartProps['stackOffset']>();
   const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
   const [editAnnotationLabelPosition, setEditAnnotationLabelPosition] = useState(false);
   const [annotationLabelPosition, setAnnotationLabelPosition] = useState({ dx: -40, dy: -20 });
@@ -220,6 +165,8 @@ export default function ExampleControls({ children }: ControlsProps) {
             ? dataMissingValues
             : data,
         editAnnotationLabelPosition,
+        height,
+        isAnimated,
         numTicks,
         renderBarGroup: renderBarStackOrGroup === 'bargroup',
         renderBarSeries: renderBarStackOrGroup === 'bar',
@@ -243,9 +190,10 @@ export default function ExampleControls({ children }: ControlsProps) {
         snapTooltipToDatumY: canSnapTooltipToDatum && snapTooltipToDatumY,
         stackOffset,
         theme,
+        width,
         xAxisOrientation,
         yAxisOrientation,
-        ...getAnimatedOrUnanimatedComponents(useAnimatedComponents),
+        ...getAnimatedOrUnanimatedComponents(isAnimated),
       })}
       {/** This style is used for annotated elements via colorAccessor. */}
       <svg className="pattern-lines">
@@ -752,13 +700,13 @@ export default function ExampleControls({ children }: ControlsProps) {
           <label>
             <input
               type="checkbox"
-              onChange={() => setUseAnimatedComponents(!useAnimatedComponents)}
-              checked={useAnimatedComponents}
+              onChange={() => setIsAnimated((prevState) => !prevState)}
+              checked={isAnimated}
             />
             use animated components
           </label>
 
-          {useAnimatedComponents && (
+          {isAnimated && (
             <>
               &nbsp;&nbsp;&nbsp;
               <strong>axis + grid animation</strong>

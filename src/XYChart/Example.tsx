@@ -1,19 +1,11 @@
 import React from 'react';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-import { ProvidedProps } from './ExampleControls';
+import BarStackComponent from './BarStack';
 import CustomChartBackground from './CustomChartBackground';
-
-export interface XYChartProps extends ProvidedProps {
-  height: number;
-  width: number;
-}
-
-type City = 'San Francisco' | 'New York' | 'Austin';
+import { City, XYChartProps } from './types';
 
 const Example: React.FC<XYChartProps> = (props) => {
   const {
-    height,
-    width,
     accessors,
     animationTrajectory,
     annotationDataKey,
@@ -25,6 +17,8 @@ const Example: React.FC<XYChartProps> = (props) => {
     curve,
     data,
     editAnnotationLabelPosition,
+    height,
+    isAnimated,
     numTicks,
     renderAreaSeries,
     renderAreaStack,
@@ -47,6 +41,7 @@ const Example: React.FC<XYChartProps> = (props) => {
     snapTooltipToDatumX,
     snapTooltipToDatumY,
     stackOffset,
+    width,
     theme,
     xAxisOrientation,
     yAxisOrientation,
@@ -90,26 +85,13 @@ const Example: React.FC<XYChartProps> = (props) => {
         numTicks={numTicks}
       />
       {renderBarStack && (
-        <BarStack offset={stackOffset}>
-          <BarSeries
-            dataKey="New York"
-            data={data}
-            xAccessor={accessors.x['New York']}
-            yAccessor={accessors.y['New York']}
-          />
-          <BarSeries
-            dataKey="San Francisco"
-            data={data}
-            xAccessor={accessors.x['San Francisco']}
-            yAccessor={accessors.y['San Francisco']}
-          />
-          <BarSeries
-            dataKey="Austin"
-            data={data}
-            xAccessor={accessors.x.Austin}
-            yAccessor={accessors.y.Austin}
-          />
-        </BarStack>
+        <BarStackComponent
+          BarSeries={BarSeries}
+          BarStack={BarStack}
+          accessors={accessors}
+          data={data}
+          stackOffset={stackOffset}
+        />
       )}
       {renderBarGroup && (
         <BarGroup>

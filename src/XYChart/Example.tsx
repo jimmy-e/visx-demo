@@ -1,6 +1,5 @@
 import React from 'react';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-
 import ExampleControls from './ExampleControls';
 import CustomChartBackground from './CustomChartBackground';
 
@@ -11,7 +10,7 @@ export type XYChartProps = {
 
 type City = 'San Francisco' | 'New York' | 'Austin';
 
-export default function Example({ height }: XYChartProps) {
+const Example: React.FC<XYChartProps> = ({ height })  => {
   return (
     <ExampleControls>
       {({
@@ -337,3 +336,5 @@ export default function Example({ height }: XYChartProps) {
     </ExampleControls>
   );
 }
+
+export default Example;

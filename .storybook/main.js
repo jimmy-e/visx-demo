@@ -13,6 +13,7 @@ module.exports = {
   webpackFinal: async (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
+      shapes: path.resolve(__dirname, '../src/atoms/shapes'),
       src: path.resolve(__dirname, '../src'),
     };
     return config;

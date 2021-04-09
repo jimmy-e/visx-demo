@@ -1,8 +1,10 @@
 import React from 'react';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-import BarGroup from 'src/BarGroup/BarGroup';
-import BarSeries from 'src/BarSeries/BarSeries';
-import BarStack from 'src/BarStack/BarStack';
+import AreaSeries from 'shapes/AreaSeries/AreaSeries';
+import AreaStack from 'shapes/AreaStack/AreaStack';
+import BarGroup from 'shapes/BarGroup/BarGroup';
+import BarSeries from 'shapes/BarSeries/BarSeries';
+import BarStack from 'shapes/BarStack/BarStack';
 import { City, XYChartProps } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 
@@ -50,8 +52,6 @@ const Example: React.FC<XYChartProps> = (props) => {
 
     // components are animated or not depending on selection
     Annotation,
-    AreaSeries,
-    AreaStack,
     Axis,
     GlyphSeries,
     Grid,
@@ -108,57 +108,21 @@ const Example: React.FC<XYChartProps> = (props) => {
         />
       )}
       {renderAreaSeries && (
-        <>
-          <AreaSeries
-            dataKey="Austin"
-            data={data}
-            xAccessor={accessors.x.Austin}
-            yAccessor={accessors.y.Austin}
-            fillOpacity={0.4}
-            curve={curve}
-          />
-          <AreaSeries
-            dataKey="New York"
-            data={data}
-            xAccessor={accessors.x['New York']}
-            yAccessor={accessors.y['New York']}
-            fillOpacity={0.4}
-            curve={curve}
-          />
-          <AreaSeries
-            dataKey="San Francisco"
-            data={data}
-            xAccessor={accessors.x['San Francisco']}
-            yAccessor={accessors.y['San Francisco']}
-            fillOpacity={0.4}
-            curve={curve}
-          />
-        </>
+        <AreaSeries
+          accessors={accessors}
+          curve={curve}
+          data={data}
+          isAnimated={isAnimated}
+        />
       )}
       {renderAreaStack && (
-        <AreaStack curve={curve} offset={stackOffset} renderLine={stackOffset !== 'wiggle'}>
-          <AreaSeries
-            dataKey="Austin"
-            data={data}
-            xAccessor={accessors.x.Austin}
-            yAccessor={accessors.y.Austin}
-            fillOpacity={0.4}
-          />
-          <AreaSeries
-            dataKey="New York"
-            data={data}
-            xAccessor={accessors.x['New York']}
-            yAccessor={accessors.y['New York']}
-            fillOpacity={0.4}
-          />
-          <AreaSeries
-            dataKey="San Francisco"
-            data={data}
-            xAccessor={accessors.x['San Francisco']}
-            yAccessor={accessors.y['San Francisco']}
-            fillOpacity={0.4}
-          />
-        </AreaStack>
+        <AreaStack
+          accessors={accessors}
+          curve={curve}
+          data={data}
+          isAnimated={isAnimated}
+          stackOffset={stackOffset}
+        />
       )}
       {renderLineSeries && (
         <>

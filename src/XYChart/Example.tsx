@@ -1,8 +1,8 @@
 import React from 'react';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-import BarStack from './BarStack';
+import BarStack from 'src/BarStack/BarStack';
+import { City, XYChartProps } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
-import { City, XYChartProps } from './types';
 
 const Example: React.FC<XYChartProps> = (props) => {
   const {

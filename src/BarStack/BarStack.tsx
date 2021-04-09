@@ -1,5 +1,5 @@
 import React from 'react';
-import { XYChartProps } from './types';
+import { XYChartProps } from 'src/types';
 import {
   AnimatedBarSeries,
   AnimatedBarStack,

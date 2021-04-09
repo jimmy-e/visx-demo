@@ -4,7 +4,7 @@ import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { GlyphProps } from '@visx/xychart/lib/types';
 import { XYChartTheme } from '@visx/xychart';
 import { curveCardinal, curveLinear, curveStep } from '@visx/curve';
-import getAnimatedOrUnanimatedComponents from './getAnimatedOrUnanimatedComponents';
+import getAnimatedOrUnanimatedComponents from 'XYChart/getAnimatedOrUnanimatedComponents';
 
 type Accessor = (datum: CityTemperature) => number | string;
 

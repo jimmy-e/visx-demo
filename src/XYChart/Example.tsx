@@ -1,5 +1,6 @@
 import React from 'react';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import BarGroup from 'src/BarGroup/BarGroup';
 import BarStack from 'src/BarStack/BarStack';
 import { City, XYChartProps } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
@@ -51,7 +52,6 @@ const Example: React.FC<XYChartProps> = (props) => {
     AreaSeries,
     AreaStack,
     Axis,
-    BarGroup,
     BarSeries,
     GlyphSeries,
     Grid,
@@ -92,29 +92,12 @@ const Example: React.FC<XYChartProps> = (props) => {
         />
       )}
       {renderBarGroup && (
-        <BarGroup>
-          <BarSeries
-            dataKey="New York"
-            data={data}
-            xAccessor={accessors.x['New York']}
-            yAccessor={accessors.y['New York']}
-            colorAccessor={colorAccessorFactory('New York')}
-          />
-          <BarSeries
-            dataKey="San Francisco"
-            data={data}
-            xAccessor={accessors.x['San Francisco']}
-            yAccessor={accessors.y['San Francisco']}
-            colorAccessor={colorAccessorFactory('San Francisco')}
-          />
-          <BarSeries
-            dataKey="Austin"
-            data={data}
-            xAccessor={accessors.x.Austin}
-            yAccessor={accessors.y.Austin}
-            colorAccessor={colorAccessorFactory('Austin')}
-          />
-        </BarGroup>
+        <BarGroup
+          accessors={accessors}
+          colorAccessorFactory={colorAccessorFactory}
+          data={data}
+          isAnimated={isAnimated}
+        />
       )}
       {renderBarSeries && (
         <BarSeries

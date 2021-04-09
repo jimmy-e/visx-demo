@@ -5,6 +5,7 @@ import AreaStack from 'shapes/AreaStack/AreaStack';
 import BarGroup from 'shapes/BarGroup/BarGroup';
 import BarSeries from 'shapes/BarSeries/BarSeries';
 import BarStack from 'shapes/BarStack/BarStack';
+import LineSeries from 'shapes/LineSeries/LineSeries';
 import { City, XYChartProps } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 
@@ -55,7 +56,6 @@ const Example: React.FC<XYChartProps> = (props) => {
     Axis,
     GlyphSeries,
     Grid,
-    LineSeries,
     AnnotationCircleSubject,
     AnnotationConnector,
     AnnotationLabel,
@@ -125,31 +125,13 @@ const Example: React.FC<XYChartProps> = (props) => {
         />
       )}
       {renderLineSeries && (
-        <>
-          <LineSeries
-            dataKey="Austin"
-            data={data}
-            xAccessor={accessors.x.Austin}
-            yAccessor={accessors.y.Austin}
-            curve={curve}
-          />
-          {!renderBarSeries && (
-            <LineSeries
-              dataKey="New York"
-              data={data}
-              xAccessor={accessors.x['New York']}
-              yAccessor={accessors.y['New York']}
-              curve={curve}
-            />
-          )}
-          <LineSeries
-            dataKey="San Francisco"
-            data={data}
-            xAccessor={accessors.x['San Francisco']}
-            yAccessor={accessors.y['San Francisco']}
-            curve={curve}
-          />
-        </>
+        <LineSeries
+          accessors={accessors}
+          curve={curve}
+          data={data}
+          isAnimated={isAnimated}
+          renderBarSeries={renderBarSeries}
+        />
       )}
       {renderGlyphSeries && (
         <GlyphSeries

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-import BarStackComponent from './BarStack';
+import BarStack from './BarStack';
 import CustomChartBackground from './CustomChartBackground';
 import { City, XYChartProps } from './types';
 
@@ -53,7 +53,6 @@ const Example: React.FC<XYChartProps> = (props) => {
     Axis,
     BarGroup,
     BarSeries,
-    BarStack,
     GlyphSeries,
     Grid,
     LineSeries,
@@ -85,11 +84,10 @@ const Example: React.FC<XYChartProps> = (props) => {
         numTicks={numTicks}
       />
       {renderBarStack && (
-        <BarStackComponent
-          BarSeries={BarSeries}
-          BarStack={BarStack}
+        <BarStack
           accessors={accessors}
           data={data}
+          isAnimated={isAnimated}
           stackOffset={stackOffset}
         />
       )}

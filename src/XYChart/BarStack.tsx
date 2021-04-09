@@ -1,42 +1,49 @@
 import React from 'react';
 import { XYChartProps } from './types';
+import {
+  AnimatedBarSeries,
+  AnimatedBarStack,
+  BarSeries as StaticBarSeries,
+  BarStack as StaticBarStack,
+} from '@visx/xychart';
 
 interface Props {
-  BarSeries: XYChartProps['BarSeries'];
-  BarStack: XYChartProps['BarStack'];
   accessors: XYChartProps['accessors'];
   data: XYChartProps['data'];
+  isAnimated: XYChartProps['isAnimated'];
   stackOffset: XYChartProps['stackOffset'];
 }
 
 const BarStack: React.FC<Props> = ({
-  BarSeries,
-  BarStack,
   accessors,
   data,
+  isAnimated,
   stackOffset,
 }) => {
+  const VisxBarSeries = isAnimated ? AnimatedBarSeries : StaticBarSeries;
+  const VisxBarStack = isAnimated ? AnimatedBarStack : StaticBarStack;
+
   return (
-    <BarStack offset={stackOffset}>
-      <BarSeries
+    <VisxBarStack offset={stackOffset}>
+      <VisxBarSeries
         dataKey="New York"
         data={data}
         xAccessor={accessors.x['New York']}
         yAccessor={accessors.y['New York']}
       />
-      <BarSeries
+      <VisxBarSeries
         dataKey="San Francisco"
         data={data}
         xAccessor={accessors.x['San Francisco']}
         yAccessor={accessors.y['San Francisco']}
       />
-      <BarSeries
+      <VisxBarSeries
         dataKey="Austin"
         data={data}
         xAccessor={accessors.x.Austin}
         yAccessor={accessors.y.Austin}
       />
-    </BarStack>
+    </VisxBarStack>
   );
 }
 

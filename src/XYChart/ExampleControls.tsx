@@ -43,7 +43,7 @@ type DataKey = keyof Accessors;
 
 type SimpleScaleConfig = { type: 'band' | 'linear'; paddingInner?: number };
 
-type ProvidedProps = {
+export type ProvidedProps = {
   accessors: {
     x: Accessors;
     y: Accessors;
@@ -90,7 +90,7 @@ type ProvidedProps = {
 } & ReturnType<typeof getAnimatedOrUnanimatedComponents>;
 
 type ControlsProps = {
-  children: (props: ProvidedProps) => React.ReactNode;
+  children: (props: ProvidedProps) => React.ReactElement;
 };
 
 export default function ExampleControls({ children }: ControlsProps) {

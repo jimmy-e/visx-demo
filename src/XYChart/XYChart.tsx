@@ -1,13 +1,20 @@
 import React from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import Example from './Example';
-import ExampleTwo from './ExampleTwo';
+import ExampleControls from './ExampleControls';
 
 const XYChart: React.FC = () => (
-  <>
-    <ParentSize>{({ width, height }) => <Example width={width} height={height} />}</ParentSize>
-    <ExampleTwo width={100} height={100} />
-  </>
+  <ParentSize>
+    {
+      ({ height, width }) => (
+        <ExampleControls>
+          {(props) => (
+            <Example height={height} width={width} {...props} />
+          )}
+        </ExampleControls>
+      )
+    }
+  </ParentSize>
 );
 
 export default XYChart;

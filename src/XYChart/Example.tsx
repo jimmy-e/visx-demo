@@ -5,6 +5,7 @@ import AreaStack from 'shapes/AreaStack/AreaStack';
 import BarGroup from 'shapes/BarGroup/BarGroup';
 import BarSeries from 'shapes/BarSeries/BarSeries';
 import BarStack from 'shapes/BarStack/BarStack';
+import GlyphSeries from 'shapes/GlyphSeries/GlyphSeries';
 import LineSeries from 'shapes/LineSeries/LineSeries';
 import { City, XYChartProps } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
@@ -54,7 +55,6 @@ const Example: React.FC<XYChartProps> = (props) => {
     // components are animated or not depending on selection
     Annotation,
     Axis,
-    GlyphSeries,
     Grid,
     AnnotationCircleSubject,
     AnnotationConnector,
@@ -135,12 +135,11 @@ const Example: React.FC<XYChartProps> = (props) => {
       )}
       {renderGlyphSeries && (
         <GlyphSeries
-          dataKey="San Francisco"
+          accessors={accessors}
+          colorAccessorFactory={colorAccessorFactory}
           data={data}
-          xAccessor={accessors.x['San Francisco']}
-          yAccessor={accessors.y['San Francisco']}
+          isAnimated={isAnimated}
           renderGlyph={renderGlyph}
-          colorAccessor={colorAccessorFactory('San Francisco')}
         />
       )}
       <Axis

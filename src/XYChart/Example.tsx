@@ -2,6 +2,7 @@ import React from 'react';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import AreaSeries from 'shapes/AreaSeries/AreaSeries';
 import AreaStack from 'shapes/AreaStack/AreaStack';
+import Axis from 'tools/Axis/Axis';
 import BarGroup from 'shapes/BarGroup/BarGroup';
 import BarSeries from 'shapes/BarSeries/BarSeries';
 import BarStack from 'shapes/BarStack/BarStack';
@@ -54,7 +55,6 @@ const Example: React.FC<XYChartProps> = (props) => {
 
     // components are animated or not depending on selection
     Annotation,
-    Axis,
     Grid,
     AnnotationCircleSubject,
     AnnotationConnector,
@@ -144,12 +144,15 @@ const Example: React.FC<XYChartProps> = (props) => {
       )}
       <Axis
         key={`time-axis-${animationTrajectory}-${renderHorizontally}`}
-        orientation={renderHorizontally ? yAxisOrientation : xAxisOrientation}
-        numTicks={numTicks}
         animationTrajectory={animationTrajectory}
+        isAnimated={isAnimated}
+        numTicks={numTicks}
+        orientation={renderHorizontally ? yAxisOrientation : xAxisOrientation}
       />
       <Axis
         key={`temp-axis-${animationTrajectory}-${renderHorizontally}`}
+        animationTrajectory={animationTrajectory}
+        isAnimated={isAnimated}
         label={
           stackOffset == null
             ? 'Temperature (°F)'
@@ -157,9 +160,8 @@ const Example: React.FC<XYChartProps> = (props) => {
             ? 'Fraction of total temperature'
             : ''
         }
-        orientation={renderHorizontally ? xAxisOrientation : yAxisOrientation}
         numTicks={numTicks}
-        animationTrajectory={animationTrajectory}
+        orientation={renderHorizontally ? xAxisOrientation : yAxisOrientation}
         // values don't make sense in stream graph
         tickFormat={stackOffset === 'wiggle' ? () => '' : undefined}
       />

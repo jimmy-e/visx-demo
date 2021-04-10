@@ -15,6 +15,7 @@ module.exports = {
       ...config.resolve.alias,
       shapes: path.resolve(__dirname, '../src/atoms/shapes'),
       src: path.resolve(__dirname, '../src'),
+      tools: path.resolve(__dirname, '../src/atoms/tools'),
     };
     return config;
   },

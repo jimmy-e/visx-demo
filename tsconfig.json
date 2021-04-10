@@ -23,6 +23,7 @@
     "paths": {
       "shapes/*": ["src/atoms/shapes/*"],
       "src/*": ["src/*"],
+      "tools/*": ["src/atoms/tools/*"]
     }
   },
   "include": [

@@ -1,5 +1,6 @@
 import React from 'react';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import Annotation from 'tools/Annotation/Annotation';
 import AreaSeries from 'shapes/AreaSeries/AreaSeries';
 import AreaStack from 'shapes/AreaStack/AreaStack';
 import Axis from 'tools/Axis/Axis';
@@ -54,12 +55,7 @@ const Example: React.FC<XYChartProps> = (props) => {
     yAxisOrientation,
 
     // components are animated or not depending on selection
-    Annotation,
     Grid,
-    AnnotationCircleSubject,
-    AnnotationConnector,
-    AnnotationLabel,
-    AnnotationLineSubject,
     Tooltip,
     XYChart,
   } = props;
@@ -167,31 +163,19 @@ const Example: React.FC<XYChartProps> = (props) => {
       />
       {annotationDataKey && annotationDatum && (
         <Annotation
+          annotationType={annotationType}
+          canEditSubject={false}
           dataKey={annotationDataKey}
           datum={annotationDatum}
           dx={annotationLabelPosition.dx}
           dy={annotationLabelPosition.dy}
           editable={editAnnotationLabelPosition}
-          canEditSubject={false}
+          isAnimated={isAnimated}
           onDragEnd={({ dx, dy }) => setAnnotationLabelPosition({ dx, dy })}
-        >
-          <AnnotationConnector />
-          {annotationType === 'circle' ? (
-            <AnnotationCircleSubject />
-          ) : (
-            <AnnotationLineSubject />
-          )}
-          <AnnotationLabel
-            title={annotationDataKey}
-            subtitle={`${annotationDatum.date}, ${annotationDatum[annotationDataKey]}°F`}
-            width={135}
-            backgroundProps={{
-              stroke: theme.gridStyles.stroke,
-              strokeOpacity: 0.5,
-              fillOpacity: 0.8,
-            }}
-          />
-        </Annotation>
+          stroke={theme.gridStyles.stroke}
+          subtitle={`${annotationDatum.date}, ${annotationDatum[annotationDataKey]}°F`}
+          title={annotationDataKey}
+        />
       )}
       {showTooltip && (
         <Tooltip<CityTemperature>

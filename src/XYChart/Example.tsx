@@ -1,5 +1,4 @@
 import React from 'react';
-import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import Annotation from 'tools/Annotation/Annotation';
 import AreaSeries from 'shapes/AreaSeries/AreaSeries';
 import AreaStack from 'shapes/AreaStack/AreaStack';
@@ -9,6 +8,7 @@ import BarSeries from 'shapes/BarSeries/BarSeries';
 import BarStack from 'shapes/BarStack/BarStack';
 import GlyphSeries from 'shapes/GlyphSeries/GlyphSeries';
 import LineSeries from 'shapes/LineSeries/LineSeries';
+import CustomTooltip from 'tools/Tooltip/Tooltip';
 import { City, XYChartProps } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 
@@ -177,54 +177,56 @@ const Example: React.FC<XYChartProps> = (props) => {
           title={annotationDataKey}
         />
       )}
-      {showTooltip && (
-        <Tooltip<CityTemperature>
-          showHorizontalCrosshair={showHorizontalCrosshair}
-          showVerticalCrosshair={showVerticalCrosshair}
-          snapTooltipToDatumX={snapTooltipToDatumX}
-          snapTooltipToDatumY={snapTooltipToDatumY}
-          showDatumGlyph={(snapTooltipToDatumX || snapTooltipToDatumY) && !renderBarGroup}
-          showSeriesGlyphs={sharedTooltip && !renderBarGroup}
-          renderTooltip={({ tooltipData, colorScale }) => (
-            <>
-              {/** date */}
-              {(tooltipData?.nearestDatum?.datum &&
-                accessors.date(tooltipData?.nearestDatum?.datum)) ||
-              'No date'}
-              <br />
-              <br />
-              {/** temperatures */}
-              {((sharedTooltip
-                  ? Object.keys(tooltipData?.datumByKey ?? {})
-                  : [tooltipData?.nearestDatum?.key]
-              ).filter(city => city) as City[]).map(city => {
-                const temperature =
-                  tooltipData?.nearestDatum?.datum &&
-                  accessors[renderHorizontally ? 'x' : 'y'][city](
-                    tooltipData?.nearestDatum?.datum,
-                  );
+      {
+        showTooltip && (
+          <CustomTooltip
+            showDatumGlyph={(snapTooltipToDatumX || snapTooltipToDatumY) && !renderBarGroup}
+            showHorizontalCrosshair={showHorizontalCrosshair}
+            showSeriesGlyphs={sharedTooltip && !renderBarGroup}
+            showVerticalCrosshair={showVerticalCrosshair}
+            snapTooltipToDatumX={snapTooltipToDatumX}
+            snapTooltipToDatumY={snapTooltipToDatumY}
+            renderTooltip={({ tooltipData, colorScale }) => (
+              <>
+                {/** date */}
+                {(tooltipData?.nearestDatum?.datum &&
+                  accessors.date(tooltipData?.nearestDatum?.datum)) ||
+                'No date'}
+                <br />
+                <br />
+                {/** temperatures */}
+                {((sharedTooltip
+                    ? Object.keys(tooltipData?.datumByKey ?? {})
+                    : [tooltipData?.nearestDatum?.key]
+                ).filter(city => city) as City[]).map(city => {
+                  const temperature =
+                    tooltipData?.nearestDatum?.datum &&
+                    accessors[renderHorizontally ? 'x' : 'y'][city](
+                      tooltipData?.nearestDatum?.datum,
+                    );
 
-                return (
-                  <div key={city}>
-                    <em
-                      style={{
-                        color: colorScale?.(city),
-                        textDecoration:
-                          tooltipData?.nearestDatum?.key === city ? 'underline' : undefined,
-                      }}
-                    >
-                      {city}
-                    </em>{' '}
-                    {temperature == null || Number.isNaN(temperature)
-                      ? '–'
-                      : `${temperature}° F`}
-                  </div>
-                );
-              })}
-            </>
-          )}
-        />
-      )}
+                  return (
+                    <div key={city}>
+                      <em
+                        style={{
+                          color: colorScale?.(city),
+                          textDecoration:
+                            tooltipData?.nearestDatum?.key === city ? 'underline' : undefined,
+                        }}
+                      >
+                        {city}
+                      </em>{' '}
+                      {temperature == null || Number.isNaN(temperature)
+                        ? '–'
+                        : `${temperature}° F`}
+                    </div>
+                  );
+                })}
+              </>
+            )}
+          />
+        )
+      }
     </XYChart>
   );
 }

@@ -8,9 +8,10 @@ import BarSeries from 'shapes/BarSeries/BarSeries';
 import BarStack from 'shapes/BarStack/BarStack';
 import GlyphSeries from 'shapes/GlyphSeries/GlyphSeries';
 import LineSeries from 'shapes/LineSeries/LineSeries';
-import CustomTooltip from 'tools/Tooltip/Tooltip';
-import { City, XYChartProps } from 'src/types';
+import Tooltip from 'tools/Tooltip/Tooltip';
+import { XYChartProps } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
+import CustomTooltip from './CustomTooltip';
 
 const Example: React.FC<XYChartProps> = (props) => {
   const {
@@ -179,7 +180,7 @@ const Example: React.FC<XYChartProps> = (props) => {
       )}
       {
         showTooltip && (
-          <CustomTooltip
+          <Tooltip
             showDatumGlyph={(snapTooltipToDatumX || snapTooltipToDatumY) && !renderBarGroup}
             showHorizontalCrosshair={showHorizontalCrosshair}
             showSeriesGlyphs={sharedTooltip && !renderBarGroup}
@@ -187,42 +188,13 @@ const Example: React.FC<XYChartProps> = (props) => {
             snapTooltipToDatumX={snapTooltipToDatumX}
             snapTooltipToDatumY={snapTooltipToDatumY}
             renderTooltip={({ tooltipData, colorScale }) => (
-              <>
-                {/** date */}
-                {(tooltipData?.nearestDatum?.datum &&
-                  accessors.date(tooltipData?.nearestDatum?.datum)) ||
-                'No date'}
-                <br />
-                <br />
-                {/** temperatures */}
-                {((sharedTooltip
-                    ? Object.keys(tooltipData?.datumByKey ?? {})
-                    : [tooltipData?.nearestDatum?.key]
-                ).filter(city => city) as City[]).map(city => {
-                  const temperature =
-                    tooltipData?.nearestDatum?.datum &&
-                    accessors[renderHorizontally ? 'x' : 'y'][city](
-                      tooltipData?.nearestDatum?.datum,
-                    );
-
-                  return (
-                    <div key={city}>
-                      <em
-                        style={{
-                          color: colorScale?.(city),
-                          textDecoration:
-                            tooltipData?.nearestDatum?.key === city ? 'underline' : undefined,
-                        }}
-                      >
-                        {city}
-                      </em>{' '}
-                      {temperature == null || Number.isNaN(temperature)
-                        ? '–'
-                        : `${temperature}° F`}
-                    </div>
-                  );
-                })}
-              </>
+              <CustomTooltip
+                accessors={accessors}
+                colorScale={colorScale}
+                renderHorizontally={renderHorizontally}
+                sharedTooltip={sharedTooltip}
+                tooltipData={tooltipData}
+              />
             )}
           />
         )

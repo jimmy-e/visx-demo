@@ -9,6 +9,7 @@ import BarStack from 'shapes/BarStack/BarStack';
 import GlyphSeries from 'shapes/GlyphSeries/GlyphSeries';
 import LineSeries from 'shapes/LineSeries/LineSeries';
 import Tooltip from 'tools/Tooltip/Tooltip';
+import XYChart from 'molecules/XYChart/XYChart';
 import { XYChartProps } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
@@ -57,8 +58,6 @@ const Example: React.FC<XYChartProps> = (props) => {
 
     // components are animated or not depending on selection
     Grid,
-    Tooltip,
-    XYChart,
   } = props;
   return (
     <XYChart

@@ -13,6 +13,7 @@ module.exports = {
   webpackFinal: async (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
+      molecules: path.resolve(__dirname, '../src/molecules'),
       shapes: path.resolve(__dirname, '../src/atoms/shapes'),
       src: path.resolve(__dirname, '../src'),
       tools: path.resolve(__dirname, '../src/atoms/tools'),

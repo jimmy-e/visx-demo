@@ -21,6 +21,7 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
+      "molecules/*": ["src/molecules/*"],
       "shapes/*": ["src/atoms/shapes/*"],
       "src/*": ["src/*"],
       "tools/*": ["src/atoms/tools/*"]

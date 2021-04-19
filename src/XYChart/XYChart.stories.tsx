@@ -7,9 +7,13 @@ export default {
   title: 'Charts',
 } as Meta;
 
+// ToDo: add prop binding
 const XYChartStory: Story = (args) => <XYChartComponent {...args} />;
 
 export const XYChart = XYChartStory.bind({});
 XYChart.args = {
   isAnimated: true,
+  showTooltip: true,
+  showHorizontalCrosshair: false,
+  showVerticalCrosshair: true,
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import Annotation from 'tools/Annotation/Annotation';
 import AreaSeries from 'shapes/AreaSeries/AreaSeries';
 import AreaStack from 'shapes/AreaStack/AreaStack';
@@ -18,7 +19,6 @@ import CustomTooltip from './CustomTooltip';
 const Example: React.FC<XYChartProps> = (props) => {
   const {
     accessors,
-    animationTrajectory,
     annotationDataKey,
     annotationDatum,
     annotationLabelPosition,
@@ -57,6 +57,9 @@ const Example: React.FC<XYChartProps> = (props) => {
     xAxisOrientation,
     yAxisOrientation,
   } = props;
+
+  const animationTrajectory: AnimationTrajectory = 'center';
+
   return (
     <XYChart
       theme={theme}

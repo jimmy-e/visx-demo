@@ -26,7 +26,6 @@ export type XYChartProps = {
     y: Accessors;
     date: Accessor;
   };
-  animationTrajectory?: AnimationTrajectory;
   annotationDataKey: DataKey | null;
   annotationDatum?: CityTemperature;
   annotationLabelPosition: { dx: number; dy: number };

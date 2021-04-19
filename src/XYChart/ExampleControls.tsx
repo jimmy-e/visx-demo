@@ -4,12 +4,10 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
 import { PatternLines } from '@visx/pattern';
 import { GlyphProps } from '@visx/xychart/lib/types';
-import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import customTheme from './customTheme';
-import userPrefersReducedMotion from './userPrefersReducedMotion';
 import { DataKey, XYChartProps } from '../types';
 
 const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
@@ -39,21 +37,15 @@ type Props = {
 
 export default function ExampleControls({ children, height, width }: Props) {
   const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
-  const [animationTrajectory, setAnimationTrajectory] = useState<AnimationTrajectory | undefined>(
-    'center',
-  );
   const [gridProps, setGridProps] = useState<[boolean, boolean]>([false, false]);
   const [showGridRows, showGridColumns] = gridProps;
   const [xAxisOrientation, setXAxisOrientation] = useState<'top' | 'bottom'>('bottom');
   const [yAxisOrientation, setYAxisOrientation] = useState<'left' | 'right'>('right');
   const [renderHorizontally, setRenderHorizontally] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(true);
   const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
     null,
   );
   const [annotationType, setAnnotationType] = useState<XYChartProps['annotationType']>('circle');
-  const [showVerticalCrosshair, setShowVerticalCrosshair] = useState(true);
-  const [showHorizontalCrosshair, setShowHorizontalCrosshair] = useState(false);
   const [snapTooltipToDatumX, setSnapTooltipToDatumX] = useState(true);
   const [snapTooltipToDatumY, setSnapTooltipToDatumY] = useState(true);
   const [sharedTooltip, setSharedTooltip] = useState(true);
@@ -144,7 +136,6 @@ export default function ExampleControls({ children, height, width }: Props) {
     <>
       {children({
         accessors,
-        animationTrajectory,
         annotationDataKey,
         annotationDatum: data[annotationDataIndex],
         annotationLabelPosition,
@@ -180,9 +171,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         sharedTooltip,
         showGridColumns,
         showGridRows,
-        showHorizontalCrosshair,
-        showTooltip,
-        showVerticalCrosshair,
         snapTooltipToDatumX: canSnapTooltipToDatum && snapTooltipToDatumX,
         snapTooltipToDatumY: canSnapTooltipToDatum && snapTooltipToDatumY,
         stackOffset,
@@ -500,53 +488,26 @@ export default function ExampleControls({ children, height, width }: Props) {
           <label>
             <input
               type="checkbox"
-              onChange={() => setShowTooltip(!showTooltip)}
-              checked={showTooltip}
-            />
-            show tooltip
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              disabled={!showTooltip || !canSnapTooltipToDatum}
+              disabled={!canSnapTooltipToDatum}
               onChange={() => setSnapTooltipToDatumX(!snapTooltipToDatumX)}
-              checked={showTooltip && snapTooltipToDatumX}
+              checked={snapTooltipToDatumX}
             />
             snap tooltip to datum x
           </label>
           <label>
             <input
               type="checkbox"
-              disabled={!showTooltip || !canSnapTooltipToDatum}
+              disabled={!canSnapTooltipToDatum}
               onChange={() => setSnapTooltipToDatumY(!snapTooltipToDatumY)}
-              checked={showTooltip && snapTooltipToDatumY}
+              checked={snapTooltipToDatumY}
             />
             snap tooltip to datum y
           </label>
           <label>
             <input
               type="checkbox"
-              disabled={!showTooltip}
-              onChange={() => setShowVerticalCrosshair(!showVerticalCrosshair)}
-              checked={showTooltip && showVerticalCrosshair}
-            />
-            vertical crosshair
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              disabled={!showTooltip}
-              onChange={() => setShowHorizontalCrosshair(!showHorizontalCrosshair)}
-              checked={showTooltip && showHorizontalCrosshair}
-            />
-            horizontal crosshair
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              disabled={!showTooltip}
               onChange={() => setSharedTooltip(!sharedTooltip)}
-              checked={showTooltip && sharedTooltip}
+              checked={sharedTooltip}
             />
             shared tooltip
           </label>

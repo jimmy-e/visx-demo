@@ -5,6 +5,9 @@ import ExampleControls from './ExampleControls';
 
 interface Props {
   isAnimated: boolean;
+  showTooltip: boolean;
+  showHorizontalCrosshair: boolean;
+  showVerticalCrosshair: boolean;
 }
 
 const XYChart: React.FC<Props> = (props) => (

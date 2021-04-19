@@ -46,6 +46,7 @@ export const XYChart = XYChartStory.bind({});
 XYChart.args = {
   annotationType: 'circle',
   curveType: 'linear',
+  editAnnotationLabelPosition: false,
   hasSharedTooltip: true,
   isAnimated: true,
   showGridColumns: false,

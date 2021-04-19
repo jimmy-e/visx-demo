@@ -44,15 +44,14 @@ export default function ExampleControls({ children, height, width }: Props) {
   const [renderAreaLineOrStack, setRenderAreaLineOrStack] = useState<
     'line' | 'area' | 'areastack' | 'none'
     >('areastack');
+  const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
+    null,
+  );
 
   // should wait until other items are complete
   const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
 
   // To review
-  const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
-    null,
-  );
-  const [editAnnotationLabelPosition, setEditAnnotationLabelPosition] = useState(false);
   const [annotationLabelPosition, setAnnotationLabelPosition] = useState({ dx: -40, dy: -20 });
   const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
   const [negativeValues, setNegativeValues] = useState(false);
@@ -138,7 +137,6 @@ export default function ExampleControls({ children, height, width }: Props) {
           : missingValues
             ? dataMissingValues
             : data,
-        editAnnotationLabelPosition,
         height,
         numTicks,
         renderBarGroup: renderBarStackOrGroup === 'bargroup',
@@ -427,16 +425,6 @@ export default function ExampleControls({ children, height, width }: Props) {
               checked={annotationDataKey === 'Austin'}
             />
             Austin
-          </label>
-          &nbsp;&nbsp;&nbsp;
-          <strong>type</strong>
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => setEditAnnotationLabelPosition(!editAnnotationLabelPosition)}
-              checked={editAnnotationLabelPosition}
-            />
-            edit label position
           </label>
         </div>
 

@@ -6,6 +6,7 @@ import ExampleControls from './ExampleControls';
 interface Props {
   annotationType: 'circle' | 'line';
   curveType: 'cardinal' | 'linear' | 'step';
+  editAnnotationLabelPosition: boolean;
   hasSharedTooltip: boolean;
   isAnimated: boolean;
   showTooltip: boolean;

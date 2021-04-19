@@ -4,8 +4,11 @@ import Example from './Example';
 import ExampleControls from './ExampleControls';
 
 interface Props {
+  hasSharedTooltip: boolean;
   isAnimated: boolean;
   showTooltip: boolean;
+  showGridColumns: boolean;
+  showGridRows: boolean;
   showHorizontalCrosshair: boolean;
   showVerticalCrosshair: boolean;
 }

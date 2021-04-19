@@ -43,7 +43,7 @@ const Example: React.FC<XYChartProps> = (props) => {
     setAnnotationDataIndex,
     setAnnotationDataKey,
     setAnnotationLabelPosition,
-    sharedTooltip,
+    hasSharedTooltip,
     showGridColumns,
     showGridRows,
     showHorizontalCrosshair,
@@ -183,7 +183,7 @@ const Example: React.FC<XYChartProps> = (props) => {
           <Tooltip
             showDatumGlyph={(snapTooltipToDatumX || snapTooltipToDatumY) && !renderBarGroup}
             showHorizontalCrosshair={showHorizontalCrosshair}
-            showSeriesGlyphs={sharedTooltip && !renderBarGroup}
+            showSeriesGlyphs={hasSharedTooltip && !renderBarGroup}
             showVerticalCrosshair={showVerticalCrosshair}
             snapTooltipToDatumX={snapTooltipToDatumX}
             snapTooltipToDatumY={snapTooltipToDatumY}
@@ -191,8 +191,8 @@ const Example: React.FC<XYChartProps> = (props) => {
               <CustomTooltip
                 accessors={accessors}
                 colorScale={colorScale}
+                hasSharedTooltip={hasSharedTooltip}
                 renderHorizontally={renderHorizontally}
-                sharedTooltip={sharedTooltip}
                 tooltipData={tooltipData}
               />
             )}

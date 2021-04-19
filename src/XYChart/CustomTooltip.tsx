@@ -7,8 +7,8 @@ interface Props {
   accessors: XYChartProps['accessors'];
   // ToDo: replace `any` with correct datum typing
   colorScale: RenderTooltipParams<any>['colorScale'];
+  hasSharedTooltip: XYChartProps['sharedTooltip'];
   renderHorizontally: XYChartProps['renderHorizontally'];
-  sharedTooltip: XYChartProps['sharedTooltip'];
   // ToDo: replace `any` to correct typing
   tooltipData: any;
 }
@@ -16,8 +16,8 @@ interface Props {
 const CustomTooltip: React.FC<Props> = ({
   accessors,
   colorScale,
+  hasSharedTooltip,
   renderHorizontally,
-  sharedTooltip,
   tooltipData,
 }) => (
   <>
@@ -28,7 +28,7 @@ const CustomTooltip: React.FC<Props> = ({
     <br />
     <br />
     {/** temperatures */}
-    {((sharedTooltip
+    {((hasSharedTooltip
         ? Object.keys(tooltipData?.datumByKey ?? {})
         : [tooltipData?.nearestDatum?.key]
     ).filter(city => city) as City[]).map(city => {

@@ -37,8 +37,6 @@ type Props = {
 
 export default function ExampleControls({ children, height, width }: Props) {
   const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
-  const [gridProps, setGridProps] = useState<[boolean, boolean]>([false, false]);
-  const [showGridRows, showGridColumns] = gridProps;
   const [xAxisOrientation, setXAxisOrientation] = useState<'top' | 'bottom'>('bottom');
   const [yAxisOrientation, setYAxisOrientation] = useState<'left' | 'right'>('right');
   const [renderHorizontally, setRenderHorizontally] = useState(false);
@@ -48,7 +46,6 @@ export default function ExampleControls({ children, height, width }: Props) {
   const [annotationType, setAnnotationType] = useState<XYChartProps['annotationType']>('circle');
   const [snapTooltipToDatumX, setSnapTooltipToDatumX] = useState(true);
   const [snapTooltipToDatumY, setSnapTooltipToDatumY] = useState(true);
-  const [sharedTooltip, setSharedTooltip] = useState(true);
   const [renderBarStackOrGroup, setRenderBarStackOrGroup] = useState<
     'bar' | 'barstack' | 'bargroup' | 'none'
     >('none');
@@ -168,9 +165,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         setAnnotationDataIndex,
         setAnnotationDataKey,
         setAnnotationLabelPosition,
-        sharedTooltip,
-        showGridColumns,
-        showGridRows,
         snapTooltipToDatumX: canSnapTooltipToDatum && snapTooltipToDatumX,
         snapTooltipToDatumY: canSnapTooltipToDatum && snapTooltipToDatumY,
         stackOffset,
@@ -503,14 +497,6 @@ export default function ExampleControls({ children, height, width }: Props) {
             />
             snap tooltip to datum y
           </label>
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => setSharedTooltip(!sharedTooltip)}
-              checked={sharedTooltip}
-            />
-            shared tooltip
-          </label>
         </div>
         {/** annotation */}
         <div>
@@ -613,43 +599,6 @@ export default function ExampleControls({ children, height, width }: Props) {
               checked={yAxisOrientation === 'right'}
             />
             right
-          </label>
-        </div>
-
-        {/** grid */}
-        <div>
-          <strong>grid</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setGridProps([true, false])}
-              checked={showGridRows && !showGridColumns}
-            />
-            rows
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setGridProps([false, true])}
-              checked={!showGridRows && showGridColumns}
-            />
-            columns
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setGridProps([true, true])}
-              checked={showGridRows && showGridColumns}
-            />
-            both
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setGridProps([false, false])}
-              checked={!showGridRows && !showGridColumns}
-            />
-            none
           </label>
         </div>
       </div>

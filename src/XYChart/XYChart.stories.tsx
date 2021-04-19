@@ -12,7 +12,10 @@ const XYChartStory: Story = (args) => <XYChartComponent {...args} />;
 
 export const XYChart = XYChartStory.bind({});
 XYChart.args = {
+  hasSharedTooltip: true,
   isAnimated: true,
+  showGridColumns: false,
+  showGridRows: false,
   showTooltip: true,
   showHorizontalCrosshair: false,
   showVerticalCrosshair: true,

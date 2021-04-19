@@ -27,7 +27,7 @@ export type XYChartProps = {
   annotationDataKey: DataKey | null;
   annotationDatum?: CityTemperature;
   annotationLabelPosition: { dx: number; dy: number };
-  annotationType?: 'line' | 'circle';
+  annotationType?: 'circle' | 'line';
   colorAccessorFactory: (key: DataKey) => (d: CityTemperature) => string | null;
   config: {
     x: SimpleScaleConfig;

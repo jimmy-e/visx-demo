@@ -4,6 +4,7 @@ import Example from './Example';
 import ExampleControls from './ExampleControls';
 
 interface Props {
+  annotationType: 'circle' | 'line';
   hasSharedTooltip: boolean;
   isAnimated: boolean;
   showTooltip: boolean;

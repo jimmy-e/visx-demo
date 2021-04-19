@@ -6,15 +6,21 @@ import XYChartComponent from './XYChart';
 export default {
   title: 'Charts',
   argTypes: {
+    annotationType: {
+      control: {
+        type: 'radio',
+        options: ['circle', 'line'],
+      },
+    },
     xAxisOrientation: {
       control: {
-        type: 'select',
+        type: 'radio',
         options: ['bottom', 'top'],
       },
     },
     yAxisOrientation: {
       control: {
-        type: 'select',
+        type: 'radio',
         options: ['left', 'right'],
       },
     },
@@ -26,6 +32,7 @@ const XYChartStory: Story = (args) => <XYChartComponent {...args} />;
 
 export const XYChart = XYChartStory.bind({});
 XYChart.args = {
+  annotationType: 'circle',
   hasSharedTooltip: true,
   isAnimated: true,
   showGridColumns: false,

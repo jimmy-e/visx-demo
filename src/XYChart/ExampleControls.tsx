@@ -44,7 +44,6 @@ export default function ExampleControls({ children, height, width }: Props) {
   const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
     null,
   );
-  const [annotationType, setAnnotationType] = useState<XYChartProps['annotationType']>('circle');
   const [snapTooltipToDatumX, setSnapTooltipToDatumX] = useState(true);
   const [snapTooltipToDatumY, setSnapTooltipToDatumY] = useState(true);
   const [renderBarStackOrGroup, setRenderBarStackOrGroup] = useState<
@@ -137,7 +136,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         annotationDataKey,
         annotationDatum: data[annotationDataIndex],
         annotationLabelPosition,
-        annotationType,
         colorAccessorFactory,
         config,
         curve:
@@ -534,23 +532,6 @@ export default function ExampleControls({ children, height, width }: Props) {
           </label>
           &nbsp;&nbsp;&nbsp;
           <strong>type</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationType('circle')}
-              checked={annotationType === 'circle'}
-            />
-            circle
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationType('line')}
-              checked={annotationType === 'line'}
-            />
-            line
-          </label>
-          &nbsp;&nbsp;&nbsp;
           <label>
             <input
               type="checkbox"

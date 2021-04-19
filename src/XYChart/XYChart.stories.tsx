@@ -18,6 +18,12 @@ export default {
         options: ['cardinal', 'linear', 'step'],
       },
     },
+    stackOffset: {
+      control: {
+        type: 'radio',
+        options: ['diverging', 'expand', 'wiggle'],
+      },
+    },
     xAxisOrientation: {
       control: {
         type: 'radio',
@@ -49,6 +55,7 @@ XYChart.args = {
   showVerticalCrosshair: true,
   snapTooltipToDatumX: true,
   snapTooltipToDatumY: true,
+  stackOffset: 'diverging',
   xAxisOrientation: 'bottom',
   yAxisOrientation: 'left',
 };

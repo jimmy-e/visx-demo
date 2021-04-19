@@ -15,6 +15,7 @@ interface Props {
   showVerticalCrosshair: boolean;
   snapTooltipToDatumX: boolean;
   snapTooltipToDatumY: boolean;
+  stackOffset: 'diverging' | 'expand' | 'wiggle';
   xAxisOrientation: 'bottom' | 'top';
   yAxisOrientation: 'left' | 'right';
 }

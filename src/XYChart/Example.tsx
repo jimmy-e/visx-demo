@@ -45,6 +45,7 @@ const Example: React.FC<XYChartProps> = (props) => {
     setAnnotationDataIndex,
     setAnnotationDataKey,
     setAnnotationLabelPosition,
+    // @ts-expect-error: will fix type bindings
     hasSharedTooltip,
     showGridColumns,
     showGridRows,

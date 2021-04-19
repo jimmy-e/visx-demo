@@ -39,6 +39,9 @@ export default function ExampleControls({ children, height, width }: Props) {
   const [renderHorizontally, setRenderHorizontally] = useState(false);
   const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
 
+  // should wait until other items are complete
+  const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
+
   // To review
   const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
     null,
@@ -49,8 +52,6 @@ export default function ExampleControls({ children, height, width }: Props) {
   const [renderAreaLineOrStack, setRenderAreaLineOrStack] = useState<
     'line' | 'area' | 'areastack' | 'none'
     >('areastack');
-  const [stackOffset, setStackOffset] = useState<XYChartProps['stackOffset']>();
-  const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
   const [editAnnotationLabelPosition, setEditAnnotationLabelPosition] = useState(false);
   const [annotationLabelPosition, setAnnotationLabelPosition] = useState({ dx: -40, dy: -20 });
   const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
@@ -152,7 +153,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         setAnnotationDataIndex,
         setAnnotationDataKey,
         setAnnotationLabelPosition,
-        stackOffset,
         theme,
         width,
       })}
@@ -392,43 +392,6 @@ export default function ExampleControls({ children, height, width }: Props) {
             none
           </label>
         </div>
-        <div>
-          <strong>stack series offset</strong>
-          <label>
-            <input
-              type="radio"
-              disabled={
-                renderAreaLineOrStack !== 'areastack' && renderBarStackOrGroup !== 'barstack'
-              }
-              onChange={() => setStackOffset(undefined)}
-              checked={stackOffset == null}
-            />
-            auto (zero-baseline)
-          </label>
-          <label>
-            <input
-              type="radio"
-              disabled={
-                renderAreaLineOrStack !== 'areastack' && renderBarStackOrGroup !== 'barstack'
-              }
-              onChange={() => setStackOffset('expand')}
-              checked={stackOffset === 'expand'}
-            />
-            expand (values sum to 1)
-          </label>
-          <label>
-            <input
-              type="radio"
-              disabled={
-                renderAreaLineOrStack !== 'areastack' && renderBarStackOrGroup !== 'barstack'
-              }
-              onChange={() => setStackOffset('wiggle')}
-              checked={stackOffset === 'wiggle'}
-            />
-            wiggle (stream graph)
-          </label>
-        </div>
-
         <br />
         {/** annotation */}
         <div>

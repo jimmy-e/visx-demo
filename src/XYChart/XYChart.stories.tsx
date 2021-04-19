@@ -7,4 +7,9 @@ export default {
   title: 'Charts',
 } as Meta;
 
-export const XYChart: Story = () => <XYChartComponent />;
+const XYChartStory: Story = (args) => <XYChartComponent {...args} />;
+
+export const XYChart = XYChartStory.bind({});
+XYChart.args = {
+  isAnimated: true,
+};

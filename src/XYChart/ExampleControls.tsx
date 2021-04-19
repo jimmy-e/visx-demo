@@ -10,8 +10,7 @@ import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import customTheme from './customTheme';
 import userPrefersReducedMotion from './userPrefersReducedMotion';
-import getAnimatedOrUnanimatedComponents from './getAnimatedOrUnanimatedComponents';
-import { DataKey, XYChartProps } from './types';
+import { DataKey, XYChartProps } from '../types';
 
 const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
 const temperatureScaleConfig = { type: 'linear' } as const;
@@ -39,7 +38,6 @@ type Props = {
 };
 
 export default function ExampleControls({ children, height, width }: Props) {
-  const [isAnimated, setIsAnimated] = useState<XYChartProps['isAnimated']>(!userPrefersReducedMotion());
   const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
   const [animationTrajectory, setAnimationTrajectory] = useState<AnimationTrajectory | undefined>(
     'center',
@@ -166,7 +164,6 @@ export default function ExampleControls({ children, height, width }: Props) {
             : data,
         editAnnotationLabelPosition,
         height,
-        isAnimated,
         numTicks,
         renderBarGroup: renderBarStackOrGroup === 'bargroup',
         renderBarSeries: renderBarStackOrGroup === 'bar',
@@ -193,7 +190,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         width,
         xAxisOrientation,
         yAxisOrientation,
-        ...getAnimatedOrUnanimatedComponents(isAnimated),
       })}
       {/** This style is used for annotated elements via colorAccessor. */}
       <svg className="pattern-lines">
@@ -694,56 +690,6 @@ export default function ExampleControls({ children, height, width }: Props) {
             />
             none
           </label>
-        </div>
-        {/** animation trajectory */}
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => setIsAnimated((prevState) => !prevState)}
-              checked={isAnimated}
-            />
-            use animated components
-          </label>
-
-          {isAnimated && (
-            <>
-              &nbsp;&nbsp;&nbsp;
-              <strong>axis + grid animation</strong>
-              <label>
-                <input
-                  type="radio"
-                  onChange={() => setAnimationTrajectory('center')}
-                  checked={animationTrajectory === 'center'}
-                />
-                from center
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  onChange={() => setAnimationTrajectory('outside')}
-                  checked={animationTrajectory === 'outside'}
-                />
-                from outside
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  onChange={() => setAnimationTrajectory('min')}
-                  checked={animationTrajectory === 'min'}
-                />
-                from min
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  onChange={() => setAnimationTrajectory('max')}
-                  checked={animationTrajectory === 'max'}
-                />
-                from max
-              </label>
-            </>
-          )}
         </div>
       </div>
       <style jsx>{`

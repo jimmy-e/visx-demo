@@ -3,13 +3,17 @@ import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import Example from './Example';
 import ExampleControls from './ExampleControls';
 
-const XYChart: React.FC = () => (
+interface Props {
+  isAnimated: boolean;
+}
+
+const XYChart: React.FC<Props> = (props) => (
   <ParentSize>
     {
       ({ height, width }) => (
         <ExampleControls height={height} width={width}>
-          {(props) => (
-            <Example {...props} />
+          {(controlProps) => (
+            <Example {...controlProps} {...props} />
           )}
         </ExampleControls>
       )

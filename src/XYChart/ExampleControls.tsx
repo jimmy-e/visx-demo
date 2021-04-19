@@ -38,6 +38,12 @@ export default function ExampleControls({ children, height, width }: Props) {
   // More complicated
   const [renderHorizontally, setRenderHorizontally] = useState(false);
   const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
+  const [renderBarStackOrGroup, setRenderBarStackOrGroup] = useState<
+    'bar' | 'barstack' | 'bargroup' | 'none'
+    >('none');
+  const [renderAreaLineOrStack, setRenderAreaLineOrStack] = useState<
+    'line' | 'area' | 'areastack' | 'none'
+    >('areastack');
 
   // should wait until other items are complete
   const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
@@ -46,12 +52,6 @@ export default function ExampleControls({ children, height, width }: Props) {
   const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
     null,
   );
-  const [renderBarStackOrGroup, setRenderBarStackOrGroup] = useState<
-    'bar' | 'barstack' | 'bargroup' | 'none'
-    >('none');
-  const [renderAreaLineOrStack, setRenderAreaLineOrStack] = useState<
-    'line' | 'area' | 'areastack' | 'none'
-    >('areastack');
   const [editAnnotationLabelPosition, setEditAnnotationLabelPosition] = useState(false);
   const [annotationLabelPosition, setAnnotationLabelPosition] = useState({ dx: -40, dy: -20 });
   const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);

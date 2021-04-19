@@ -1,5 +1,6 @@
 import React from 'react';
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
+import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import Annotation from 'tools/Annotation/Annotation';
 import AreaSeries from 'shapes/AreaSeries/AreaSeries';
 import AreaStack from 'shapes/AreaStack/AreaStack';
@@ -25,7 +26,8 @@ const Example: React.FC<XYChartProps> = (props) => {
     annotationType,
     colorAccessorFactory,
     config,
-    curve,
+    // @ts-expect-error: will fix type bindings
+    curveType,
     data,
     editAnnotationLabelPosition,
     height,
@@ -57,6 +59,10 @@ const Example: React.FC<XYChartProps> = (props) => {
     xAxisOrientation,
     yAxisOrientation,
   } = props;
+
+  const curve = (curveType === 'cardinal' && curveCardinal)
+    || (curveType === 'step' && curveStep)
+    || curveLinear;
 
   const animationTrajectory: AnimationTrajectory = 'center';
 

@@ -12,6 +12,12 @@ export default {
         options: ['circle', 'line'],
       },
     },
+    curveType: {
+      control: {
+        type: 'radio',
+        options: ['cardinal', 'linear', 'step'],
+      },
+    },
     xAxisOrientation: {
       control: {
         type: 'radio',
@@ -33,6 +39,7 @@ const XYChartStory: Story = (args) => <XYChartComponent {...args} />;
 export const XYChart = XYChartStory.bind({});
 XYChart.args = {
   annotationType: 'circle',
+  curveType: 'linear',
   hasSharedTooltip: true,
   isAnimated: true,
   showGridColumns: false,

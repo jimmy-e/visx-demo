@@ -6,7 +6,6 @@ import { PatternLines } from '@visx/pattern';
 import { GlyphProps } from '@visx/xychart/lib/types';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
-import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import customTheme from './customTheme';
 import { DataKey, XYChartProps } from '../types';
 
@@ -59,7 +58,6 @@ export default function ExampleControls({ children, height, width }: Props) {
   const [fewerDatum, setFewerDatum] = useState(false);
   const [missingValues, setMissingValues] = useState(false);
   const [glyphComponent, setGlyphComponent] = useState<'star' | 'cross' | 'circle' | '🍍'>('star');
-  const [curveType, setCurveType] = useState<'linear' | 'cardinal' | 'step'>('linear');
   const glyphOutline = theme.gridStyles.stroke;
   const renderGlyph = useCallback(
     ({ size, color, onPointerMove, onPointerOut, onPointerUp }: GlyphProps<CityTemperature>) => {
@@ -132,10 +130,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         annotationLabelPosition,
         colorAccessorFactory,
         config,
-        curve:
-          (curveType === 'cardinal' && curveCardinal) ||
-          (curveType === 'step' && curveStep) ||
-          curveLinear,
         data: fewerDatum
           ? missingValues
             ? dataSmallMissingValues
@@ -301,35 +295,6 @@ export default function ExampleControls({ children, height, width }: Props) {
               checked={renderAreaLineOrStack === 'none'}
             />
             none
-          </label>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <strong>curve shape</strong>
-          <label>
-            <input
-              type="radio"
-              disabled={renderAreaLineOrStack === 'none'}
-              onChange={() => setCurveType('linear')}
-              checked={curveType === 'linear'}
-            />
-            linear
-          </label>
-          <label>
-            <input
-              type="radio"
-              disabled={renderAreaLineOrStack === 'none'}
-              onChange={() => setCurveType('cardinal')}
-              checked={curveType === 'cardinal'}
-            />
-            cardinal (smooth)
-          </label>
-          <label>
-            <input
-              type="radio"
-              disabled={renderAreaLineOrStack === 'none'}
-              onChange={() => setCurveType('step')}
-              checked={curveType === 'step'}
-            />
-            step
           </label>
         </div>
         {/** glyph */}

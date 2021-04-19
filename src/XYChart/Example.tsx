@@ -7,6 +7,7 @@ import BarGroup from 'shapes/BarGroup/BarGroup';
 import BarSeries from 'shapes/BarSeries/BarSeries';
 import BarStack from 'shapes/BarStack/BarStack';
 import GlyphSeries from 'shapes/GlyphSeries/GlyphSeries';
+import Grid from 'tools/Grid/Grid';
 import LineSeries from 'shapes/LineSeries/LineSeries';
 import Tooltip from 'tools/Tooltip/Tooltip';
 import XYChart from 'molecules/XYChart/XYChart';
@@ -55,9 +56,6 @@ const Example: React.FC<XYChartProps> = (props) => {
     theme,
     xAxisOrientation,
     yAxisOrientation,
-
-    // components are animated or not depending on selection
-    Grid,
   } = props;
   return (
     <XYChart

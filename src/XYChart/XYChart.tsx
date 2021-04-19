@@ -11,6 +11,8 @@ interface Props {
   showGridRows: boolean;
   showHorizontalCrosshair: boolean;
   showVerticalCrosshair: boolean;
+  xAxisOrientation: 'bottom' | 'top';
+  yAxisOrientation: 'left' | 'right';
 }
 
 const XYChart: React.FC<Props> = (props) => (

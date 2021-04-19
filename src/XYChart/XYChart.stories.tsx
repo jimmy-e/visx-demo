@@ -5,6 +5,20 @@ import XYChartComponent from './XYChart';
 
 export default {
   title: 'Charts',
+  argTypes: {
+    xAxisOrientation: {
+      control: {
+        type: 'select',
+        options: ['bottom', 'top'],
+      },
+    },
+    yAxisOrientation: {
+      control: {
+        type: 'select',
+        options: ['left', 'right'],
+      },
+    },
+  },
 } as Meta;
 
 // ToDo: add prop binding
@@ -19,4 +33,6 @@ XYChart.args = {
   showTooltip: true,
   showHorizontalCrosshair: false,
   showVerticalCrosshair: true,
+  xAxisOrientation: 'bottom',
+  yAxisOrientation: 'left',
 };

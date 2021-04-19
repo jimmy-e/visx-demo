@@ -36,10 +36,11 @@ type Props = {
 };
 
 export default function ExampleControls({ children, height, width }: Props) {
-  const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
-  const [xAxisOrientation, setXAxisOrientation] = useState<'top' | 'bottom'>('bottom');
-  const [yAxisOrientation, setYAxisOrientation] = useState<'left' | 'right'>('right');
+  // More complicated
   const [renderHorizontally, setRenderHorizontally] = useState(false);
+  const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
+
+  // To review
   const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
     null,
   );
@@ -170,8 +171,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         stackOffset,
         theme,
         width,
-        xAxisOrientation,
-        yAxisOrientation,
       })}
       {/** This style is used for annotated elements via colorAccessor. */}
       <svg className="pattern-lines">
@@ -563,44 +562,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         </div>
 
         <br />
-
-        {/** axes */}
-        <div>
-          <strong>axes</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setXAxisOrientation('bottom')}
-              checked={xAxisOrientation === 'bottom'}
-            />
-            bottom
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setXAxisOrientation('top')}
-              checked={xAxisOrientation === 'top'}
-            />
-            top
-          </label>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <label>
-            <input
-              type="radio"
-              onChange={() => setYAxisOrientation('left')}
-              checked={yAxisOrientation === 'left'}
-            />
-            left
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setYAxisOrientation('right')}
-              checked={yAxisOrientation === 'right'}
-            />
-            right
-          </label>
-        </div>
       </div>
       <style jsx>{`
         .controls {

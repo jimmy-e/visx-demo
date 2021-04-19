@@ -1,10 +1,8 @@
 import React from 'react';
-import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { GlyphProps } from '@visx/xychart/lib/types';
 import { XYChartTheme } from '@visx/xychart';
 import { curveCardinal, curveLinear, curveStep } from '@visx/curve';
-import getAnimatedOrUnanimatedComponents from 'XYChart/getAnimatedOrUnanimatedComponents';
 
 type Accessor = (datum: CityTemperature) => number | string;
 
@@ -64,6 +62,6 @@ export type XYChartProps = {
   stackOffset?: 'wiggle' | 'expand' | 'diverging' | 'silhouette';
   theme: XYChartTheme;
   width: number;
-  xAxisOrientation: 'top' | 'bottom';
+  xAxisOrientation: 'bottom' | 'top';
   yAxisOrientation: 'left' | 'right';
-} & ReturnType<typeof getAnimatedOrUnanimatedComponents>;
+};

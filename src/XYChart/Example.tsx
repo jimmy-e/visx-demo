@@ -24,20 +24,22 @@ const Example: React.FC<XYChartProps> = (props) => {
     annotationDatum,
     annotationLabelPosition,
     annotationType,
+    // @ts-expect-error: will fix type bindings
+    barType,
     colorAccessorFactory,
     config,
     // @ts-expect-error: will fix type bindings
     curveType,
     data,
     editAnnotationLabelPosition,
+    // @ts-expect-error: will fix type bindings
+    hasSharedTooltip,
     height,
     isAnimated,
     numTicks,
     renderAreaSeries,
     renderAreaStack,
-    renderBarGroup,
     renderBarSeries,
-    renderBarStack,
     renderGlyph,
     renderGlyphSeries,
     renderHorizontally,
@@ -45,8 +47,6 @@ const Example: React.FC<XYChartProps> = (props) => {
     setAnnotationDataIndex,
     setAnnotationDataKey,
     setAnnotationLabelPosition,
-    // @ts-expect-error: will fix type bindings
-    hasSharedTooltip,
     showGridColumns,
     showGridRows,
     showHorizontalCrosshair,
@@ -87,7 +87,7 @@ const Example: React.FC<XYChartProps> = (props) => {
         animationTrajectory={animationTrajectory}
         numTicks={numTicks}
       />
-      {renderBarStack && (
+      {barType === 'stack' && (
         <BarStack
           accessors={accessors}
           data={data}
@@ -95,7 +95,7 @@ const Example: React.FC<XYChartProps> = (props) => {
           stackOffset={stackOffset}
         />
       )}
-      {renderBarGroup && (
+      {barType === 'group' && (
         <BarGroup
           accessors={accessors}
           colorAccessorFactory={colorAccessorFactory}
@@ -103,7 +103,7 @@ const Example: React.FC<XYChartProps> = (props) => {
           isAnimated={isAnimated}
         />
       )}
-      {renderBarSeries && (
+      {barType === 'default' && (
         <BarSeries
           accessors={accessors}
           colorAccessorFactory={colorAccessorFactory}
@@ -134,7 +134,7 @@ const Example: React.FC<XYChartProps> = (props) => {
           curve={curve}
           data={data}
           isAnimated={isAnimated}
-          renderBarSeries={renderBarSeries}
+          renderBarSeries={barType === 'default'}
         />
       )}
       {renderGlyphSeries && (
@@ -188,9 +188,9 @@ const Example: React.FC<XYChartProps> = (props) => {
       {
         showTooltip && (
           <Tooltip
-            showDatumGlyph={(snapTooltipToDatumX || snapTooltipToDatumY) && !renderBarGroup}
+            showDatumGlyph={(snapTooltipToDatumX || snapTooltipToDatumY) && barType !== 'group'}
             showHorizontalCrosshair={showHorizontalCrosshair}
-            showSeriesGlyphs={hasSharedTooltip && !renderBarGroup}
+            showSeriesGlyphs={hasSharedTooltip && barType !== 'group'}
             showVerticalCrosshair={showVerticalCrosshair}
             snapTooltipToDatumX={snapTooltipToDatumX}
             snapTooltipToDatumY={snapTooltipToDatumY}

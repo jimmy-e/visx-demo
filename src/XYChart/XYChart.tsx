@@ -12,6 +12,8 @@ interface Props {
   showGridRows: boolean;
   showHorizontalCrosshair: boolean;
   showVerticalCrosshair: boolean;
+  snapTooltipToDatumX: boolean;
+  snapTooltipToDatumY: boolean;
   xAxisOrientation: 'bottom' | 'top';
   yAxisOrientation: 'left' | 'right';
 }

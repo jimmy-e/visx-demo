@@ -44,8 +44,6 @@ export default function ExampleControls({ children, height, width }: Props) {
   const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
     null,
   );
-  const [snapTooltipToDatumX, setSnapTooltipToDatumX] = useState(true);
-  const [snapTooltipToDatumY, setSnapTooltipToDatumY] = useState(true);
   const [renderBarStackOrGroup, setRenderBarStackOrGroup] = useState<
     'bar' | 'barstack' | 'bargroup' | 'none'
     >('none');
@@ -125,10 +123,6 @@ export default function ExampleControls({ children, height, width }: Props) {
     [renderHorizontally],
   );
 
-  // cannot snap to a stack position
-  const canSnapTooltipToDatum =
-    renderBarStackOrGroup !== 'barstack' && renderAreaLineOrStack !== 'areastack';
-
   return (
     <>
       {children({
@@ -164,8 +158,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         setAnnotationDataIndex,
         setAnnotationDataKey,
         setAnnotationLabelPosition,
-        snapTooltipToDatumX: canSnapTooltipToDatum && snapTooltipToDatumX,
-        snapTooltipToDatumY: canSnapTooltipToDatum && snapTooltipToDatumY,
         stackOffset,
         theme,
         width,
@@ -473,28 +465,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         </div>
 
         <br />
-        {/** tooltip */}
-        <div>
-          <strong>tooltip</strong>
-          <label>
-            <input
-              type="checkbox"
-              disabled={!canSnapTooltipToDatum}
-              onChange={() => setSnapTooltipToDatumX(!snapTooltipToDatumX)}
-              checked={snapTooltipToDatumX}
-            />
-            snap tooltip to datum x
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              disabled={!canSnapTooltipToDatum}
-              onChange={() => setSnapTooltipToDatumY(!snapTooltipToDatumY)}
-              checked={snapTooltipToDatumY}
-            />
-            snap tooltip to datum y
-          </label>
-        </div>
         {/** annotation */}
         <div>
           <strong>annotation</strong> (click chart to update)

@@ -40,6 +40,8 @@ XYChart.args = {
   showTooltip: true,
   showHorizontalCrosshair: false,
   showVerticalCrosshair: true,
+  snapTooltipToDatumX: true,
+  snapTooltipToDatumY: true,
   xAxisOrientation: 'bottom',
   yAxisOrientation: 'left',
 };

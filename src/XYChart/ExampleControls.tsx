@@ -9,8 +9,6 @@ import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import customTheme from './customTheme';
 import { DataKey, XYChartProps } from '../types';
 
-const dateScaleConfig = { type: 'band', paddingInner: 0.3 } as const;
-const temperatureScaleConfig = { type: 'linear' } as const;
 const numTicks = 4;
 const data = cityTemperature.slice(225, 275);
 const dataMissingValues = data.map((d, i) =>
@@ -51,11 +49,6 @@ export default function ExampleControls({ children, height, width }: Props) {
   const [negativeValues, setNegativeValues] = useState(false);
   const [fewerDatum, setFewerDatum] = useState(false);
   const [missingValues, setMissingValues] = useState(false);
-
-  // should wait until other items are complete
-  const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
-
-  // To review
   const [glyphComponent, setGlyphComponent] = useState<'star' | 'cross' | 'circle' | '🍍'>('star');
   const glyphOutline = theme.gridStyles.stroke;
   const renderGlyph = useCallback(
@@ -78,6 +71,10 @@ export default function ExampleControls({ children, height, width }: Props) {
     },
     [glyphComponent, glyphOutline],
   );
+
+  // should wait until other items are complete
+  const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
+
   // for series that support it, return a colorAccessor which returns a custom color if the datum is selected
   const colorAccessorFactory = useCallback(
     (dataKey: DataKey) => (d: CityTemperature) =>
@@ -112,14 +109,6 @@ export default function ExampleControls({ children, height, width }: Props) {
     [renderHorizontally, negativeValues],
   );
 
-  const config = useMemo(
-    () => ({
-      x: renderHorizontally ? temperatureScaleConfig : dateScaleConfig,
-      y: renderHorizontally ? dateScaleConfig : temperatureScaleConfig,
-    }),
-    [renderHorizontally],
-  );
-
   return (
     <>
       {children({
@@ -127,7 +116,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         annotationDataKey,
         annotationDatum: data[annotationDataIndex],
         colorAccessorFactory,
-        config,
         data: fewerDatum
           ? missingValues
             ? dataSmallMissingValues

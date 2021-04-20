@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import Annotation from 'tools/Annotation/Annotation';
@@ -17,6 +17,9 @@ import { XYChartProps } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
 
+const dateScaleConfig = { type: 'band', paddingInner: 0.3 };
+const temperatureScaleConfig = { type: 'linear' };
+
 const Example: React.FC<XYChartProps> = (props) => {
   const {
     accessors,
@@ -24,7 +27,6 @@ const Example: React.FC<XYChartProps> = (props) => {
     annotationDatum,
     annotationType,
     colorAccessorFactory,
-    config,
     // @ts-expect-error: will fix type bindings
     curveType,
     data,
@@ -62,6 +64,14 @@ const Example: React.FC<XYChartProps> = (props) => {
   const curve = (curveType === 'cardinal' && curveCardinal)
     || (curveType === 'step' && curveStep)
     || curveLinear;
+
+  const config = useMemo(
+    () => ({
+      x: renderHorizontally ? temperatureScaleConfig : dateScaleConfig,
+      y: renderHorizontally ? dateScaleConfig : temperatureScaleConfig,
+    }),
+    [renderHorizontally],
+  );
 
   const animationTrajectory: AnimationTrajectory = 'center';
 

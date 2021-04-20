@@ -44,7 +44,6 @@ const Example: React.FC<XYChartProps> = (props) => {
     renderBarGroup,
     renderBarSeries,
     renderBarStack,
-    renderGlyphSeries,
     renderHorizontally,
     renderLineSeries,
     setAnnotationDataIndex,

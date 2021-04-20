@@ -50,9 +50,6 @@ export default function ExampleControls({ children, height, width }: Props) {
   const [fewerDatum, setFewerDatum] = useState(false);
   const [missingValues, setMissingValues] = useState(false);
 
-  // should wait until other items are complete
-  const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
-
   // for series that support it, return a colorAccessor which returns a custom color if the datum is selected
   const colorAccessorFactory = useCallback(
     (dataKey: DataKey) => (d: CityTemperature) =>
@@ -106,7 +103,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         renderBarGroup: renderBarStackOrGroup === 'bargroup',
         renderBarSeries: renderBarStackOrGroup === 'bar',
         renderBarStack: renderBarStackOrGroup === 'barstack',
-        renderGlyphSeries,
         renderHorizontally,
         renderAreaSeries: renderAreaLineOrStack === 'area',
         renderAreaStack: renderAreaLineOrStack === 'areastack',
@@ -255,18 +251,6 @@ export default function ExampleControls({ children, height, width }: Props) {
               checked={renderAreaLineOrStack === 'none'}
             />
             none
-          </label>
-        </div>
-        {/** glyph */}
-        <div>
-          <strong>glyph series</strong>
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => setRenderGlyphSeries(!renderGlyphSeries)}
-              checked={renderGlyphSeries}
-            />
-            render glyphs
           </label>
         </div>
         <div>

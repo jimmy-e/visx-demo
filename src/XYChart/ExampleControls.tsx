@@ -3,9 +3,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
 import { PatternLines } from '@visx/pattern';
-import { GlyphProps } from '@visx/xychart/lib/types';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import customTheme from './customTheme';
 import { DataKey, XYChartProps } from '../types';
 

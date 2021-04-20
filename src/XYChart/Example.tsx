@@ -1,5 +1,8 @@
-import React, { useMemo } from 'react';
+import React, {useCallback, useMemo} from 'react';
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
+import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
+import { GlyphProps } from '@visx/xychart/lib/types';
 import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import Annotation from 'tools/Annotation/Annotation';
 import AreaSeries from 'shapes/AreaSeries/AreaSeries';
@@ -32,6 +35,8 @@ const Example: React.FC<XYChartProps> = (props) => {
     data,
     editAnnotationLabelPosition,
     height,
+    // @ts-expect-error: will fix type bindings
+    glyphComponent,
     isAnimated,
     numTicks,
     renderAreaSeries,
@@ -39,7 +44,6 @@ const Example: React.FC<XYChartProps> = (props) => {
     renderBarGroup,
     renderBarSeries,
     renderBarStack,
-    renderGlyph,
     renderGlyphSeries,
     renderHorizontally,
     renderLineSeries,
@@ -71,6 +75,28 @@ const Example: React.FC<XYChartProps> = (props) => {
       y: renderHorizontally ? dateScaleConfig : temperatureScaleConfig,
     }),
     [renderHorizontally],
+  );
+
+  const glyphOutline = theme.gridStyles.stroke;
+  const renderGlyph = useCallback(
+    ({ size, color, onPointerMove, onPointerOut, onPointerUp }: GlyphProps<CityTemperature>) => {
+      const handlers = { onPointerMove, onPointerOut, onPointerUp };
+      if (glyphComponent === 'star') {
+        return <GlyphStar stroke={glyphOutline} fill={color} size={size * 10} {...handlers} />;
+      }
+      if (glyphComponent === 'circle') {
+        return <GlyphDot stroke={glyphOutline} fill={color} r={size / 2} {...handlers} />;
+      }
+      if (glyphComponent === 'cross') {
+        return <GlyphCross stroke={glyphOutline} fill={color} size={size * 10} {...handlers} />;
+      }
+      return (
+        <text dx="-0.75em" dy="0.25em" fontSize={14} {...handlers}>
+          🍍
+        </text>
+      );
+    },
+    [glyphComponent, glyphOutline],
   );
 
   const animationTrajectory: AnimationTrajectory = 'center';
@@ -145,7 +171,7 @@ const Example: React.FC<XYChartProps> = (props) => {
           renderBarSeries={renderBarSeries}
         />
       )}
-      {renderGlyphSeries && (
+      {glyphComponent && (
         <GlyphSeries
           accessors={accessors}
           colorAccessorFactory={colorAccessorFactory}

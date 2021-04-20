@@ -8,6 +8,7 @@ interface Props {
   curveType: 'cardinal' | 'linear' | 'step';
   editAnnotationLabelPosition: boolean;
   hasSharedTooltip: boolean;
+  glyphComponent?: 'circle' | 'cross' | 'star' | '🍍';
   isAnimated: boolean;
   showTooltip: boolean;
   showGridColumns: boolean;

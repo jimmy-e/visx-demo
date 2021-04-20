@@ -18,6 +18,12 @@ export default {
         options: ['cardinal', 'linear', 'step'],
       },
     },
+    glyphComponent: {
+      control: {
+        type: 'select',
+        options: [null, 'circle', 'cross', 'star', '🍍'],
+      },
+    },
     stackOffset: {
       control: {
         type: 'radio',
@@ -47,6 +53,7 @@ XYChart.args = {
   annotationType: 'circle',
   curveType: 'linear',
   editAnnotationLabelPosition: false,
+  glyphComponent: null,
   hasSharedTooltip: true,
   isAnimated: true,
   showGridColumns: false,

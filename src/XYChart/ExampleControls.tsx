@@ -49,28 +49,6 @@ export default function ExampleControls({ children, height, width }: Props) {
   const [negativeValues, setNegativeValues] = useState(false);
   const [fewerDatum, setFewerDatum] = useState(false);
   const [missingValues, setMissingValues] = useState(false);
-  const [glyphComponent, setGlyphComponent] = useState<'star' | 'cross' | 'circle' | '🍍'>('star');
-  const glyphOutline = theme.gridStyles.stroke;
-  const renderGlyph = useCallback(
-    ({ size, color, onPointerMove, onPointerOut, onPointerUp }: GlyphProps<CityTemperature>) => {
-      const handlers = { onPointerMove, onPointerOut, onPointerUp };
-      if (glyphComponent === 'star') {
-        return <GlyphStar stroke={glyphOutline} fill={color} size={size * 10} {...handlers} />;
-      }
-      if (glyphComponent === 'circle') {
-        return <GlyphDot stroke={glyphOutline} fill={color} r={size / 2} {...handlers} />;
-      }
-      if (glyphComponent === 'cross') {
-        return <GlyphCross stroke={glyphOutline} fill={color} size={size * 10} {...handlers} />;
-      }
-      return (
-        <text dx="-0.75em" dy="0.25em" fontSize={14} {...handlers}>
-          🍍
-        </text>
-      );
-    },
-    [glyphComponent, glyphOutline],
-  );
 
   // should wait until other items are complete
   const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
@@ -129,7 +107,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         renderBarSeries: renderBarStackOrGroup === 'bar',
         renderBarStack: renderBarStackOrGroup === 'barstack',
         renderGlyphSeries,
-        renderGlyph,
         renderHorizontally,
         renderAreaSeries: renderAreaLineOrStack === 'area',
         renderAreaStack: renderAreaLineOrStack === 'areastack',
@@ -290,43 +267,6 @@ export default function ExampleControls({ children, height, width }: Props) {
               checked={renderGlyphSeries}
             />
             render glyphs
-          </label>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <label>
-            <input
-              type="radio"
-              disabled={!renderGlyphSeries}
-              onChange={() => setGlyphComponent('circle')}
-              checked={glyphComponent === 'circle'}
-            />
-            circle
-          </label>
-          <label>
-            <input
-              type="radio"
-              disabled={!renderGlyphSeries}
-              onChange={() => setGlyphComponent('star')}
-              checked={glyphComponent === 'star'}
-            />
-            star
-          </label>
-          <label>
-            <input
-              type="radio"
-              disabled={!renderGlyphSeries}
-              onChange={() => setGlyphComponent('cross')}
-              checked={glyphComponent === 'cross'}
-            />
-            cross
-          </label>
-          <label>
-            <input
-              type="radio"
-              disabled={!renderGlyphSeries}
-              onChange={() => setGlyphComponent('🍍')}
-              checked={glyphComponent === '🍍'}
-            />
-            🍍
           </label>
         </div>
         <div>

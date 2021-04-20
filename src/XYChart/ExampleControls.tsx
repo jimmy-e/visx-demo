@@ -47,15 +47,15 @@ export default function ExampleControls({ children, height, width }: Props) {
   const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
     null,
   );
+  const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
+  const [negativeValues, setNegativeValues] = useState(false);
+  const [fewerDatum, setFewerDatum] = useState(false);
+  const [missingValues, setMissingValues] = useState(false);
 
   // should wait until other items are complete
   const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
 
   // To review
-  const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
-  const [negativeValues, setNegativeValues] = useState(false);
-  const [fewerDatum, setFewerDatum] = useState(false);
-  const [missingValues, setMissingValues] = useState(false);
   const [glyphComponent, setGlyphComponent] = useState<'star' | 'cross' | 'circle' | '🍍'>('star');
   const glyphOutline = theme.gridStyles.stroke;
   const renderGlyph = useCallback(

@@ -29,6 +29,8 @@ const Example: React.FC<XYChartProps> = (props) => {
     annotationDataKey,
     annotationDatum,
     annotationType,
+    // @ts-expect-error: will fix type bindings
+    barType,
     colorAccessorFactory,
     // @ts-expect-error: will fix type bindings
     curveType,
@@ -41,9 +43,6 @@ const Example: React.FC<XYChartProps> = (props) => {
     numTicks,
     renderAreaSeries,
     renderAreaStack,
-    renderBarGroup,
-    renderBarSeries,
-    renderBarStack,
     renderHorizontally,
     renderLineSeries,
     setAnnotationDataIndex,
@@ -99,6 +98,12 @@ const Example: React.FC<XYChartProps> = (props) => {
   );
 
   const animationTrajectory: AnimationTrajectory = 'center';
+
+  const finalBarType = barType;
+
+  const renderBarGroup = finalBarType === 'group';
+  const renderBarSeries = finalBarType === 'default';
+  const renderBarStack = finalBarType === 'stack';
 
   return (
     <XYChart

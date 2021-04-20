@@ -22,7 +22,6 @@ const Example: React.FC<XYChartProps> = (props) => {
     accessors,
     annotationDataKey,
     annotationDatum,
-    annotationLabelPosition,
     annotationType,
     colorAccessorFactory,
     config,
@@ -44,7 +43,6 @@ const Example: React.FC<XYChartProps> = (props) => {
     renderLineSeries,
     setAnnotationDataIndex,
     setAnnotationDataKey,
-    setAnnotationLabelPosition,
     // @ts-expect-error: will fix type bindings
     hasSharedTooltip,
     showGridColumns,
@@ -175,11 +173,8 @@ const Example: React.FC<XYChartProps> = (props) => {
           canEditSubject={false}
           dataKey={annotationDataKey}
           datum={annotationDatum}
-          dx={annotationLabelPosition.dx}
-          dy={annotationLabelPosition.dy}
           editable={editAnnotationLabelPosition}
           isAnimated={isAnimated}
-          onDragEnd={({ dx, dy }) => setAnnotationLabelPosition({ dx, dy })}
           stroke={theme.gridStyles.stroke}
           subtitle={`${annotationDatum.date}, ${annotationDatum[annotationDataKey]}°F`}
           title={annotationDataKey}

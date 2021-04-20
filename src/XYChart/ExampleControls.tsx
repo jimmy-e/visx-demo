@@ -52,7 +52,6 @@ export default function ExampleControls({ children, height, width }: Props) {
   const [renderGlyphSeries, setRenderGlyphSeries] = useState(false);
 
   // To review
-  const [annotationLabelPosition, setAnnotationLabelPosition] = useState({ dx: -40, dy: -20 });
   const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
   const [negativeValues, setNegativeValues] = useState(false);
   const [fewerDatum, setFewerDatum] = useState(false);
@@ -127,7 +126,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         accessors,
         annotationDataKey,
         annotationDatum: data[annotationDataIndex],
-        annotationLabelPosition,
         colorAccessorFactory,
         config,
         data: fewerDatum
@@ -150,7 +148,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         renderLineSeries: renderAreaLineOrStack === 'line',
         setAnnotationDataIndex,
         setAnnotationDataKey,
-        setAnnotationLabelPosition,
         theme,
         width,
       })}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   AnimatedAnnotation,
   Annotation as StaticAnnotation,
@@ -31,8 +31,15 @@ const Annotation: React.FC<Props> = ({
 }) => {
   const VisxAnnotation = isAnimated ? AnimatedAnnotation : StaticAnnotation;
 
+  const [annotationLabelPosition, setAnnotationLabelPosition] = useState({ dx: -40, dy: -20 });
+
   return (
-    <VisxAnnotation {...props}>
+    <VisxAnnotation
+      dx={annotationLabelPosition.dx}
+      dy={annotationLabelPosition.dy}
+      onDragEnd={({ dx, dy }) => setAnnotationLabelPosition({ dx, dy })}
+      {...props}
+    >
       <AnnotationConnector />
       {annotationType === 'circle' ? <AnnotationCircleSubject /> : <AnnotationLineSubject />}
       <AnnotationLabel

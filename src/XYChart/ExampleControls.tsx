@@ -34,12 +34,6 @@ export default function ExampleControls({ children, height, width }: Props) {
   // More complicated
   const [renderHorizontally, setRenderHorizontally] = useState(false);
   const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
-  const [renderBarStackOrGroup, setRenderBarStackOrGroup] = useState<
-    'bar' | 'barstack' | 'bargroup' | 'none'
-    >('none');
-  const [renderAreaLineOrStack, setRenderAreaLineOrStack] = useState<
-    'line' | 'area' | 'areastack' | 'none'
-    >('areastack');
   const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
     null,
   );
@@ -99,9 +93,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         height,
         numTicks,
         renderHorizontally,
-        renderAreaSeries: renderAreaLineOrStack === 'area',
-        renderAreaStack: renderAreaLineOrStack === 'areastack',
-        renderLineSeries: renderAreaLineOrStack === 'line',
         setAnnotationDataIndex,
         setAnnotationDataKey,
         theme,
@@ -198,100 +189,6 @@ export default function ExampleControls({ children, height, width }: Props) {
               checked={renderHorizontally}
             />
             horizontal
-          </label>
-        </div>
-        <div>
-          <strong>line series</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => {
-                if (renderBarStackOrGroup === 'barstack' || renderBarStackOrGroup === 'bargroup') {
-                  setRenderBarStackOrGroup('none');
-                }
-                setRenderAreaLineOrStack('line');
-              }}
-              checked={renderAreaLineOrStack === 'line'}
-            />
-            line
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => {
-                if (renderBarStackOrGroup === 'barstack' || renderBarStackOrGroup === 'bargroup') {
-                  setRenderBarStackOrGroup('none');
-                }
-                setRenderAreaLineOrStack('area');
-              }}
-              checked={renderAreaLineOrStack === 'area'}
-            />
-            area
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => {
-                setRenderBarStackOrGroup('none');
-                setRenderAreaLineOrStack('areastack');
-              }}
-              checked={renderAreaLineOrStack === 'areastack'}
-            />
-            area stack
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setRenderAreaLineOrStack('none')}
-              checked={renderAreaLineOrStack === 'none'}
-            />
-            none
-          </label>
-        </div>
-        <div>
-          <strong>bar series</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => {
-                if (renderAreaLineOrStack === 'areastack') {
-                  setRenderAreaLineOrStack('none');
-                }
-                setRenderBarStackOrGroup('bar');
-              }}
-              checked={renderBarStackOrGroup === 'bar'}
-            />
-            bar
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => {
-                setRenderAreaLineOrStack('none');
-                setRenderBarStackOrGroup('barstack');
-              }}
-              checked={renderBarStackOrGroup === 'barstack'}
-            />
-            bar stack
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => {
-                setRenderAreaLineOrStack('none');
-                setRenderBarStackOrGroup('bargroup');
-              }}
-              checked={renderBarStackOrGroup === 'bargroup'}
-            />
-            bar group
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setRenderBarStackOrGroup('none')}
-              checked={renderBarStackOrGroup === 'none'}
-            />
-            none
           </label>
         </div>
         <br />

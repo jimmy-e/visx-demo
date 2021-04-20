@@ -11,6 +11,7 @@ interface Props {
   hasSharedTooltip: boolean;
   glyphComponent?: 'circle' | 'cross' | 'star' | '🍍';
   isAnimated: boolean;
+  lineType?: 'area' | 'areaStack' | 'default';
   showTooltip: boolean;
   showGridColumns: boolean;
   showGridRows: boolean;

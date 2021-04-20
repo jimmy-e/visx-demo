@@ -40,11 +40,10 @@ const Example: React.FC<XYChartProps> = (props) => {
     // @ts-expect-error: will fix type bindings
     glyphComponent,
     isAnimated,
+    // @ts-expect-error: will fix type bindings
+    lineType,
     numTicks,
-    renderAreaSeries,
-    renderAreaStack,
     renderHorizontally,
-    renderLineSeries,
     setAnnotationDataIndex,
     setAnnotationDataKey,
     // @ts-expect-error: will fix type bindings
@@ -99,11 +98,12 @@ const Example: React.FC<XYChartProps> = (props) => {
 
   const animationTrajectory: AnimationTrajectory = 'center';
 
-  const finalBarType = barType;
-
-  const renderBarGroup = finalBarType === 'group';
-  const renderBarSeries = finalBarType === 'default';
-  const renderBarStack = finalBarType === 'stack';
+  const renderBarGroup = barType === 'group';
+  const renderBarSeries = barType === 'default';
+  const renderBarStack = barType === 'stack';
+  const renderAreaSeries = lineType === 'area';
+  const renderAreaStack = lineType === 'areaStack';
+  const renderLineSeries = lineType === 'default';
 
   return (
     <XYChart

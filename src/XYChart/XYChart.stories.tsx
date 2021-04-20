@@ -30,6 +30,12 @@ export default {
         options: [null, 'circle', 'cross', 'star', '🍍'],
       },
     },
+    lineType: {
+      control: {
+        type: 'select',
+        options: [null, 'area', 'areaStack', 'default'],
+      },
+    },
     stackOffset: {
       control: {
         type: 'radio',
@@ -63,6 +69,7 @@ XYChart.args = {
   glyphComponent: null,
   hasSharedTooltip: true,
   isAnimated: true,
+  lineType: 'areaStack',
   showGridColumns: false,
   showGridRows: false,
   showTooltip: true,

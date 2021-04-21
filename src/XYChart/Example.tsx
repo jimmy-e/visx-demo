@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
@@ -35,7 +35,7 @@ const Example: React.FC<XYChartProps> = (props) => {
   const {
     // @ts-expect-error: will fix type bindings
     annotationDataIndex,
-    annotationDataKey,
+    annotationDataKey: annotationKey,
     annotationDatum,
     annotationType,
     // @ts-expect-error: will fix type bindings
@@ -60,7 +60,7 @@ const Example: React.FC<XYChartProps> = (props) => {
     // @ts-expect-error: will fix type bindings
     selectedDatumPatternId,
     setAnnotationDataIndex,
-    setAnnotationDataKey,
+    // setAnnotationDataKey,
     showGridColumns,
     showGridRows,
     showHorizontalCrosshair,
@@ -74,6 +74,13 @@ const Example: React.FC<XYChartProps> = (props) => {
     xAxisOrientation,
     yAxisOrientation,
   } = props;
+
+  // ToDo: add key bindings
+  const [annotationDataKey, setAnnotationDataKey] = useState(annotationKey);
+
+  useEffect(() => {
+    setAnnotationDataKey(annotationKey);
+  }, [annotationKey])
 
   // for series that support it, return a colorAccessor which returns a custom color if the datum is selected
   const colorAccessorFactory = useCallback(

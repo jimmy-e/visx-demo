@@ -24,9 +24,6 @@ type Props = {
 
 export default function ExampleControls({ children, height, width }: Props) {
   // More complicated
-  const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
-    null,
-  );
   const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
   const [fewerDatum, setFewerDatum] = useState(false);
   const [missingValues, setMissingValues] = useState(false);
@@ -47,7 +44,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         numTicks,
         selectedDatumPatternId,
         setAnnotationDataIndex,
-        setAnnotationDataKey,
         width,
       })}
       <div className="controls">
@@ -75,44 +71,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         <br />
 
         {/** series */}
-        <br />
-        {/** annotation */}
-        <div>
-          <strong>annotation</strong> (click chart to update)
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationDataKey(null)}
-              checked={annotationDataKey == null}
-            />
-            none
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationDataKey('San Francisco')}
-              checked={annotationDataKey === 'San Francisco'}
-            />
-            SF
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationDataKey('New York')}
-              checked={annotationDataKey === 'New York'}
-            />
-            NY
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setAnnotationDataKey('Austin')}
-              checked={annotationDataKey === 'Austin'}
-            />
-            Austin
-          </label>
-        </div>
-
         <br />
       </div>
       <style jsx>{`

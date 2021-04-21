@@ -1,11 +1,8 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useCallback, useState } from 'react';
-import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
-import { PatternLines } from '@visx/pattern';
-import customTheme from './customTheme';
-import { DataKey, XYChartProps } from '../types';
+import React, { useState } from 'react';
+import cityTemperature from '@visx/mock-data/lib/mocks/cityTemperature';
+import { XYChartProps } from '../types';
 
 const numTicks = 4;
 const data = cityTemperature.slice(225, 275);

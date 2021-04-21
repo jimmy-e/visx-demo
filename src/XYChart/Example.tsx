@@ -17,7 +17,7 @@ import Grid from 'tools/Grid/Grid';
 import LineSeries from 'shapes/LineSeries/LineSeries';
 import Tooltip from 'tools/Tooltip/Tooltip';
 import XYChart from 'molecules/XYChart/XYChart';
-import {DataKey, XYChartProps} from 'src/types';
+import { DataKey, XYChartProps } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
 import { getTheme } from './utils';

@@ -27,7 +27,6 @@ type Props = {
 
 export default function ExampleControls({ children, height, width }: Props) {
   // More complicated
-  const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
   const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
     null,
   );
@@ -35,21 +34,12 @@ export default function ExampleControls({ children, height, width }: Props) {
   const [fewerDatum, setFewerDatum] = useState(false);
   const [missingValues, setMissingValues] = useState(false);
 
-  // for series that support it, return a colorAccessor which returns a custom color if the datum is selected
-  const colorAccessorFactory = useCallback(
-    (dataKey: DataKey) => (d: CityTemperature) =>
-      annotationDataKey === dataKey && d === data[annotationDataIndex]
-        ? `url(#${selectedDatumPatternId})`
-        : null,
-    [annotationDataIndex, annotationDataKey],
-  );
-
   return (
     <>
       {children({
+        annotationDataIndex,
         annotationDataKey,
         annotationDatum: data[annotationDataIndex],
-        colorAccessorFactory,
         data: fewerDatum
           ? missingValues
             ? dataSmallMissingValues
@@ -62,7 +52,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         selectedDatumPatternId,
         setAnnotationDataIndex,
         setAnnotationDataKey,
-        theme,
         width,
       })}
       <div className="controls">

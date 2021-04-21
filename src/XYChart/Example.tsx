@@ -17,7 +17,7 @@ import Grid from 'tools/Grid/Grid';
 import LineSeries from 'shapes/LineSeries/LineSeries';
 import Tooltip from 'tools/Tooltip/Tooltip';
 import XYChart from 'molecules/XYChart/XYChart';
-import { XYChartProps } from 'src/types';
+import {DataKey, XYChartProps} from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
 import { getTheme } from './utils';
@@ -33,12 +33,13 @@ const getDate = (d: CityTemperature) => d.date;
 
 const Example: React.FC<XYChartProps> = (props) => {
   const {
+    // @ts-expect-error: will fix type bindings
+    annotationDataIndex,
     annotationDataKey,
     annotationDatum,
     annotationType,
     // @ts-expect-error: will fix type bindings
     barType,
-    colorAccessorFactory,
     // @ts-expect-error: will fix type bindings
     curveType,
     data,
@@ -68,14 +69,22 @@ const Example: React.FC<XYChartProps> = (props) => {
     snapTooltipToDatumX,
     snapTooltipToDatumY,
     stackOffset,
-    // theme: themeType,
-    theme,
+    theme: themeType,
     width,
     xAxisOrientation,
     yAxisOrientation,
   } = props;
 
-  // const theme = getTheme(themeType);
+  // for series that support it, return a colorAccessor which returns a custom color if the datum is selected
+  const colorAccessorFactory = useCallback(
+    (dataKey: DataKey) => (d: CityTemperature) =>
+      annotationDataKey === dataKey && d === data[annotationDataIndex]
+        ? `url(#${selectedDatumPatternId})`
+        : null,
+    [annotationDataIndex, annotationDataKey],
+  );
+
+  const theme = getTheme(themeType);
 
   const renderHorizontally = orientation === 'horizontal';
 

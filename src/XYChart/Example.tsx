@@ -34,7 +34,8 @@ const defaultAnnotationDataIndex = 13;
 
 const Example: React.FC<XYChartProps> = (props) => {
   const {
-    annotationDataKey: annotationKey,
+    // @ts-expect-error: will fix type bindings
+    annotationKey,
     annotationType,
     // @ts-expect-error: will fix type bindings
     barType,

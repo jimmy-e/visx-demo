@@ -6,7 +6,7 @@ import XYChartComponent from './XYChart';
 export default {
   title: 'Charts',
   argTypes: {
-    annotationDataKey: {
+    annotationKey: {
       control: {
         type: 'select',
         options: [null, 'Austin', 'New York', 'San Francisco'],
@@ -80,6 +80,7 @@ const XYChartStory: Story = (args) => <XYChartComponent {...args} />;
 
 export const XYChart = XYChartStory.bind({});
 XYChart.args = {
+  annotationKey: null,
   annotationType: 'circle',
   barType: null,
   curveType: 'linear',

@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useCallback, useState } from 'react';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { PatternLines } from '@visx/pattern';
 import { DataKey, XYChartProps } from '../types';
 
 const numTicks = 4;
@@ -43,6 +44,7 @@ export default function ExampleControls({ children, height, width }: Props) {
   return (
     <>
       {children({
+        annotationDataIndex,
         annotationDataKey,
         annotationDatum: data[annotationDataIndex],
         colorAccessorFactory,
@@ -55,10 +57,22 @@ export default function ExampleControls({ children, height, width }: Props) {
             : data,
         height,
         numTicks,
+        selectedDatumPatternId,
         setAnnotationDataIndex,
         setAnnotationDataKey,
         width,
       })}
+      {/** This style is used for annotated elements via colorAccessor. */}
+      <svg className="pattern-lines">
+        <PatternLines
+          id={selectedDatumPatternId}
+          width={6}
+          height={6}
+          orientation={['diagonalRightToLeft']}
+          // stroke={theme?.axisStyles.x.bottom.axisLine.stroke}
+          strokeWidth={1.5}
+        />
+      </svg>
       <div className="controls">
         {/** data */}
         <div>

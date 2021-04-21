@@ -2,6 +2,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useCallback, useState } from 'react';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
+import { PatternLines } from '@visx/pattern';
+import customTheme from './customTheme';
 import { DataKey, XYChartProps } from '../types';
 
 const numTicks = 4;
@@ -31,21 +34,12 @@ export default function ExampleControls({ children, height, width }: Props) {
   const [fewerDatum, setFewerDatum] = useState(false);
   const [missingValues, setMissingValues] = useState(false);
 
-  // for series that support it, return a colorAccessor which returns a custom color if the datum is selected
-  const colorAccessorFactory = useCallback(
-    (dataKey: DataKey) => (d: CityTemperature) =>
-      annotationDataKey === dataKey && d === data[annotationDataIndex]
-        ? `url(#${selectedDatumPatternId})`
-        : null,
-    [annotationDataIndex, annotationDataKey],
-  );
-
   return (
     <>
       {children({
+        annotationDataIndex,
         annotationDataKey,
         annotationDatum: data[annotationDataIndex],
-        colorAccessorFactory,
         data: fewerDatum
           ? missingValues
             ? dataSmallMissingValues
@@ -55,6 +49,7 @@ export default function ExampleControls({ children, height, width }: Props) {
             : data,
         height,
         numTicks,
+        selectedDatumPatternId,
         setAnnotationDataIndex,
         setAnnotationDataKey,
         width,

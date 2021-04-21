@@ -24,14 +24,12 @@ type Props = {
 
 export default function ExampleControls({ children, height, width }: Props) {
   // More complicated
-  const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
   const [fewerDatum, setFewerDatum] = useState(false);
   const [missingValues, setMissingValues] = useState(false);
 
   return (
     <>
       {children({
-        annotationDataIndex,
         data: fewerDatum
           ? missingValues
             ? dataSmallMissingValues
@@ -42,7 +40,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         height,
         numTicks,
         selectedDatumPatternId,
-        setAnnotationDataIndex,
         width,
       })}
       <div className="controls">

@@ -30,11 +30,10 @@ const getNyTemperature = (d: CityTemperature) => Number(d['New York']);
 const getAustinTemperature = (d: CityTemperature) => Number(d.Austin);
 const getDate = (d: CityTemperature) => d.date;
 
+const defaultAnnotationDataIndex = 13;
 
 const Example: React.FC<XYChartProps> = (props) => {
   const {
-    // @ts-expect-error: will fix type bindings
-    annotationDataIndex,
     annotationDataKey: annotationKey,
     annotationType,
     // @ts-expect-error: will fix type bindings
@@ -58,7 +57,6 @@ const Example: React.FC<XYChartProps> = (props) => {
     orientation,
     // @ts-expect-error: will fix type bindings
     selectedDatumPatternId,
-    setAnnotationDataIndex,
     // setAnnotationDataKey,
     showGridColumns,
     showGridRows,
@@ -74,6 +72,7 @@ const Example: React.FC<XYChartProps> = (props) => {
     yAxisOrientation,
   } = props;
 
+  const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
   const annotationDatum = data[annotationDataIndex];
 
   // ToDo: add key bindings

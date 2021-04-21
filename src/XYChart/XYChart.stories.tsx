@@ -48,6 +48,12 @@ export default {
         options: ['diverging', 'expand', 'wiggle'],
       },
     },
+    theme: {
+      control: {
+        type: 'radio',
+        options: ['custom', 'dark', 'light'],
+      },
+    },
     xAxisOrientation: {
       control: {
         type: 'radio',
@@ -86,6 +92,7 @@ XYChart.args = {
   snapTooltipToDatumX: true,
   snapTooltipToDatumY: true,
   stackOffset: 'diverging',
+  theme: 'light',
   xAxisOrientation: 'bottom',
   yAxisOrientation: 'left',
 };

@@ -22,6 +22,7 @@ interface Props {
   snapTooltipToDatumX: boolean;
   snapTooltipToDatumY: boolean;
   stackOffset: 'diverging' | 'expand' | 'wiggle';
+  theme: 'custom' | 'dark' | 'light';
   xAxisOrientation: 'bottom' | 'top';
   yAxisOrientation: 'left' | 'right';
 }

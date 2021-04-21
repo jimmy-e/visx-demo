@@ -1,10 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useCallback, useState } from 'react';
-import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
-import { PatternLines } from '@visx/pattern';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-import customTheme from './customTheme';
 import { DataKey, XYChartProps } from '../types';
 
 const numTicks = 4;
@@ -27,7 +24,6 @@ type Props = {
 
 export default function ExampleControls({ children, height, width }: Props) {
   // More complicated
-  const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
   const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
     null,
   );
@@ -61,20 +57,8 @@ export default function ExampleControls({ children, height, width }: Props) {
         numTicks,
         setAnnotationDataIndex,
         setAnnotationDataKey,
-        theme,
         width,
       })}
-      {/** This style is used for annotated elements via colorAccessor. */}
-      <svg className="pattern-lines">
-        <PatternLines
-          id={selectedDatumPatternId}
-          width={6}
-          height={6}
-          orientation={['diagonalRightToLeft']}
-          stroke={theme?.axisStyles.x.bottom.axisLine.stroke}
-          strokeWidth={1.5}
-        />
-      </svg>
       <div className="controls">
         {/** data */}
         <div>
@@ -94,35 +78,6 @@ export default function ExampleControls({ children, height, width }: Props) {
               checked={fewerDatum}
             />
             fewer datum
-          </label>
-        </div>
-
-        {/** theme */}
-        <div>
-          <strong>theme</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setTheme(lightTheme)}
-              checked={theme === lightTheme}
-            />
-            light
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setTheme(darkTheme)}
-              checked={theme === darkTheme}
-            />
-            dark
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setTheme(customTheme)}
-              checked={theme === customTheme}
-            />
-            custom
           </label>
         </div>
 

@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo} from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
@@ -19,6 +19,7 @@ import XYChart from 'molecules/XYChart/XYChart';
 import { XYChartProps } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
+import { getTheme } from './utils';
 
 const dateScaleConfig = { type: 'band', paddingInner: 0.3 };
 const temperatureScaleConfig = { type: 'linear' };
@@ -64,11 +65,13 @@ const Example: React.FC<XYChartProps> = (props) => {
     snapTooltipToDatumX,
     snapTooltipToDatumY,
     stackOffset,
+    theme: themeType,
     width,
-    theme,
     xAxisOrientation,
     yAxisOrientation,
   } = props;
+
+  const theme = getTheme(themeType);
 
   const renderHorizontally = orientation === 'horizontal';
 

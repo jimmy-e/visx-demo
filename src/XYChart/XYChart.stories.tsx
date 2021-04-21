@@ -6,6 +6,12 @@ import XYChartComponent from './XYChart';
 export default {
   title: 'Charts',
   argTypes: {
+    annotation: {
+      control: {
+        type: 'radio',
+        options: [null, 'Austin', 'New York', 'San Francisco'],
+      },
+    },
     annotationType: {
       control: {
         type: 'radio',
@@ -74,6 +80,7 @@ const XYChartStory: Story = (args) => <XYChartComponent {...args} />;
 
 export const XYChart = XYChartStory.bind({});
 XYChart.args = {
+  annotation: null,
   annotationType: 'circle',
   barType: null,
   curveType: 'linear',

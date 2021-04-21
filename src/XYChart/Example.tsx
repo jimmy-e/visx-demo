@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
@@ -35,7 +35,8 @@ const Example: React.FC<XYChartProps> = (props) => {
   const {
     // @ts-expect-error: will fix type bindings
     annotationDataIndex,
-    annotationDataKey,
+    // @ts-expect-error: will fix type bindings
+    annotation,
     annotationDatum,
     annotationType,
     // @ts-expect-error: will fix type bindings
@@ -60,7 +61,6 @@ const Example: React.FC<XYChartProps> = (props) => {
     // @ts-expect-error: will fix type bindings
     selectedDatumPatternId,
     setAnnotationDataIndex,
-    setAnnotationDataKey,
     showGridColumns,
     showGridRows,
     showHorizontalCrosshair,
@@ -75,13 +75,16 @@ const Example: React.FC<XYChartProps> = (props) => {
     yAxisOrientation,
   } = props;
 
+  // ToDo: use key binding
+  const [annotationKey, setAnnotationKey] = useState<'Austin' | 'New York' | 'San Francisco'>(annotation);
+
   // for series that support it, return a colorAccessor which returns a custom color if the datum is selected
   const colorAccessorFactory = useCallback(
     (dataKey: DataKey) => (d: CityTemperature) =>
-      annotationDataKey === dataKey && d === data[annotationDataIndex]
+      annotationKey === dataKey && d === data[annotationDataIndex]
         ? `url(#${selectedDatumPatternId})`
         : null,
-    [annotationDataIndex, annotationDataKey],
+    [annotationDataIndex, annotationKey],
   );
 
   const theme = getTheme(themeType);
@@ -176,7 +179,7 @@ const Example: React.FC<XYChartProps> = (props) => {
         height={Math.min(400, height)}
         captureEvents={!editAnnotationLabelPosition}
         onPointerUp={d => {
-          setAnnotationDataKey(d.key as 'New York' | 'San Francisco' | 'Austin');
+          setAnnotationKey(d.key as 'New York' | 'San Francisco' | 'Austin');
           setAnnotationDataIndex(d.index);
         }}
       >
@@ -270,17 +273,17 @@ const Example: React.FC<XYChartProps> = (props) => {
           // values don't make sense in stream graph
           tickFormat={stackOffset === 'wiggle' ? () => '' : undefined}
         />
-        {annotationDataKey && annotationDatum && (
+        {annotationKey && annotationDatum && (
           <Annotation
             annotationType={annotationType}
             canEditSubject={false}
-            dataKey={annotationDataKey}
+            dataKey={annotationKey}
             datum={annotationDatum}
             editable={editAnnotationLabelPosition}
             isAnimated={isAnimated}
             stroke={theme.gridStyles.stroke}
-            subtitle={`${annotationDatum.date}, ${annotationDatum[annotationDataKey]}°F`}
-            title={annotationDataKey}
+            subtitle={`${annotationDatum.date}, ${annotationDatum[annotationKey]}°F`}
+            title={annotationKey}
           />
         )}
         {

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
 import { PatternLines } from '@visx/pattern';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
@@ -16,11 +16,6 @@ const dataMissingValues = data.map((d, i) =>
 );
 const dataSmall = data.slice(0, 15);
 const dataSmallMissingValues = dataMissingValues.slice(0, 15);
-const getDate = (d: CityTemperature) => d.date;
-const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
-const getNegativeSfTemperature = (d: CityTemperature) => -getSfTemperature(d);
-const getNyTemperature = (d: CityTemperature) => Number(d['New York']);
-const getAustinTemperature = (d: CityTemperature) => Number(d.Austin);
 const defaultAnnotationDataIndex = 13;
 const selectedDatumPatternId = 'xychart-selected-datum';
 
@@ -32,13 +27,11 @@ type Props = {
 
 export default function ExampleControls({ children, height, width }: Props) {
   // More complicated
-  const [renderHorizontally, setRenderHorizontally] = useState(false);
   const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
   const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
     null,
   );
   const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
-  const [negativeValues, setNegativeValues] = useState(false);
   const [fewerDatum, setFewerDatum] = useState(false);
   const [missingValues, setMissingValues] = useState(false);
 
@@ -51,35 +44,9 @@ export default function ExampleControls({ children, height, width }: Props) {
     [annotationDataIndex, annotationDataKey],
   );
 
-  const accessors = useMemo(
-    () => ({
-      x: {
-        'San Francisco': renderHorizontally
-          ? negativeValues
-            ? getNegativeSfTemperature
-            : getSfTemperature
-          : getDate,
-        'New York': renderHorizontally ? getNyTemperature : getDate,
-        Austin: renderHorizontally ? getAustinTemperature : getDate,
-      },
-      y: {
-        'San Francisco': renderHorizontally
-          ? getDate
-          : negativeValues
-            ? getNegativeSfTemperature
-            : getSfTemperature,
-        'New York': renderHorizontally ? getDate : getNyTemperature,
-        Austin: renderHorizontally ? getDate : getAustinTemperature,
-      },
-      date: getDate,
-    }),
-    [renderHorizontally, negativeValues],
-  );
-
   return (
     <>
       {children({
-        accessors,
         annotationDataKey,
         annotationDatum: data[annotationDataIndex],
         colorAccessorFactory,
@@ -92,7 +59,6 @@ export default function ExampleControls({ children, height, width }: Props) {
             : data,
         height,
         numTicks,
-        renderHorizontally,
         setAnnotationDataIndex,
         setAnnotationDataKey,
         theme,
@@ -113,14 +79,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         {/** data */}
         <div>
           <strong>data</strong>
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => setNegativeValues(!negativeValues)}
-              checked={negativeValues}
-            />
-            negative values (SF)
-          </label>
           <label>
             <input
               type="checkbox"
@@ -171,26 +129,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         <br />
 
         {/** series */}
-        {/** orientation */}
-        <div>
-          <strong>series orientation</strong>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setRenderHorizontally(false)}
-              checked={!renderHorizontally}
-            />
-            vertical
-          </label>
-          <label>
-            <input
-              type="radio"
-              onChange={() => setRenderHorizontally(true)}
-              checked={renderHorizontally}
-            />
-            horizontal
-          </label>
-        </div>
         <br />
         {/** annotation */}
         <div>

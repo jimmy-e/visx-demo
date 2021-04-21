@@ -22,10 +22,15 @@ import CustomTooltip from './CustomTooltip';
 
 const dateScaleConfig = { type: 'band', paddingInner: 0.3 };
 const temperatureScaleConfig = { type: 'linear' };
+const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
+const getNegativeSfTemperature = (d: CityTemperature) => -getSfTemperature(d);
+const getNyTemperature = (d: CityTemperature) => Number(d['New York']);
+const getAustinTemperature = (d: CityTemperature) => Number(d.Austin);
+const getDate = (d: CityTemperature) => d.date;
+
 
 const Example: React.FC<XYChartProps> = (props) => {
   const {
-    accessors,
     annotationDataKey,
     annotationDatum,
     annotationType,
@@ -36,6 +41,10 @@ const Example: React.FC<XYChartProps> = (props) => {
     curveType,
     data,
     editAnnotationLabelPosition,
+    // @ts-expect-error: will fix type bindings
+    hasNegativeValues,
+    // @ts-expect-error: will fix type bindings
+    hasSharedTooltip,
     height,
     // @ts-expect-error: will fix type bindings
     glyphComponent,
@@ -43,11 +52,10 @@ const Example: React.FC<XYChartProps> = (props) => {
     // @ts-expect-error: will fix type bindings
     lineType,
     numTicks,
-    renderHorizontally,
+    // @ts-expect-error: will fix type bindings
+    orientation,
     setAnnotationDataIndex,
     setAnnotationDataKey,
-    // @ts-expect-error: will fix type bindings
-    hasSharedTooltip,
     showGridColumns,
     showGridRows,
     showHorizontalCrosshair,
@@ -61,6 +69,8 @@ const Example: React.FC<XYChartProps> = (props) => {
     xAxisOrientation,
     yAxisOrientation,
   } = props;
+
+  const renderHorizontally = orientation === 'horizontal';
 
   const curve = (curveType === 'cardinal' && curveCardinal)
     || (curveType === 'step' && curveStep)
@@ -104,6 +114,31 @@ const Example: React.FC<XYChartProps> = (props) => {
   const renderAreaSeries = lineType === 'area';
   const renderAreaStack = lineType === 'areaStack';
   const renderLineSeries = lineType === 'default';
+
+  const accessors = useMemo(
+    () => ({
+      x: {
+        'San Francisco': renderHorizontally
+          ? hasNegativeValues
+            ? getNegativeSfTemperature
+            : getSfTemperature
+          : getDate,
+        'New York': renderHorizontally ? getNyTemperature : getDate,
+        Austin: renderHorizontally ? getAustinTemperature : getDate,
+      },
+      y: {
+        'San Francisco': renderHorizontally
+          ? getDate
+          : hasNegativeValues
+            ? getNegativeSfTemperature
+            : getSfTemperature,
+        'New York': renderHorizontally ? getDate : getNyTemperature,
+        Austin: renderHorizontally ? getDate : getAustinTemperature,
+      },
+      date: getDate,
+    }),
+    [hasNegativeValues, renderHorizontally],
+  );
 
   return (
     <XYChart

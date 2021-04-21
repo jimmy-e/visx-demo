@@ -8,10 +8,12 @@ interface Props {
   barType?: 'default' | 'group' | 'stack';
   curveType: 'cardinal' | 'linear' | 'step';
   editAnnotationLabelPosition: boolean;
+  hasNegativeValues: boolean;
   hasSharedTooltip: boolean;
   glyphComponent?: 'circle' | 'cross' | 'star' | '🍍';
   isAnimated: boolean;
   lineType?: 'area' | 'areaStack' | 'default';
+  orientation: 'horizontal' | 'vertical';
   showTooltip: boolean;
   showGridColumns: boolean;
   showGridRows: boolean;

@@ -7,3 +7,5 @@ create common props for all shapes ... e.g. accessors, data, etc
 make isAnimated prop false by default
 
 add lazy loading
+
+make library agnostic to sample data, such as accessors, etc

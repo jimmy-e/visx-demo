@@ -36,6 +36,12 @@ export default {
         options: [null, 'area', 'areaStack', 'default'],
       },
     },
+    orientation: {
+      control: {
+        type: 'radio',
+        options: ['horizontal', 'vertical'],
+      },
+    },
     stackOffset: {
       control: {
         type: 'radio',
@@ -67,9 +73,11 @@ XYChart.args = {
   curveType: 'linear',
   editAnnotationLabelPosition: false,
   glyphComponent: null,
+  hasNegativeValues: false,
   hasSharedTooltip: true,
   isAnimated: true,
   lineType: 'areaStack',
+  orientation: 'vertical',
   showGridColumns: false,
   showGridRows: false,
   showTooltip: true,

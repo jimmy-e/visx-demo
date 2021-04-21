@@ -2,6 +2,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useCallback, useState } from 'react';
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
+import { PatternLines } from '@visx/pattern';
+import customTheme from './customTheme';
 import { DataKey, XYChartProps } from '../types';
 
 const numTicks = 4;
@@ -24,6 +27,7 @@ type Props = {
 
 export default function ExampleControls({ children, height, width }: Props) {
   // More complicated
+  const [theme, setTheme] = useState<XYChartTheme>(darkTheme);
   const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationDataKey']>(
     null,
   );
@@ -55,8 +59,10 @@ export default function ExampleControls({ children, height, width }: Props) {
             : data,
         height,
         numTicks,
+        selectedDatumPatternId,
         setAnnotationDataIndex,
         setAnnotationDataKey,
+        theme,
         width,
       })}
       <div className="controls">

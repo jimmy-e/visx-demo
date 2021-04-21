@@ -3,6 +3,7 @@ import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import { GlyphProps } from '@visx/xychart/lib/types';
+import { PatternLines } from '@visx/pattern';
 import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import Annotation from 'tools/Annotation/Annotation';
 import AreaSeries from 'shapes/AreaSeries/AreaSeries';
@@ -55,6 +56,8 @@ const Example: React.FC<XYChartProps> = (props) => {
     numTicks,
     // @ts-expect-error: will fix type bindings
     orientation,
+    // @ts-expect-error: will fix type bindings
+    selectedDatumPatternId,
     setAnnotationDataIndex,
     setAnnotationDataKey,
     showGridColumns,
@@ -65,13 +68,14 @@ const Example: React.FC<XYChartProps> = (props) => {
     snapTooltipToDatumX,
     snapTooltipToDatumY,
     stackOffset,
-    theme: themeType,
+    // theme: themeType,
+    theme,
     width,
     xAxisOrientation,
     yAxisOrientation,
   } = props;
 
-  const theme = getTheme(themeType);
+  // const theme = getTheme(themeType);
 
   const renderHorizontally = orientation === 'horizontal';
 
@@ -144,142 +148,155 @@ const Example: React.FC<XYChartProps> = (props) => {
   );
 
   return (
-    <XYChart
-      theme={theme}
-      xScale={config.x}
-      yScale={config.y}
-      height={Math.min(400, height)}
-      captureEvents={!editAnnotationLabelPosition}
-      onPointerUp={d => {
-        setAnnotationDataKey(d.key as 'New York' | 'San Francisco' | 'Austin');
-        setAnnotationDataIndex(d.index);
-      }}
-    >
-      <CustomChartBackground />
-      <Grid
-        key={`grid-${animationTrajectory}`} // force animate on update
-        rows={showGridRows}
-        columns={showGridColumns}
-        animationTrajectory={animationTrajectory}
-        numTicks={numTicks}
-      />
-      {renderBarStack && (
-        <BarStack
-          accessors={accessors}
-          data={data}
-          isAnimated={isAnimated}
-          stackOffset={stackOffset}
+    <>
+      {/** This style is used for annotated elements via colorAccessor. */}
+      <svg className="pattern-lines">
+        <PatternLines
+          id={selectedDatumPatternId}
+          width={6}
+          height={6}
+          orientation={['diagonalRightToLeft']}
+          stroke={theme?.axisStyles.x.bottom.axisLine.stroke}
+          strokeWidth={1.5}
         />
-      )}
-      {renderBarGroup && (
-        <BarGroup
-          accessors={accessors}
-          colorAccessorFactory={colorAccessorFactory}
-          data={data}
-          isAnimated={isAnimated}
+      </svg>
+      <XYChart
+        theme={theme}
+        xScale={config.x}
+        yScale={config.y}
+        height={Math.min(400, height)}
+        captureEvents={!editAnnotationLabelPosition}
+        onPointerUp={d => {
+          setAnnotationDataKey(d.key as 'New York' | 'San Francisco' | 'Austin');
+          setAnnotationDataIndex(d.index);
+        }}
+      >
+        <CustomChartBackground />
+        <Grid
+          key={`grid-${animationTrajectory}`} // force animate on update
+          rows={showGridRows}
+          columns={showGridColumns}
+          animationTrajectory={animationTrajectory}
+          numTicks={numTicks}
         />
-      )}
-      {renderBarSeries && (
-        <BarSeries
-          accessors={accessors}
-          colorAccessorFactory={colorAccessorFactory}
-          data={data}
-          isAnimated={isAnimated}
-        />
-      )}
-      {renderAreaSeries && (
-        <AreaSeries
-          accessors={accessors}
-          curve={curve}
-          data={data}
-          isAnimated={isAnimated}
-        />
-      )}
-      {renderAreaStack && (
-        <AreaStack
-          accessors={accessors}
-          curve={curve}
-          data={data}
-          isAnimated={isAnimated}
-          stackOffset={stackOffset}
-        />
-      )}
-      {renderLineSeries && (
-        <LineSeries
-          accessors={accessors}
-          curve={curve}
-          data={data}
-          isAnimated={isAnimated}
-          renderBarSeries={renderBarSeries}
-        />
-      )}
-      {glyphComponent && (
-        <GlyphSeries
-          accessors={accessors}
-          colorAccessorFactory={colorAccessorFactory}
-          data={data}
-          isAnimated={isAnimated}
-          renderGlyph={renderGlyph}
-        />
-      )}
-      <Axis
-        key={`time-axis-${animationTrajectory}-${renderHorizontally}`}
-        animationTrajectory={animationTrajectory}
-        isAnimated={isAnimated}
-        numTicks={numTicks}
-        orientation={renderHorizontally ? yAxisOrientation : xAxisOrientation}
-      />
-      <Axis
-        key={`temp-axis-${animationTrajectory}-${renderHorizontally}`}
-        animationTrajectory={animationTrajectory}
-        isAnimated={isAnimated}
-        label={
-          stackOffset == null
-            ? 'Temperature (°F)'
-            : stackOffset === 'expand'
-            ? 'Fraction of total temperature'
-            : ''
-        }
-        numTicks={numTicks}
-        orientation={renderHorizontally ? xAxisOrientation : yAxisOrientation}
-        // values don't make sense in stream graph
-        tickFormat={stackOffset === 'wiggle' ? () => '' : undefined}
-      />
-      {annotationDataKey && annotationDatum && (
-        <Annotation
-          annotationType={annotationType}
-          canEditSubject={false}
-          dataKey={annotationDataKey}
-          datum={annotationDatum}
-          editable={editAnnotationLabelPosition}
-          isAnimated={isAnimated}
-          stroke={theme.gridStyles.stroke}
-          subtitle={`${annotationDatum.date}, ${annotationDatum[annotationDataKey]}°F`}
-          title={annotationDataKey}
-        />
-      )}
-      {
-        showTooltip && (
-          <Tooltip
-            showDatumGlyph={(snapTooltipToDatumX || snapTooltipToDatumY) && !renderBarGroup}
-            showHorizontalCrosshair={showHorizontalCrosshair}
-            showSeriesGlyphs={hasSharedTooltip && !renderBarGroup}
-            showVerticalCrosshair={showVerticalCrosshair}
-            snapTooltipToDatumX={snapTooltipToDatumX}
-            snapTooltipToDatumY={snapTooltipToDatumY}
-            renderTooltip={({ tooltipData, colorScale }) => (
-              <CustomTooltip
-                accessors={accessors}
-                colorScale={colorScale}
-                hasSharedTooltip={hasSharedTooltip}
-                renderHorizontally={renderHorizontally}
-                tooltipData={tooltipData}
-              />
-            )}
+        {renderBarStack && (
+          <BarStack
+            accessors={accessors}
+            data={data}
+            isAnimated={isAnimated}
+            stackOffset={stackOffset}
           />
-        )
-      }
-    </XYChart>
+        )}
+        {renderBarGroup && (
+          <BarGroup
+            accessors={accessors}
+            colorAccessorFactory={colorAccessorFactory}
+            data={data}
+            isAnimated={isAnimated}
+          />
+        )}
+        {renderBarSeries && (
+          <BarSeries
+            accessors={accessors}
+            colorAccessorFactory={colorAccessorFactory}
+            data={data}
+            isAnimated={isAnimated}
+          />
+        )}
+        {renderAreaSeries && (
+          <AreaSeries
+            accessors={accessors}
+            curve={curve}
+            data={data}
+            isAnimated={isAnimated}
+          />
+        )}
+        {renderAreaStack && (
+          <AreaStack
+            accessors={accessors}
+            curve={curve}
+            data={data}
+            isAnimated={isAnimated}
+            stackOffset={stackOffset}
+          />
+        )}
+        {renderLineSeries && (
+          <LineSeries
+            accessors={accessors}
+            curve={curve}
+            data={data}
+            isAnimated={isAnimated}
+            renderBarSeries={renderBarSeries}
+          />
+        )}
+        {glyphComponent && (
+          <GlyphSeries
+            accessors={accessors}
+            colorAccessorFactory={colorAccessorFactory}
+            data={data}
+            isAnimated={isAnimated}
+            renderGlyph={renderGlyph}
+          />
+        )}
+        <Axis
+          key={`time-axis-${animationTrajectory}-${renderHorizontally}`}
+          animationTrajectory={animationTrajectory}
+          isAnimated={isAnimated}
+          numTicks={numTicks}
+          orientation={renderHorizontally ? yAxisOrientation : xAxisOrientation}
+        />
+        <Axis
+          key={`temp-axis-${animationTrajectory}-${renderHorizontally}`}
+          animationTrajectory={animationTrajectory}
+          isAnimated={isAnimated}
+          label={
+            stackOffset == null
+              ? 'Temperature (°F)'
+              : stackOffset === 'expand'
+              ? 'Fraction of total temperature'
+              : ''
+          }
+          numTicks={numTicks}
+          orientation={renderHorizontally ? xAxisOrientation : yAxisOrientation}
+          // values don't make sense in stream graph
+          tickFormat={stackOffset === 'wiggle' ? () => '' : undefined}
+        />
+        {annotationDataKey && annotationDatum && (
+          <Annotation
+            annotationType={annotationType}
+            canEditSubject={false}
+            dataKey={annotationDataKey}
+            datum={annotationDatum}
+            editable={editAnnotationLabelPosition}
+            isAnimated={isAnimated}
+            stroke={theme.gridStyles.stroke}
+            subtitle={`${annotationDatum.date}, ${annotationDatum[annotationDataKey]}°F`}
+            title={annotationDataKey}
+          />
+        )}
+        {
+          showTooltip && (
+            <Tooltip
+              showDatumGlyph={(snapTooltipToDatumX || snapTooltipToDatumY) && !renderBarGroup}
+              showHorizontalCrosshair={showHorizontalCrosshair}
+              showSeriesGlyphs={hasSharedTooltip && !renderBarGroup}
+              showVerticalCrosshair={showVerticalCrosshair}
+              snapTooltipToDatumX={snapTooltipToDatumX}
+              snapTooltipToDatumY={snapTooltipToDatumY}
+              renderTooltip={({ tooltipData, colorScale }) => (
+                <CustomTooltip
+                  accessors={accessors}
+                  colorScale={colorScale}
+                  hasSharedTooltip={hasSharedTooltip}
+                  renderHorizontally={renderHorizontally}
+                  tooltipData={tooltipData}
+                />
+              )}
+            />
+          )
+        }
+      </XYChart>
+    </>
   );
 }
 

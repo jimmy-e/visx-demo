@@ -35,7 +35,6 @@ export default function ExampleControls({ children, height, width }: Props) {
     <>
       {children({
         annotationDataIndex,
-        annotationDataKey,
         annotationDatum: data[annotationDataIndex],
         data: fewerDatum
           ? missingValues

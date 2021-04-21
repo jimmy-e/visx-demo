@@ -6,6 +6,12 @@ import XYChartComponent from './XYChart';
 export default {
   title: 'Charts',
   argTypes: {
+    annotationDataKey: {
+      control: {
+        type: 'select',
+        options: [null, 'Austin', 'New York', 'San Francisco'],
+      },
+    },
     annotationType: {
       control: {
         type: 'radio',

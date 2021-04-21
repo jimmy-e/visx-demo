@@ -4,6 +4,7 @@ import Example from './Example';
 import ExampleControls from './ExampleControls';
 
 interface Props {
+  annotationDataKey?: 'Austin' | 'New York' | 'San Francisco';
   annotationType: 'circle' | 'line';
   barType?: 'default' | 'group' | 'stack';
   curveType: 'cardinal' | 'linear' | 'step';

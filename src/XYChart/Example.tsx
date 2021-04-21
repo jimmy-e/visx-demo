@@ -36,7 +36,6 @@ const Example: React.FC<XYChartProps> = (props) => {
     // @ts-expect-error: will fix type bindings
     annotationDataIndex,
     annotationDataKey: annotationKey,
-    annotationDatum,
     annotationType,
     // @ts-expect-error: will fix type bindings
     barType,
@@ -74,6 +73,8 @@ const Example: React.FC<XYChartProps> = (props) => {
     xAxisOrientation,
     yAxisOrientation,
   } = props;
+
+  const annotationDatum = data[annotationDataIndex];
 
   // ToDo: add key bindings
   const [annotationDataKey, setAnnotationDataKey] = useState(annotationKey);

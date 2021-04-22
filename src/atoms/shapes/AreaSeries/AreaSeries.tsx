@@ -1,11 +1,12 @@
 import React from 'react';
 import { AnimatedAreaSeries, AreaSeries as StaticAreaSeries } from '@visx/xychart';
-import { Accessors, XYChartProps } from 'src/types';
+import { Accessors, Curve, Data } from 'src/types';
+import { XYChartProps } from 'src/XYChart/types';
 
 interface Props {
   accessors: Accessors;
-  curve: XYChartProps['curve'];
-  data: XYChartProps['data'];
+  curve: Curve;
+  data: Data;
   isAnimated: XYChartProps['isAnimated'];
 }
 

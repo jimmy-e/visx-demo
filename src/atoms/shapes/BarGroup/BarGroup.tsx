@@ -5,12 +5,13 @@ import {
   BarSeries as StaticBarSeries,
   BarGroup as StaticBarGroup,
 } from '@visx/xychart';
-import { Accessors, XYChartProps } from 'src/types';
+import { Accessors, ColorAccessorFactory, Data } from 'src/types';
+import { XYChartProps } from 'src/XYChart/types';
 
 interface Props {
   accessors: Accessors;
-  colorAccessorFactory: XYChartProps['colorAccessorFactory'];
-  data: XYChartProps['data'];
+  colorAccessorFactory: ColorAccessorFactory;
+  data: Data;
   isAnimated: XYChartProps['isAnimated'];
 }
 

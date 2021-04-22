@@ -8,7 +8,7 @@ import {
   AnnotationLineSubject,
 } from '@visx/xychart';
 import { AnnotationProps } from '@visx/xychart/lib/components/annotation/Annotation';
-import { XYChartProps } from 'src/types';
+import { XYChartProps } from 'src/XYChart/types';
 
 // ToDo: Repalce `any` with proper XScale, YScale, and Datum typing
 type VisxAnnotationProps = Omit<AnnotationProps<any, any, any>, 'children'>;

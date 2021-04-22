@@ -1,13 +1,14 @@
 import React from 'react';
 import { AnimatedGlyphSeries, GlyphSeries as StaticGlyphSeries } from '@visx/xychart';
-import { Accessors, XYChartProps } from 'src/types';
+import { Accessors, Data, ColorAccessorFactory, RenderGlyph } from 'src/types';
+import { XYChartProps } from 'src/XYChart/types';
 
 interface Props {
   accessors: Accessors;
-  colorAccessorFactory: XYChartProps['colorAccessorFactory'];
-  data: XYChartProps['data'];
+  colorAccessorFactory: ColorAccessorFactory;
+  data: Data;
   isAnimated: XYChartProps['isAnimated'];
-  renderGlyph: XYChartProps['renderGlyph'];
+  renderGlyph: RenderGlyph;
 }
 
 const GlyphSeries: React.FC<Props> = ({

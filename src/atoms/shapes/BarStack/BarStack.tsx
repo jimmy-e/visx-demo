@@ -1,15 +1,16 @@
 import React from 'react';
-import { Accessors, XYChartProps } from 'src/types';
 import {
   AnimatedBarSeries,
   AnimatedBarStack,
   BarSeries as StaticBarSeries,
   BarStack as StaticBarStack,
 } from '@visx/xychart';
+import { Accessors, Data } from 'src/types';
+import { XYChartProps } from 'src/XYChart/types';
 
 interface Props {
   accessors: Accessors;
-  data: XYChartProps['data'];
+  data: Data;
   isAnimated: XYChartProps['isAnimated'];
   stackOffset: XYChartProps['stackOffset'];
 }

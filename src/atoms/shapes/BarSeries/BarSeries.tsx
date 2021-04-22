@@ -1,11 +1,12 @@
 import React from 'react';
 import { AnimatedBarSeries, BarSeries as StaticBarSeries } from '@visx/xychart';
-import { Accessors, XYChartProps } from 'src/types';
+import { Accessors, Data, ColorAccessorFactory } from 'src/types';
+import { XYChartProps } from 'src/XYChart/types';
 
 interface Props {
   accessors: Accessors;
-  colorAccessorFactory: XYChartProps['colorAccessorFactory'];
-  data: XYChartProps['data'];
+  colorAccessorFactory: ColorAccessorFactory;
+  data: Data;
   isAnimated: XYChartProps['isAnimated'];
 }
 

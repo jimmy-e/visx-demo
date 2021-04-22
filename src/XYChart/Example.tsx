@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import cityTemperature from '@visx/mock-data/lib/mocks/cityTemperature';
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
@@ -17,7 +18,7 @@ import GlyphSeries from 'shapes/GlyphSeries/GlyphSeries';
 import Grid from 'tools/Grid/Grid';
 import LineSeries from 'shapes/LineSeries/LineSeries';
 import Tooltip from 'tools/Tooltip/Tooltip';
-import XYChart from 'molecules/XYChart/XYChart';
+import VisxXYChart from 'molecules/XYChart/XYChart';
 import { DataKey } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
@@ -51,7 +52,7 @@ interface Props extends XYChartProps {
   width: number;
 }
 
-const Example: React.FC<Props> = ({
+const XYChart: React.FC<Props> = ({
   annotationKey,
   annotationType,
   barType,
@@ -196,7 +197,7 @@ const Example: React.FC<Props> = ({
           strokeWidth={1.5}
         />
       </svg>
-      <XYChart
+      <VisxXYChart
         theme={theme}
         xScale={config.x}
         yScale={config.y}
@@ -331,9 +332,21 @@ const Example: React.FC<Props> = ({
             />
           )
         }
-      </XYChart>
+      </VisxXYChart>
     </>
   );
 }
 
-export default Example;
+// ----- ADDING RESPONSIVENESS ----- //
+
+const XYChartResponsiveContainer: React.FC<XYChartProps> = (props) => (
+  <ParentSize>
+    {
+      ({ height, width }) => (
+        <XYChart height={height} width={width} {...props} />
+      )
+    }
+  </ParentSize>
+);
+
+export default XYChartResponsiveContainer;

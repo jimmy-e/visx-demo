@@ -9,10 +9,10 @@ interface Props {
   barType?: 'default' | 'group' | 'stack';
   curveType: 'cardinal' | 'linear' | 'step';
   editAnnotationLabelPosition: boolean;
-  fewerDatum: boolean;
+  glyphComponent?: 'circle' | 'cross' | 'star' | '🍍';
+  hasFewerDatum: boolean;
   hasNegativeValues: boolean;
   hasSharedTooltip: boolean;
-  glyphComponent?: 'circle' | 'cross' | 'star' | '🍍';
   isAnimated: boolean;
   lineType?: 'area' | 'areaStack' | 'default';
   orientation: 'horizontal' | 'vertical';

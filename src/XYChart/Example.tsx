@@ -45,8 +45,6 @@ const defaultAnnotationDataIndex = 13;
 const Example: React.FC<XYChartProps> = (props) => {
   const {
     // @ts-expect-error: will fix type bindings
-    fewerDatum,
-    // @ts-expect-error: will fix type bindings
     missingValues,
     // @ts-expect-error: will fix type bindings
     annotationKey,
@@ -57,12 +55,14 @@ const Example: React.FC<XYChartProps> = (props) => {
     curveType,
     editAnnotationLabelPosition,
     // @ts-expect-error: will fix type bindings
+    glyphComponent,
+    // @ts-expect-error: will fix type bindings
+    hasFewerDatum,
+    // @ts-expect-error: will fix type bindings
     hasNegativeValues,
     // @ts-expect-error: will fix type bindings
     hasSharedTooltip,
     height,
-    // @ts-expect-error: will fix type bindings
-    glyphComponent,
     isAnimated,
     // @ts-expect-error: will fix type bindings
     lineType,
@@ -86,12 +86,7 @@ const Example: React.FC<XYChartProps> = (props) => {
     yAxisOrientation,
   } = props;
 
-  console.log('**************');
-  console.log(fewerDatum);
-  console.log(missingValues);
-  console.log('**************');
-
-  const data = fewerDatum
+  const data = hasFewerDatum
     ? missingValues
       ? dataSmallMissingValues
       : dataSmall

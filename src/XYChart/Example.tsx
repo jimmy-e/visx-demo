@@ -187,6 +187,11 @@ const Example: React.FC<XYChartProps> = (props) => {
 
   return (
     <>
+      {/** This div with the br child is needed, for some reason, in order to assure that our
+       chart renders */}
+      <div>
+        <br />
+      </div>
       {/** This style is used for annotated elements via colorAccessor. */}
       <svg className="patternLines">
         <PatternLines

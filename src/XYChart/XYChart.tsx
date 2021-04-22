@@ -34,11 +34,7 @@ const XYChart: React.FC<Props> = (props) => (
   <ParentSize>
     {
       ({ height, width }) => (
-        <ExampleControls height={height} width={width}>
-          {(controlProps) => (
-            <Example {...controlProps} {...props} />
-          )}
-        </ExampleControls>
+        <Example height={height} width={width} {...props} />
       )
     }
   </ParentSize>

@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import cityTemperature from '@visx/mock-data/lib/mocks/cityTemperature';
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
@@ -23,19 +22,11 @@ import { DataKey } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
 import { XYChartProps } from './types';
-import { getTheme } from './utils';
+import { getData, getTheme } from './utils';
 import './xyChart.css';
 
 const numTicks = 4;
 const selectedDatumPatternId = 'xychart-selected-datum';
-const sampleData = cityTemperature.slice(225, 275);
-const dataMissingValues = sampleData.map((d, i) =>
-  i === 10 || i === 11
-    ? { ...d, 'San Francisco': 'nope', 'New York': 'notanumber', Austin: 'null' }
-    : d,
-);
-const dataSmall = sampleData.slice(0, 15);
-const dataSmallMissingValues = dataMissingValues.slice(0, 15);
 
 const dateScaleConfig = { type: 'band', paddingInner: 0.3 };
 const temperatureScaleConfig = { type: 'linear' };
@@ -80,13 +71,7 @@ const XYChart: React.FC<Props> = ({
   xAxisOrientation,
   yAxisOrientation,
 }) => {
-  const data = hasFewerDatum
-    ? hasMissingValues
-      ? dataSmallMissingValues
-      : dataSmall
-    : hasMissingValues
-      ? dataMissingValues
-      : sampleData;
+  const data = getData(hasFewerDatum, hasMissingValues);
 
   const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
   const annotationDatum = data[annotationDataIndex];

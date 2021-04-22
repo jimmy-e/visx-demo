@@ -19,4 +19,4 @@ const ExampleControls: React.FC<Props> = ({ children, height, width }) => (
   </>
 );
 
-export default  ExampleControls;
+export default ExampleControls;

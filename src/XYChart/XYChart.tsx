@@ -74,6 +74,7 @@ const XYChart: React.FC<Props> = ({
   const {
     curve,
     data,
+    glyphOutline,
     renderHorizontally,
     theme,
   } = useConfigureXYChart({
@@ -112,7 +113,6 @@ const XYChart: React.FC<Props> = ({
     [renderHorizontally],
   );
 
-  const glyphOutline = theme.gridStyles.stroke;
   const renderGlyph = useCallback(
     ({ size, color, onPointerMove, onPointerOut, onPointerUp }: GlyphProps<CityTemperature>) => {
       const handlers = { onPointerMove, onPointerOut, onPointerUp };

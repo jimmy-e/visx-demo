@@ -3,6 +3,7 @@ import { CurveFactory } from 'd3-shape';
 import { XYChartTheme } from '@visx/xychart';
 import { XYChartProps } from './types';
 import { getCurve, getData, getTheme } from './utils';
+import {CSSProperties} from "react";
 
 interface Props {
   curveType: XYChartProps['curveType'];
@@ -15,6 +16,7 @@ interface Props {
 interface Return {
   curve: CurveFactory;
   data: CityTemperature[];
+  glyphOutline: string;
   renderHorizontally: boolean;
   theme: XYChartTheme;
 }
@@ -32,9 +34,12 @@ export default ({
   const renderHorizontally = orientation === 'horizontal';
   const theme = getTheme(themeType);
 
+  const glyphOutline = theme.gridStyles.stroke as string;
+
   return {
     curve,
     data,
+    glyphOutline,
     renderHorizontally,
     theme,
   };

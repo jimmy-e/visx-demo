@@ -11,6 +11,7 @@ interface Props {
   editAnnotationLabelPosition: boolean;
   glyphComponent?: 'circle' | 'cross' | 'star' | '🍍';
   hasFewerDatum: boolean;
+  hasMissingValues: boolean;
   hasNegativeValues: boolean;
   hasSharedTooltip: boolean;
   isAnimated: boolean;

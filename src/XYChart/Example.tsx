@@ -45,8 +45,6 @@ const defaultAnnotationDataIndex = 13;
 const Example: React.FC<XYChartProps> = (props) => {
   const {
     // @ts-expect-error: will fix type bindings
-    missingValues,
-    // @ts-expect-error: will fix type bindings
     annotationKey,
     annotationType,
     // @ts-expect-error: will fix type bindings
@@ -58,6 +56,8 @@ const Example: React.FC<XYChartProps> = (props) => {
     glyphComponent,
     // @ts-expect-error: will fix type bindings
     hasFewerDatum,
+    // @ts-expect-error: will fix type bindings
+    hasMissingValues,
     // @ts-expect-error: will fix type bindings
     hasNegativeValues,
     // @ts-expect-error: will fix type bindings
@@ -87,10 +87,10 @@ const Example: React.FC<XYChartProps> = (props) => {
   } = props;
 
   const data = hasFewerDatum
-    ? missingValues
+    ? hasMissingValues
       ? dataSmallMissingValues
       : dataSmall
-    : missingValues
+    : hasMissingValues
       ? dataMissingValues
       : sampleData;
 

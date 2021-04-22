@@ -19,7 +19,6 @@ export default function ExampleControls({ children, height, width }: Props) {
   return (
     <>
       {children({
-        missingValues,
         height,
         numTicks,
         selectedDatumPatternId,

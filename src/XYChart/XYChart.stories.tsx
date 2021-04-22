@@ -87,6 +87,7 @@ XYChart.args = {
   editAnnotationLabelPosition: false,
   glyphComponent: null,
   hasFewerDatum: false,
+  hasMissingValues: false,
   hasNegativeValues: false,
   hasSharedTooltip: true,
   isAnimated: true,

@@ -6,7 +6,7 @@ import { curveCardinal, curveLinear, curveStep } from '@visx/curve';
 
 type Accessor = (datum: CityTemperature) => number | string;
 
-interface Accessors {
+interface KeyAccessors {
   'San Francisco': Accessor;
   'New York': Accessor;
   Austin: Accessor;
@@ -14,14 +14,20 @@ interface Accessors {
 
 export type City = 'Austin' | 'New York' | 'San Francisco';
 
-export type DataKey = keyof Accessors;
+export type DataKey = keyof KeyAccessors;
 
 type SimpleScaleConfig = { type: 'band' | 'linear'; paddingInner?: number };
 
+export interface Accessors {
+  x: KeyAccessors;
+  y: KeyAccessors;
+  date: Accessor;
+}
+
 export type XYChartProps = {
   accessors: {
-    x: Accessors;
-    y: Accessors;
+    x: KeyAccessors;
+    y: KeyAccessors;
     date: Accessor;
   };
   annotationDataKey: DataKey | null;

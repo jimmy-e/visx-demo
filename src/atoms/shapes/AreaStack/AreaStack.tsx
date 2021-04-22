@@ -5,10 +5,10 @@ import {
   AreaSeries as StaticAreaSeries,
   AreaStack as StaticAreaStack,
 } from '@visx/xychart';
-import { XYChartProps } from 'src/types';
+import { Accessors, XYChartProps } from 'src/types';
 
 interface Props {
-  accessors: XYChartProps['accessors'];
+  accessors: Accessors;
   curve: XYChartProps['curve'];
   data: XYChartProps['data'];
   isAnimated: XYChartProps['isAnimated'];

@@ -1,10 +1,10 @@
 import React from 'react';
 import { City } from 'src/types';
 import { RenderTooltipParams } from '@visx/xychart/lib/components/Tooltip';
-import { XYChartProps } from 'src/types';
+import { Accessors, XYChartProps } from 'src/types';
 
 interface Props {
-  accessors: XYChartProps['accessors'];
+  accessors: Accessors;
   // ToDo: replace `any` with correct datum typing
   colorScale: RenderTooltipParams<any>['colorScale'];
   hasSharedTooltip: XYChartProps['sharedTooltip'];

@@ -1,7 +1,20 @@
 import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { CurveFactory } from 'd3-shape';
+import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
 import { XYChartProps } from './types';
 import customTheme from './customTheme';
+
+export const getCurve = (curveType: XYChartProps['curveType']): CurveFactory => {
+  switch (curveType) {
+    case 'cardinal':
+      return curveCardinal;
+    case 'step':
+      return curveStep;
+    default:
+      return curveLinear;
+  }
+};
 
 export const getData = (
   hasFewerDatum: XYChartProps['hasFewerDatum'],

@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { CurveFactory } from 'd3-shape';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import { GlyphProps } from '@visx/xychart/lib/types';
 import { PatternLines } from '@visx/pattern';
@@ -23,6 +24,7 @@ import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
 import useConfigureXYChart from './useConfigureXYChart';
 import { XYChartProps } from './types';
+import { getCurve } from "src/XYChart/utils";
 import './xyChart.css';
 
 const numTicks = 4;
@@ -81,6 +83,7 @@ const XYChart: React.FC<Props> = ({
     orientation,
     themeType,
   });
+  const curve = getCurve(curveType);
 
   const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
   const annotationDatum = data[annotationDataIndex];
@@ -101,9 +104,6 @@ const XYChart: React.FC<Props> = ({
     [annotationDataIndex, annotationDataKey],
   );
 
-  const curve = (curveType === 'cardinal' && curveCardinal)
-    || (curveType === 'step' && curveStep)
-    || curveLinear;
 
   const config = useMemo(
     () => ({

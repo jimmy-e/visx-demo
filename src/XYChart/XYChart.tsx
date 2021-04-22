@@ -21,7 +21,7 @@ import VisxXYChart from 'molecules/XYChart/XYChart';
 import { DataKey } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
-import useInitiateXYChart from './useInitiateXYChart';
+import useConfigureXYChart from './useConfigureXYChart';
 import { XYChartProps } from './types';
 import './xyChart.css';
 
@@ -71,7 +71,16 @@ const XYChart: React.FC<Props> = ({
   xAxisOrientation,
   yAxisOrientation,
 }) => {
-  const { data, theme } = useInitiateXYChart({ hasFewerDatum, hasMissingValues, themeType });
+  const {
+    data,
+    renderHorizontally,
+    theme,
+  } = useConfigureXYChart({
+    hasFewerDatum,
+    hasMissingValues,
+    orientation,
+    themeType,
+  });
 
   const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
   const annotationDatum = data[annotationDataIndex];
@@ -91,8 +100,6 @@ const XYChart: React.FC<Props> = ({
         : null,
     [annotationDataIndex, annotationDataKey],
   );
-
-  const renderHorizontally = orientation === 'horizontal';
 
   const curve = (curveType === 'cardinal' && curveCardinal)
     || (curveType === 'step' && curveStep)

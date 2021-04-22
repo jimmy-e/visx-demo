@@ -13,9 +13,6 @@ type Props = {
 };
 
 export default function ExampleControls({ children, height, width }: Props) {
-  // More complicated
-  const [missingValues, setMissingValues] = useState(false);
-
   return (
     <>
       {children({
@@ -26,17 +23,6 @@ export default function ExampleControls({ children, height, width }: Props) {
       })}
       <div className="controls">
         {/** data */}
-        <div>
-          <strong>data</strong>
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => setMissingValues(!missingValues)}
-              checked={missingValues}
-            />
-            missing values
-          </label>
-        </div>
 
         <br />
 
@@ -44,19 +30,6 @@ export default function ExampleControls({ children, height, width }: Props) {
         <br />
       </div>
       <style jsx>{`
-        .controls {
-          font-size: 13px;
-          line-height: 1.5em;
-        }
-        .controls > div {
-          margin-bottom: 4px;
-        }
-        label {
-          font-size: 12px;
-        }
-        input[type='radio'] {
-          height: 10px;
-        }
         .pattern-lines {
           position: absolute;
           pointer-events: none;

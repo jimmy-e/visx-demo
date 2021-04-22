@@ -22,6 +22,7 @@ import { DataKey, XYChartProps } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
 import { getTheme } from './utils';
+import './xyChart.css';
 
 const numTicks = 4;
 const selectedDatumPatternId = 'xychart-selected-datum';
@@ -187,7 +188,7 @@ const Example: React.FC<XYChartProps> = (props) => {
   return (
     <>
       {/** This style is used for annotated elements via colorAccessor. */}
-      <svg className="pattern-lines">
+      <svg className="patternLines">
         <PatternLines
           id={selectedDatumPatternId}
           width={6}

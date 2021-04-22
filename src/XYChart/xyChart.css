@@ -1,0 +1,5 @@
+.patternLines {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}

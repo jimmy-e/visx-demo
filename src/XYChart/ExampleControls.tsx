@@ -13,7 +13,7 @@ const ExampleControls: React.FC<Props> = ({ children, height, width }) => (
       height,
       width,
     })}
-    <div className="controls">
+    <div>
       <br />
     </div>
   </>

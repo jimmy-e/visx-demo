@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import cityTemperature from '@visx/mock-data/lib/mocks/cityTemperature';
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
@@ -22,6 +23,15 @@ import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
 import { getTheme } from './utils';
 
+const sampleData = cityTemperature.slice(225, 275);
+const dataMissingValues = sampleData.map((d, i) =>
+  i === 10 || i === 11
+    ? { ...d, 'San Francisco': 'nope', 'New York': 'notanumber', Austin: 'null' }
+    : d,
+);
+const dataSmall = sampleData.slice(0, 15);
+const dataSmallMissingValues = dataMissingValues.slice(0, 15);
+
 const dateScaleConfig = { type: 'band', paddingInner: 0.3 };
 const temperatureScaleConfig = { type: 'linear' };
 const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
@@ -35,13 +45,16 @@ const defaultAnnotationDataIndex = 13;
 const Example: React.FC<XYChartProps> = (props) => {
   const {
     // @ts-expect-error: will fix type bindings
+    fewerDatum,
+    // @ts-expect-error: will fix type bindings
+    missingValues,
+    // @ts-expect-error: will fix type bindings
     annotationKey,
     annotationType,
     // @ts-expect-error: will fix type bindings
     barType,
     // @ts-expect-error: will fix type bindings
     curveType,
-    data,
     editAnnotationLabelPosition,
     // @ts-expect-error: will fix type bindings
     hasNegativeValues,
@@ -72,6 +85,19 @@ const Example: React.FC<XYChartProps> = (props) => {
     xAxisOrientation,
     yAxisOrientation,
   } = props;
+
+  console.log('**************');
+  console.log(fewerDatum);
+  console.log(missingValues);
+  console.log('**************');
+
+  const data = fewerDatum
+    ? missingValues
+      ? dataSmallMissingValues
+      : dataSmall
+    : missingValues
+      ? dataMissingValues
+      : sampleData;
 
   const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
   const annotationDatum = data[annotationDataIndex];

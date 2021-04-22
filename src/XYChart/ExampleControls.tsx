@@ -1,18 +1,9 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import cityTemperature from '@visx/mock-data/lib/mocks/cityTemperature';
 import { XYChartProps } from '../types';
 
 const numTicks = 4;
-const data = cityTemperature.slice(225, 275);
-const dataMissingValues = data.map((d, i) =>
-  i === 10 || i === 11
-    ? { ...d, 'San Francisco': 'nope', 'New York': 'notanumber', Austin: 'null' }
-    : d,
-);
-const dataSmall = data.slice(0, 15);
-const dataSmallMissingValues = dataMissingValues.slice(0, 15);
 const selectedDatumPatternId = 'xychart-selected-datum';
 
 type Props = {
@@ -29,13 +20,8 @@ export default function ExampleControls({ children, height, width }: Props) {
   return (
     <>
       {children({
-        data: fewerDatum
-          ? missingValues
-            ? dataSmallMissingValues
-            : dataSmall
-          : missingValues
-            ? dataMissingValues
-            : data,
+        fewerDatum,
+        missingValues,
         height,
         numTicks,
         selectedDatumPatternId,

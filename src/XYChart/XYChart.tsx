@@ -23,7 +23,6 @@ import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
 import useInitiateXYChart from './useInitiateXYChart';
 import { XYChartProps } from './types';
-import { getTheme } from './utils';
 import './xyChart.css';
 
 const numTicks = 4;
@@ -72,7 +71,7 @@ const XYChart: React.FC<Props> = ({
   xAxisOrientation,
   yAxisOrientation,
 }) => {
-  const { data } = useInitiateXYChart({ hasFewerDatum, hasMissingValues });
+  const { data, theme } = useInitiateXYChart({ hasFewerDatum, hasMissingValues, themeType });
 
   const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
   const annotationDatum = data[annotationDataIndex];
@@ -92,8 +91,6 @@ const XYChart: React.FC<Props> = ({
         : null,
     [annotationDataIndex, annotationDataKey],
   );
-
-  const theme = getTheme(themeType);
 
   const renderHorizontally = orientation === 'horizontal';
 

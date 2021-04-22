@@ -6,20 +6,24 @@ import { getData, getTheme } from './utils';
 interface Props {
   hasFewerDatum: XYChartProps['hasFewerDatum'];
   hasMissingValues: XYChartProps['hasMissingValues'];
+  themeType: XYChartProps['themeType'];
 }
 
 interface Return {
   data: CityTemperature[];
-  // theme: XYChartTheme;
+  theme: XYChartTheme;
 }
 
 export default ({
   hasFewerDatum,
-  hasMissingValues
+  hasMissingValues,
+  themeType,
 }: Props): Return => {
   const data = getData(hasFewerDatum, hasMissingValues);
+  const theme = getTheme(themeType);
 
   return {
-    data
+    data,
+    theme,
   };
 };

@@ -23,6 +23,8 @@ import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
 import { getTheme } from './utils';
 
+const numTicks = 4;
+const selectedDatumPatternId = 'xychart-selected-datum';
 const sampleData = cityTemperature.slice(225, 275);
 const dataMissingValues = sampleData.map((d, i) =>
   i === 10 || i === 11
@@ -66,11 +68,8 @@ const Example: React.FC<XYChartProps> = (props) => {
     isAnimated,
     // @ts-expect-error: will fix type bindings
     lineType,
-    numTicks,
     // @ts-expect-error: will fix type bindings
     orientation,
-    // @ts-expect-error: will fix type bindings
-    selectedDatumPatternId,
     // setAnnotationDataKey,
     showGridColumns,
     showGridRows,

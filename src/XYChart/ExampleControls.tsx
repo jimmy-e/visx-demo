@@ -1,10 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React from 'react';
 import { XYChartProps } from '../types';
-
-const numTicks = 4;
-const selectedDatumPatternId = 'xychart-selected-datum';
 
 type Props = {
   children: (props: XYChartProps) => React.ReactElement;
@@ -17,16 +14,9 @@ export default function ExampleControls({ children, height, width }: Props) {
     <>
       {children({
         height,
-        numTicks,
-        selectedDatumPatternId,
         width,
       })}
       <div className="controls">
-        {/** data */}
-
-        <br />
-
-        {/** series */}
         <br />
       </div>
       <style jsx>{`

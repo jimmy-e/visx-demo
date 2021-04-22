@@ -18,9 +18,10 @@ import Grid from 'tools/Grid/Grid';
 import LineSeries from 'shapes/LineSeries/LineSeries';
 import Tooltip from 'tools/Tooltip/Tooltip';
 import XYChart from 'molecules/XYChart/XYChart';
-import { DataKey, XYChartProps } from 'src/types';
+import { DataKey } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
+import { XYChartProps } from './types';
 import { getTheme } from './utils';
 import './xyChart.css';
 
@@ -45,47 +46,39 @@ const getDate = (d: CityTemperature) => d.date;
 
 const defaultAnnotationDataIndex = 13;
 
-const Example: React.FC<XYChartProps> = (props) => {
-  const {
-    // @ts-expect-error: will fix type bindings
-    annotationKey,
-    annotationType,
-    // @ts-expect-error: will fix type bindings
-    barType,
-    // @ts-expect-error: will fix type bindings
-    curveType,
-    editAnnotationLabelPosition,
-    // @ts-expect-error: will fix type bindings
-    glyphComponent,
-    // @ts-expect-error: will fix type bindings
-    hasFewerDatum,
-    // @ts-expect-error: will fix type bindings
-    hasMissingValues,
-    // @ts-expect-error: will fix type bindings
-    hasNegativeValues,
-    // @ts-expect-error: will fix type bindings
-    hasSharedTooltip,
-    height,
-    isAnimated,
-    // @ts-expect-error: will fix type bindings
-    lineType,
-    // @ts-expect-error: will fix type bindings
-    orientation,
-    // setAnnotationDataKey,
-    showGridColumns,
-    showGridRows,
-    showHorizontalCrosshair,
-    showTooltip,
-    showVerticalCrosshair,
-    snapTooltipToDatumX,
-    snapTooltipToDatumY,
-    stackOffset,
-    theme: themeType,
-    width,
-    xAxisOrientation,
-    yAxisOrientation,
-  } = props;
+interface Props extends XYChartProps {
+  height: number;
+  width: number;
+}
 
+const Example: React.FC<Props> = ({
+  annotationKey,
+  annotationType,
+  barType,
+  curveType,
+  editAnnotationLabelPosition,
+  glyphComponent,
+  hasFewerDatum,
+  hasMissingValues,
+  hasNegativeValues,
+  hasSharedTooltip,
+  height,
+  isAnimated,
+  lineType,
+  orientation,
+  showGridColumns,
+  showGridRows,
+  showHorizontalCrosshair,
+  showTooltip,
+  showVerticalCrosshair,
+  snapTooltipToDatumX,
+  snapTooltipToDatumY,
+  stackOffset,
+  theme: themeType,
+  width,
+  xAxisOrientation,
+  yAxisOrientation,
+}) => {
   const data = hasFewerDatum
     ? hasMissingValues
       ? dataSmallMissingValues

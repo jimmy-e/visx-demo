@@ -2,6 +2,7 @@ import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0';
 import XYChartComponent from './XYChart';
+import { XYChartProps } from './types';
 
 export default {
   title: 'Charts',
@@ -75,17 +76,16 @@ export default {
   },
 } as Meta;
 
-// ToDo: add prop binding
-const XYChartStory: Story = (args) => <XYChartComponent {...args} />;
+const XYChartStory: Story<XYChartProps> = (args) => <XYChartComponent {...args} />;
 
 export const XYChart = XYChartStory.bind({});
 XYChart.args = {
-  annotationKey: null,
+  annotationKey: undefined,
   annotationType: 'circle',
-  barType: null,
+  barType: undefined,
   curveType: 'linear',
   editAnnotationLabelPosition: false,
-  glyphComponent: null,
+  glyphComponent: undefined,
   hasFewerDatum: false,
   hasMissingValues: false,
   hasNegativeValues: false,

@@ -14,13 +14,11 @@ type Props = {
 
 export default function ExampleControls({ children, height, width }: Props) {
   // More complicated
-  const [fewerDatum, setFewerDatum] = useState(false);
   const [missingValues, setMissingValues] = useState(false);
 
   return (
     <>
       {children({
-        fewerDatum,
         missingValues,
         height,
         numTicks,
@@ -38,14 +36,6 @@ export default function ExampleControls({ children, height, width }: Props) {
               checked={missingValues}
             />
             missing values
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => setFewerDatum(!fewerDatum)}
-              checked={fewerDatum}
-            />
-            fewer datum
           </label>
         </div>
 

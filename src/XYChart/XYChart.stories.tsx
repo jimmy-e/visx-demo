@@ -85,6 +85,7 @@ XYChart.args = {
   barType: null,
   curveType: 'linear',
   editAnnotationLabelPosition: false,
+  fewerDatum: false,
   glyphComponent: null,
   hasNegativeValues: false,
   hasSharedTooltip: true,

@@ -9,6 +9,7 @@ interface Props {
   barType?: 'default' | 'group' | 'stack';
   curveType: 'cardinal' | 'linear' | 'step';
   editAnnotationLabelPosition: boolean;
+  fewerDatum: boolean;
   hasNegativeValues: boolean;
   hasSharedTooltip: boolean;
   glyphComponent?: 'circle' | 'cross' | 'star' | '🍍';

@@ -13,7 +13,6 @@ const dataMissingValues = data.map((d, i) =>
 );
 const dataSmall = data.slice(0, 15);
 const dataSmallMissingValues = dataMissingValues.slice(0, 15);
-const defaultAnnotationDataIndex = 13;
 const selectedDatumPatternId = 'xychart-selected-datum';
 
 type Props = {

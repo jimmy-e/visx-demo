@@ -2,11 +2,9 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-import { CurveFactory } from 'd3-shape';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import { GlyphProps } from '@visx/xychart/lib/types';
 import { PatternLines } from '@visx/pattern';
-import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import Annotation from 'tools/Annotation/Annotation';
 import AreaSeries from 'shapes/AreaSeries/AreaSeries';
 import AreaStack from 'shapes/AreaStack/AreaStack';
@@ -74,16 +72,17 @@ const XYChart: React.FC<Props> = ({
   yAxisOrientation,
 }) => {
   const {
+    curve,
     data,
     renderHorizontally,
     theme,
   } = useConfigureXYChart({
+    curveType,
     hasFewerDatum,
     hasMissingValues,
     orientation,
     themeType,
   });
-  const curve = getCurve(curveType);
 
   const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
   const annotationDatum = data[annotationDataIndex];

@@ -21,8 +21,9 @@ import VisxXYChart from 'molecules/XYChart/XYChart';
 import { DataKey } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
+import useInitiateXYChart from './useInitiateXYChart';
 import { XYChartProps } from './types';
-import { getData, getTheme } from './utils';
+import { getTheme } from './utils';
 import './xyChart.css';
 
 const numTicks = 4;
@@ -66,12 +67,12 @@ const XYChart: React.FC<Props> = ({
   snapTooltipToDatumX,
   snapTooltipToDatumY,
   stackOffset,
-  theme: themeType,
+  themeType,
   width,
   xAxisOrientation,
   yAxisOrientation,
 }) => {
-  const data = getData(hasFewerDatum, hasMissingValues);
+  const { data } = useInitiateXYChart({ hasFewerDatum, hasMissingValues });
 
   const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
   const annotationDatum = data[annotationDataIndex];

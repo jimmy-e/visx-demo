@@ -23,8 +23,8 @@ export const getData = (
   }
 };
 
-export const getTheme = (theme: XYChartProps['theme']): XYChartTheme => {
-  switch (theme) {
+export const getTheme = (themeType: XYChartProps['themeType']): XYChartTheme => {
+  switch (themeType) {
     case 'custom':
       return customTheme;
     case 'dark':

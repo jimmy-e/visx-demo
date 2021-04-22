@@ -20,7 +20,7 @@ export interface XYChartProps {
   snapTooltipToDatumX: boolean;
   snapTooltipToDatumY: boolean;
   stackOffset: 'diverging' | 'expand' | 'wiggle';
-  theme: 'custom' | 'dark' | 'light';
+  themeType: 'custom' | 'dark' | 'light';
   xAxisOrientation: 'bottom' | 'top';
   yAxisOrientation: 'left' | 'right';
 }

@@ -16,6 +16,7 @@ import VisxXYChart from 'molecules/XYChart/XYChart';
 import { CityTemperature } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
+import useAxisConfig from './useAxisConfig';
 import useColorAccessorFactory from './useColorAccessorFactory';
 import useConfigureXYChart from './useConfigureXYChart';
 import { XYChartProps } from './types';
@@ -24,8 +25,6 @@ import './xyChart.css';
 const numTicks = 4;
 const selectedDatumPatternId = 'xychart-selected-datum';
 
-const dateScaleConfig = { type: 'band', paddingInner: 0.3 };
-const temperatureScaleConfig = { type: 'linear' };
 const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
 const getNegativeSfTemperature = (d: CityTemperature) => -getSfTemperature(d);
 const getNyTemperature = (d: CityTemperature) => Number(d['New York']);
@@ -103,13 +102,7 @@ const XYChart: React.FC<Props> = ({
     selectedDatumPatternId,
   });
 
-  const axisConfig = useMemo(
-    () => ({
-      x: renderHorizontally ? temperatureScaleConfig : dateScaleConfig,
-      y: renderHorizontally ? dateScaleConfig : temperatureScaleConfig,
-    }),
-    [renderHorizontally],
-  );
+  const axisConfig = useAxisConfig(renderHorizontally);
 
   const accessors = useMemo(
     () => ({

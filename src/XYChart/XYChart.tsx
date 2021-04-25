@@ -73,7 +73,6 @@ const XYChart: React.FC<Props> = ({
     animationTrajectory,
     curve,
     data,
-    glyphOutline,
     render,
     renderHorizontally,
     theme,
@@ -106,34 +105,12 @@ const XYChart: React.FC<Props> = ({
     [annotationDataIndex, annotationDataKey],
   );
 
-
   const config = useMemo(
     () => ({
       x: renderHorizontally ? temperatureScaleConfig : dateScaleConfig,
       y: renderHorizontally ? dateScaleConfig : temperatureScaleConfig,
     }),
     [renderHorizontally],
-  );
-
-  const renderGlyph = useCallback(
-    ({ size, color, onPointerMove, onPointerOut, onPointerUp }: GlyphProps<CityTemperature>) => {
-      const handlers = { onPointerMove, onPointerOut, onPointerUp };
-      if (glyphComponent === 'star') {
-        return <GlyphStar stroke={glyphOutline} fill={color} size={size * 10} {...handlers} />;
-      }
-      if (glyphComponent === 'circle') {
-        return <GlyphDot stroke={glyphOutline} fill={color} r={size / 2} {...handlers} />;
-      }
-      if (glyphComponent === 'cross') {
-        return <GlyphCross stroke={glyphOutline} fill={color} size={size * 10} {...handlers} />;
-      }
-      return (
-        <text dx="-0.75em" dy="0.25em" fontSize={14} {...handlers}>
-          🍍
-        </text>
-      );
-    },
-    [glyphComponent, glyphOutline],
   );
 
   const accessors = useMemo(
@@ -255,7 +232,6 @@ const XYChart: React.FC<Props> = ({
             data={data}
             glyphComponent={glyphComponent}
             isAnimated={isAnimated}
-            renderGlyph={renderGlyph}
             theme={theme}
           />
         )}

@@ -34,7 +34,6 @@ export interface XYChartConfig {
   animationTrajectory: AnimationTrajectory;
   curve: CurveFactory;
   data: CityTemperature[];
-  glyphOutline: string;
   render: {
     areaSeries: boolean;
     areaStack: boolean;

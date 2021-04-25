@@ -27,7 +27,6 @@ export default ({
   const theme = getTheme(themeType);
 
   const animationTrajectory = 'center';
-  const glyphOutline = theme.gridStyles.stroke as string;
 
   const render = {
     areaSeries: lineType === 'area',
@@ -42,7 +41,6 @@ export default ({
     animationTrajectory,
     curve,
     data,
-    glyphOutline,
     render,
     renderHorizontally,
     theme,

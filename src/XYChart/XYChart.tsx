@@ -17,6 +17,7 @@ import { CityTemperature } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
 import getConfig from './getConfig';
+import useAnnotationData from './useAnnotationData';
 import useAxisConfig from './useAxisConfig';
 import useColorAccessorFactory from './useColorAccessorFactory';
 import { XYChartProps } from './types';
@@ -83,17 +84,13 @@ const XYChart: React.FC<Props> = ({
     themeType,
   });
 
-
-  const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
-  const annotationDatum = data[annotationDataIndex];
-
-  // ToDo: add key bindings
-  const [annotationDataKey, setAnnotationDataKey] = useState(annotationKey);
-
-
-  useEffect(() => {
-    setAnnotationDataKey(annotationKey);
-  }, [annotationKey])
+  const {
+    annotationDataIndex,
+    annotationDataKey,
+    annotationDatum,
+    setAnnotationDataIndex,
+    setAnnotationDataKey,
+  } = useAnnotationData({ annotationKey, data });
 
   const colorAccessorFactory = useColorAccessorFactory({
     annotationDataIndex,

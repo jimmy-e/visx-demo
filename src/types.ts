@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { CityTemperature as VisxCityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { GlyphProps } from '@visx/xychart/lib/types';
 import { curveCardinal, curveLinear, curveStep } from '@visx/curve';
@@ -30,3 +30,5 @@ interface KeyAccessors {
 }
 
 export type RenderGlyph = React.FC<GlyphProps<CityTemperature>>;
+
+export type SetState<T> = Dispatch<SetStateAction<T>>;

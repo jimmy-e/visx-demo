@@ -74,12 +74,15 @@ const XYChart: React.FC<Props> = ({
     curve,
     data,
     glyphOutline,
+    render,
     renderHorizontally,
     theme,
   } = useConfigureXYChart({
+    barType,
     curveType,
     hasFewerDatum,
     hasMissingValues,
+    lineType,
     orientation,
     themeType,
   });
@@ -132,13 +135,6 @@ const XYChart: React.FC<Props> = ({
     },
     [glyphComponent, glyphOutline],
   );
-
-  const renderBarGroup = barType === 'group';
-  const renderBarSeries = barType === 'default';
-  const renderBarStack = barType === 'stack';
-  const renderAreaSeries = lineType === 'area';
-  const renderAreaStack = lineType === 'areaStack';
-  const renderLineSeries = lineType === 'default';
 
   const accessors = useMemo(
     () => ({
@@ -202,7 +198,7 @@ const XYChart: React.FC<Props> = ({
           animationTrajectory={animationTrajectory}
           numTicks={numTicks}
         />
-        {renderBarStack && (
+        {render.barStack && (
           <BarStack
             accessors={accessors}
             data={data}
@@ -210,7 +206,7 @@ const XYChart: React.FC<Props> = ({
             stackOffset={stackOffset}
           />
         )}
-        {renderBarGroup && (
+        {render.barGroup && (
           <BarGroup
             accessors={accessors}
             colorAccessorFactory={colorAccessorFactory}
@@ -218,7 +214,7 @@ const XYChart: React.FC<Props> = ({
             isAnimated={isAnimated}
           />
         )}
-        {renderBarSeries && (
+        {render.barSeries && (
           <BarSeries
             accessors={accessors}
             colorAccessorFactory={colorAccessorFactory}
@@ -226,7 +222,7 @@ const XYChart: React.FC<Props> = ({
             isAnimated={isAnimated}
           />
         )}
-        {renderAreaSeries && (
+        {render.areaSeries && (
           <AreaSeries
             accessors={accessors}
             curve={curve}
@@ -234,7 +230,7 @@ const XYChart: React.FC<Props> = ({
             isAnimated={isAnimated}
           />
         )}
-        {renderAreaStack && (
+        {render.areaStack && (
           <AreaStack
             accessors={accessors}
             curve={curve}
@@ -243,13 +239,13 @@ const XYChart: React.FC<Props> = ({
             stackOffset={stackOffset}
           />
         )}
-        {renderLineSeries && (
+        {render.lineSeries && (
           <LineSeries
             accessors={accessors}
             curve={curve}
             data={data}
             isAnimated={isAnimated}
-            renderBarSeries={renderBarSeries}
+            renderBarSeries={render.barSeries}
           />
         )}
         {glyphComponent && (
@@ -300,9 +296,9 @@ const XYChart: React.FC<Props> = ({
         {
           showTooltip && (
             <Tooltip
-              showDatumGlyph={(snapTooltipToDatumX || snapTooltipToDatumY) && !renderBarGroup}
+              showDatumGlyph={(snapTooltipToDatumX || snapTooltipToDatumY) && !render.barGroup}
               showHorizontalCrosshair={showHorizontalCrosshair}
-              showSeriesGlyphs={hasSharedTooltip && !renderBarGroup}
+              showSeriesGlyphs={hasSharedTooltip && !render.barGroup}
               showVerticalCrosshair={showVerticalCrosshair}
               snapTooltipToDatumX={snapTooltipToDatumX}
               snapTooltipToDatumY={snapTooltipToDatumY}

@@ -1,3 +1,8 @@
+import { AnimationTrajectory } from '@visx/react-spring/lib/types';
+import { CurveFactory } from 'd3-shape';
+import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { XYChartTheme } from '@visx/xychart';
+
 export interface XYChartProps {
   annotationKey?: 'Austin' | 'New York' | 'San Francisco';
   annotationType: 'circle' | 'line';
@@ -23,4 +28,21 @@ export interface XYChartProps {
   themeType: 'custom' | 'dark' | 'light';
   xAxisOrientation: 'bottom' | 'top';
   yAxisOrientation: 'left' | 'right';
+}
+
+export interface XYChartConfig {
+  animationTrajectory: AnimationTrajectory;
+  curve: CurveFactory;
+  data: CityTemperature[];
+  glyphOutline: string;
+  render: {
+    areaSeries: boolean;
+    areaStack: boolean;
+    barGroup: boolean;
+    barSeries: boolean;
+    barStack: boolean;
+    lineSeries: boolean;
+  },
+  renderHorizontally: boolean;
+  theme: XYChartTheme;
 }

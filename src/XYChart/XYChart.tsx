@@ -253,8 +253,10 @@ const XYChart: React.FC<Props> = ({
             accessors={accessors}
             colorAccessorFactory={colorAccessorFactory}
             data={data}
+            glyphComponent={glyphComponent}
             isAnimated={isAnimated}
             renderGlyph={renderGlyph}
+            theme={theme}
           />
         )}
         <Axis

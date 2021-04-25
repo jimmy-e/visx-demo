@@ -16,9 +16,9 @@ import VisxXYChart from 'molecules/XYChart/XYChart';
 import { CityTemperature } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
+import getConfig from './getConfig';
 import useAxisConfig from './useAxisConfig';
 import useColorAccessorFactory from './useColorAccessorFactory';
-import useConfigureXYChart from './useConfigureXYChart';
 import { XYChartProps } from './types';
 import './xyChart.css';
 
@@ -73,7 +73,7 @@ const XYChart: React.FC<Props> = ({
     render,
     renderHorizontally,
     theme,
-  } = useConfigureXYChart({
+  } = getConfig({
     barType,
     curveType,
     hasFewerDatum,

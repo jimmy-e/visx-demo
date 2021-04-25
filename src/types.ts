@@ -23,9 +23,9 @@ export type Data = CityTemperature[];
 
 export type DataKey = keyof KeyAccessors;
 
-interface KeyAccessors {
-  'San Francisco': Accessor;
+export interface KeyAccessors {
   'New York': Accessor;
+  'San Francisco': Accessor;
   Austin: Accessor;
 }
 

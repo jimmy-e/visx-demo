@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { PatternLines } from '@visx/pattern';
 import Annotation from 'tools/Annotation/Annotation';
@@ -13,10 +13,10 @@ import Grid from 'tools/Grid/Grid';
 import LineSeries from 'shapes/LineSeries/LineSeries';
 import Tooltip from 'tools/Tooltip/Tooltip';
 import VisxXYChart from 'molecules/XYChart/XYChart';
-import { CityTemperature } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
 import getConfig from './getConfig';
+import useAccessors from './useAccessors';
 import useAnnotationData from './useAnnotationData';
 import useAxisConfig from './useAxisConfig';
 import useColorAccessorFactory from './useColorAccessorFactory';
@@ -25,14 +25,6 @@ import './xyChart.css';
 
 const numTicks = 4;
 const selectedDatumPatternId = 'xychart-selected-datum';
-
-const getSfTemperature = (d: CityTemperature) => Number(d['San Francisco']);
-const getNegativeSfTemperature = (d: CityTemperature) => -getSfTemperature(d);
-const getNyTemperature = (d: CityTemperature) => Number(d['New York']);
-const getAustinTemperature = (d: CityTemperature) => Number(d.Austin);
-const getDate = (d: CityTemperature) => d.date;
-
-const defaultAnnotationDataIndex = 13;
 
 interface Props extends XYChartProps {
   height: number;
@@ -101,30 +93,7 @@ const XYChart: React.FC<Props> = ({
 
   const axisConfig = useAxisConfig(renderHorizontally);
 
-  const accessors = useMemo(
-    () => ({
-      x: {
-        'San Francisco': renderHorizontally
-          ? hasNegativeValues
-            ? getNegativeSfTemperature
-            : getSfTemperature
-          : getDate,
-        'New York': renderHorizontally ? getNyTemperature : getDate,
-        Austin: renderHorizontally ? getAustinTemperature : getDate,
-      },
-      y: {
-        'San Francisco': renderHorizontally
-          ? getDate
-          : hasNegativeValues
-            ? getNegativeSfTemperature
-            : getSfTemperature,
-        'New York': renderHorizontally ? getDate : getNyTemperature,
-        Austin: renderHorizontally ? getDate : getAustinTemperature,
-      },
-      date: getDate,
-    }),
-    [hasNegativeValues, renderHorizontally],
-  );
+  const accessors = useAccessors({ hasNegativeValues, renderHorizontally });
 
   return (
     <>

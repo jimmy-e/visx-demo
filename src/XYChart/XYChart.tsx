@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import { GlyphProps } from '@visx/xychart/lib/types';
@@ -22,7 +21,6 @@ import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
 import useConfigureXYChart from './useConfigureXYChart';
 import { XYChartProps } from './types';
-import { getCurve } from "src/XYChart/utils";
 import './xyChart.css';
 
 const numTicks = 4;
@@ -72,6 +70,7 @@ const XYChart: React.FC<Props> = ({
   yAxisOrientation,
 }) => {
   const {
+    animationTrajectory,
     curve,
     data,
     glyphOutline,
@@ -133,8 +132,6 @@ const XYChart: React.FC<Props> = ({
     },
     [glyphComponent, glyphOutline],
   );
-
-  const animationTrajectory: AnimationTrajectory = 'center';
 
   const renderBarGroup = barType === 'group';
   const renderBarSeries = barType === 'default';

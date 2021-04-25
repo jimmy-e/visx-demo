@@ -1,9 +1,9 @@
+import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { CurveFactory } from 'd3-shape';
 import { XYChartTheme } from '@visx/xychart';
 import { XYChartProps } from './types';
 import { getCurve, getData, getTheme } from './utils';
-import {CSSProperties} from "react";
 
 interface Props {
   curveType: XYChartProps['curveType'];
@@ -14,6 +14,7 @@ interface Props {
 }
 
 interface Return {
+  animationTrajectory: AnimationTrajectory;
   curve: CurveFactory;
   data: CityTemperature[];
   glyphOutline: string;
@@ -34,9 +35,11 @@ export default ({
   const renderHorizontally = orientation === 'horizontal';
   const theme = getTheme(themeType);
 
+  const animationTrajectory = 'center';
   const glyphOutline = theme.gridStyles.stroke as string;
 
   return {
+    animationTrajectory,
     curve,
     data,
     glyphOutline,

@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
-import { DataKey } from 'src/types';
-import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { CityTemperature, DataKey } from 'src/types';
 import { XYChartConfig } from './types';
 
 interface Props {

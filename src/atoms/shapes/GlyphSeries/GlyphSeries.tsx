@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { Accessors, Data, ColorAccessorFactory } from 'src/types';
 import { AnimatedGlyphSeries, GlyphSeries as StaticGlyphSeries } from '@visx/xychart';
-import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import { GlyphProps } from '@visx/xychart/lib/types';
+import { CityTemperature } from 'src/types';
 import { XYChartConfig, XYChartProps } from 'src/XYChart/types';
 
 interface Props {

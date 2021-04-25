@@ -1,5 +1,5 @@
-import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
+import { CityTemperature } from 'src/types';
 import { CityName, ColorScale, DateScale, TemperatureScale } from './types';
 import { getDate, getKeys } from './utils';
 import config from './config';

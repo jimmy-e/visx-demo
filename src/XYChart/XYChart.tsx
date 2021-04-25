@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { PatternLines } from '@visx/pattern';
 import Annotation from 'tools/Annotation/Annotation';
 import AreaSeries from 'shapes/AreaSeries/AreaSeries';
@@ -14,6 +13,7 @@ import Grid from 'tools/Grid/Grid';
 import LineSeries from 'shapes/LineSeries/LineSeries';
 import Tooltip from 'tools/Tooltip/Tooltip';
 import VisxXYChart from 'molecules/XYChart/XYChart';
+import { CityTemperature } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
 import useColorAccessorFactory from './useColorAccessorFactory';

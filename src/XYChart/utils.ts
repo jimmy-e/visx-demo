@@ -1,7 +1,8 @@
-import cityTemperature, { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import cityTemperature from '@visx/mock-data/lib/mocks/cityTemperature';
 import { CurveFactory } from 'd3-shape';
 import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
+import { CityTemperature } from 'src/types';
 import { XYChartProps } from './types';
 import customTheme from './customTheme';
 

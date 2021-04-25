@@ -1,5 +1,5 @@
 import React from 'react';
-import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+import { CityTemperature as VisxCityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { GlyphProps } from '@visx/xychart/lib/types';
 import { curveCardinal, curveLinear, curveStep } from '@visx/curve';
 
@@ -12,6 +12,8 @@ export interface Accessors {
 }
 
 export type City = 'Austin' | 'New York' | 'San Francisco';
+
+export type CityTemperature = VisxCityTemperature;
 
 export type ColorAccessorFactory = (dataKey: DataKey) => (datum: CityTemperature) => string | null;
 

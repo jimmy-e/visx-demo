@@ -103,7 +103,7 @@ const XYChart: React.FC<Props> = ({
     selectedDatumPatternId,
   });
 
-  const config = useMemo(
+  const axisConfig = useMemo(
     () => ({
       x: renderHorizontally ? temperatureScaleConfig : dateScaleConfig,
       y: renderHorizontally ? dateScaleConfig : temperatureScaleConfig,
@@ -156,8 +156,8 @@ const XYChart: React.FC<Props> = ({
       </svg>
       <VisxXYChart
         theme={theme}
-        xScale={config.x}
-        yScale={config.y}
+        xScale={axisConfig.x}
+        yScale={axisConfig.y}
         height={Math.min(400, height)}
         captureEvents={!editAnnotationLabelPosition}
         onPointerUp={d => {

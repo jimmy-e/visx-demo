@@ -1,3 +1,5 @@
+fix issue where changing annotation does not cause animation
+
 rename example component
 
 make util for animated vs unanimated packages

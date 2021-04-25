@@ -1,8 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
-import { GlyphProps } from '@visx/xychart/lib/types';
 import { PatternLines } from '@visx/pattern';
 import Annotation from 'tools/Annotation/Annotation';
 import AreaSeries from 'shapes/AreaSeries/AreaSeries';
@@ -16,9 +14,9 @@ import Grid from 'tools/Grid/Grid';
 import LineSeries from 'shapes/LineSeries/LineSeries';
 import Tooltip from 'tools/Tooltip/Tooltip';
 import VisxXYChart from 'molecules/XYChart/XYChart';
-import { DataKey } from 'src/types';
 import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
+import useColorAccessorFactory from './useColorAccessorFactory';
 import useConfigureXYChart from './useConfigureXYChart';
 import { XYChartProps } from './types';
 import './xyChart.css';
@@ -86,24 +84,24 @@ const XYChart: React.FC<Props> = ({
     themeType,
   });
 
+
   const [annotationDataIndex, setAnnotationDataIndex] = useState(defaultAnnotationDataIndex);
   const annotationDatum = data[annotationDataIndex];
 
   // ToDo: add key bindings
   const [annotationDataKey, setAnnotationDataKey] = useState(annotationKey);
 
+
   useEffect(() => {
     setAnnotationDataKey(annotationKey);
   }, [annotationKey])
 
-  // for series that support it, return a colorAccessor which returns a custom color if the datum is selected
-  const colorAccessorFactory = useCallback(
-    (dataKey: DataKey) => (d: CityTemperature) =>
-      annotationDataKey === dataKey && d === data[annotationDataIndex]
-        ? `url(#${selectedDatumPatternId})`
-        : null,
-    [annotationDataIndex, annotationDataKey],
-  );
+  const colorAccessorFactory = useColorAccessorFactory({
+    annotationDataIndex,
+    annotationDataKey,
+    data,
+    selectedDatumPatternId,
+  });
 
   const config = useMemo(
     () => ({

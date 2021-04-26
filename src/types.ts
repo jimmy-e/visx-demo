@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from 'react';
-import { CityTemperature as VisxCityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { curveCardinal, curveLinear, curveStep } from '@visx/curve';
 
 type Accessor = (datum: Datum) => number | string;
@@ -11,8 +10,6 @@ export interface Accessors {
 }
 
 export type City = 'Austin' | 'New York' | 'San Francisco';
-
-export type CityTemperature = VisxCityTemperature;
 
 export type ColorAccessorFactory = (dataKey: DataKey) => (datum: Datum) => string | null;
 

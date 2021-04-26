@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { CityTemperature, Datum, KeyAccessors } from 'src/types';
+import { Datum, KeyAccessors } from 'src/types';
 import { XYChartConfig, XYChartProps } from './types';
 
 interface Props {

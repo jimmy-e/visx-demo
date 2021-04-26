@@ -1,10 +1,10 @@
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
-import { CityTemperature } from 'src/types';
+import { Data } from 'src/types';
 import { CityName, ColorScale, DateScale, TemperatureScale } from './types';
 import { getDate, getKeys } from './utils';
 import config from './config';
 
-export const getColorScale = (data: CityTemperature[]): ColorScale => {
+export const getColorScale = (data: Data): ColorScale => {
   const { purple1, purple2, purple3 } = config.theme.colors;
 
   const keys = getKeys(data);
@@ -15,7 +15,7 @@ export const getColorScale = (data: CityTemperature[]): ColorScale => {
   });
 };
 
-export const getDateScale = (data: CityTemperature[]): DateScale => {
+export const getDateScale = (data: Data): DateScale => {
   const dateScale = scaleBand<string>({
     domain: data.map(getDate),
     padding: 0.2,
@@ -26,7 +26,7 @@ export const getDateScale = (data: CityTemperature[]): DateScale => {
   return dateScale;
 }
 
-export const getTemperatureScale = (data: CityTemperature[]): TemperatureScale => {
+export const getTemperatureScale = (data: Data): TemperatureScale => {
   const keys = getKeys(data);
 
   const temperatureTotals = data.reduce((allTotals, currentDate) => {

@@ -1,8 +1,8 @@
-import cityTemperature from '@visx/mock-data/lib/mocks/cityTemperature';
+import cityTemperatures from '__fixtures__/cityTemperatures';
 import { CurveFactory } from 'd3-shape';
 import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
-import { CityTemperature } from 'src/types';
+import { Data } from 'src/types';
 import { XYChartProps } from './types';
 import customTheme from './customTheme';
 
@@ -20,12 +20,12 @@ export const getCurve = (curveType: XYChartProps['curveType']): CurveFactory => 
 export const getData = (
   hasFewerDatum: XYChartProps['hasFewerDatum'],
   hasMissingValues: XYChartProps['hasMissingValues'],
-): CityTemperature[] => {
-  const sampleData = cityTemperature.slice(225, 275);
-  const dataMissingValues = sampleData.map((d, i) =>
-    i === 10 || i === 11
-      ? { ...d, 'San Francisco': 'nope', 'New York': 'notanumber', Austin: 'null' }
-      : d,
+): Data => {
+  const sampleData = cityTemperatures;
+  const dataMissingValues = sampleData.map((datum, index) =>
+    index === 10 || index === 11
+      ? { ...datum, 'San Francisco': 'nope', 'New York': 'notanumber', Austin: 'null' }
+      : datum,
   );
   const dataSmall = sampleData.slice(0, 15);
   const dataSmallMissingValues = dataMissingValues.slice(0, 15);

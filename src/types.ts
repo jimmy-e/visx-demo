@@ -19,9 +19,13 @@ export type ColorAccessorFactory = (dataKey: DataKey) => (datum: CityTemperature
 
 export type Curve = typeof curveLinear | typeof curveCardinal | typeof curveStep;
 
-export type Data = CityTemperature[];
+export type Data = Datum[];
 
 export type DataKey = keyof KeyAccessors;
+
+interface Datum {
+  [key: string]: string;
+}
 
 export interface KeyAccessors {
   'New York': Accessor;

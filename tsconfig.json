@@ -21,6 +21,7 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
+      "__fixtures__/*": ["src/__fixtures__/*"],
       "molecules/*": ["src/molecules/*"],
       "shapes/*": ["src/atoms/shapes/*"],
       "src/*": ["src/*"],

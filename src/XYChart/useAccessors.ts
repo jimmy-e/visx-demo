@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { CityTemperature, KeyAccessors } from 'src/types';
+import { CityTemperature, Datum, KeyAccessors } from 'src/types';
 import { XYChartConfig, XYChartProps } from './types';
 
 interface Props {
@@ -13,11 +13,11 @@ interface Return {
 }
 
 export default ({ hasNegativeValues, renderHorizontally }: Props): Return => {
-  const getSfTemperature = (datum: CityTemperature) => Number(datum['San Francisco']);
-  const getNegativeSfTemperature = (datum: CityTemperature) => -getSfTemperature(datum);
-  const getNyTemperature = (datum: CityTemperature) => Number(datum['New York']);
-  const getAustinTemperature = (datum: CityTemperature) => Number(datum.Austin);
-  const getDate = (datum: CityTemperature) => datum.date;
+  const getSfTemperature = (datum: Datum) => Number(datum['San Francisco']);
+  const getNegativeSfTemperature = (datum: Datum) => -getSfTemperature(datum);
+  const getNyTemperature = (datum: Datum) => Number(datum['New York']);
+  const getAustinTemperature = (datum: Datum) => Number(datum.Austin);
+  const getDate = (datum: Datum) => datum.date;
 
   return useMemo(
     () => ({

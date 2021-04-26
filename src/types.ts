@@ -1,9 +1,8 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { CityTemperature as VisxCityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
-import { GlyphProps } from '@visx/xychart/lib/types';
 import { curveCardinal, curveLinear, curveStep } from '@visx/curve';
 
-type Accessor = (datum: CityTemperature) => number | string;
+type Accessor = (datum: Datum) => number | string;
 
 export interface Accessors {
   x: KeyAccessors;
@@ -15,7 +14,7 @@ export type City = 'Austin' | 'New York' | 'San Francisco';
 
 export type CityTemperature = VisxCityTemperature;
 
-export type ColorAccessorFactory = (dataKey: DataKey) => (datum: CityTemperature) => string | null;
+export type ColorAccessorFactory = (dataKey: DataKey) => (datum: Datum) => string | null;
 
 export type Curve = typeof curveLinear | typeof curveCardinal | typeof curveStep;
 
@@ -23,16 +22,12 @@ export type Data = Datum[];
 
 export type DataKey = keyof KeyAccessors;
 
-interface Datum {
+export interface Datum {
   [key: string]: string;
 }
 
 export interface KeyAccessors {
-  'New York': Accessor;
-  'San Francisco': Accessor;
-  Austin: Accessor;
+  [key: string]: Accessor;
 }
-
-export type RenderGlyph = React.FC<GlyphProps<CityTemperature>>;
 
 export type SetState<T> = Dispatch<SetStateAction<T>>;

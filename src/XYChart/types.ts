@@ -1,7 +1,7 @@
 import { AnimationTrajectory } from '@visx/react-spring/lib/types';
 import { CurveFactory } from 'd3-shape';
 import { XYChartTheme } from '@visx/xychart';
-import { CityTemperature } from '../types';
+import { CityTemperature, Data } from 'src/types';
 
 export interface XYChartProps {
   annotationKey?: 'Austin' | 'New York' | 'San Francisco';
@@ -33,7 +33,7 @@ export interface XYChartProps {
 export interface XYChartConfig {
   animationTrajectory: AnimationTrajectory;
   curve: CurveFactory;
-  data: CityTemperature[];
+  data: Data;
   render: {
     areaSeries: boolean;
     areaStack: boolean;

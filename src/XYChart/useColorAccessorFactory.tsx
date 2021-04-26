@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { CityTemperature, DataKey } from 'src/types';
+import { DataKey, Datum } from 'src/types';
 import { XYChartConfig } from './types';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
   selectedDatumPatternId: string;
 }
 
-type Return = (dataKey: DataKey) => (datum: CityTemperature) => string | null;
+type Return = (dataKey: DataKey) => (datum: Datum) => string | null;
 
 export default ({
   annotationDataIndex,
@@ -20,7 +20,7 @@ export default ({
   // for series that support it, return a colorAccessor which returns a custom color if the datum is
   // selected
   return useCallback(
-    (dataKey: DataKey) => (datum: CityTemperature) =>
+    (dataKey: DataKey) => (datum: Datum) =>
       annotationDataKey === dataKey && datum === data[annotationDataIndex]
         ? `url(#${selectedDatumPatternId})`
         : null,

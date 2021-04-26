@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CityTemperature, SetState } from 'src/types';
+import { SetState, Datum } from 'src/types';
 import { XYChartConfig, XYChartProps } from './types';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 interface Return {
   annotationDataIndex: number;
   annotationDataKey: XYChartProps['annotationKey'];
-  annotationDatum: CityTemperature;
+  annotationDatum: Datum;
   setAnnotationDataIndex: SetState<number>;
   setAnnotationDataKey: SetState<XYChartProps['annotationKey']>;
 }

@@ -3,7 +3,7 @@ import { Accessors, Data, ColorAccessorFactory } from 'src/types';
 import { AnimatedGlyphSeries, GlyphSeries as StaticGlyphSeries } from '@visx/xychart';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import { GlyphProps } from '@visx/xychart/lib/types';
-import { CityTemperature } from 'src/types';
+import { Datum } from 'src/types';
 import { XYChartConfig, XYChartProps } from 'src/XYChart/types';
 
 interface Props {
@@ -28,7 +28,7 @@ const GlyphSeries: React.FC<Props> = ({
   const glyphOutline = theme.gridStyles.stroke as string;
 
   const renderGlyph = useCallback(
-    ({ size, color, onPointerMove, onPointerOut, onPointerUp }: GlyphProps<CityTemperature>) => {
+    ({ size, color, onPointerMove, onPointerOut, onPointerUp }: GlyphProps<Datum>) => {
       const handlers = { onPointerMove, onPointerOut, onPointerUp };
       if (glyphComponent === 'star') {
         return <GlyphStar stroke={glyphOutline} fill={color} size={size * 10} {...handlers} />;

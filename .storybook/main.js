@@ -14,6 +14,7 @@ module.exports = {
     config.resolve.alias = {
       ...config.resolve.alias,
       '__fixtures__': path.resolve(__dirname, '../src/__fixtures__'),
+      atoms: path.resolve(__dirname, '../src/atoms'),
       molecules: path.resolve(__dirname, '../src/molecules'),
       organisms: path.resolve(__dirname, '../src/organisms'),
       shapes: path.resolve(__dirname, '../src/atoms/shapes'),

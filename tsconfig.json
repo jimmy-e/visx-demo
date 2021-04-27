@@ -22,6 +22,7 @@
     "baseUrl": ".",
     "paths": {
       "__fixtures__/*": ["src/__fixtures__/*"],
+      "atoms/*": ["src/atoms/*"],
       "molecules/*": ["src/molecules/*"],
       "organisms/*": ["src/organisms/*"],
       "shapes/*": ["src/atoms/shapes/*"],

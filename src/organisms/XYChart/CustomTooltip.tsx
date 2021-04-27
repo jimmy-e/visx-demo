@@ -2,7 +2,7 @@ import React from 'react';
 import { City } from 'src/types';
 import { RenderTooltipParams } from '@visx/xychart/lib/components/Tooltip';
 import { Accessors } from 'src/types';
-import { XYChartProps } from 'src/XYChart/types';
+import { XYChartProps } from './types';
 
 interface Props {
   accessors: Accessors;

@@ -8,12 +8,12 @@ import Axis from 'tools/Axis/Axis';
 import BarGroup from 'shapes/BarGroup/BarGroup';
 import BarSeries from 'shapes/BarSeries/BarSeries';
 import BarStack from 'shapes/BarStack/BarStack';
+import ChartBackground from 'atoms/backgrounds/ChartBackground';
 import GlyphSeries from 'shapes/GlyphSeries/GlyphSeries';
 import Grid from 'tools/Grid/Grid';
 import LineSeries from 'shapes/LineSeries/LineSeries';
 import Tooltip from 'tools/Tooltip/Tooltip';
 import VisxXYChart from 'molecules/XYChart/XYChart';
-import CustomChartBackground from './CustomChartBackground';
 import CustomTooltip from './CustomTooltip';
 import getConfig from './getConfig';
 import useAccessors from './useAccessors';
@@ -124,7 +124,7 @@ const XYChart: React.FC<Props> = ({
           setAnnotationDataIndex(d.index);
         }}
       >
-        <CustomChartBackground />
+        <ChartBackground />
         <Grid
           key={`grid-${animationTrajectory}`} // force animate on update
           rows={showGridRows}

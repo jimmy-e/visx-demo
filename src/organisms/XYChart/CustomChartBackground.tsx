@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import { PatternLines } from '@visx/pattern';
 import { DataContext } from '@visx/xychart';
 
-const patternId = 'xy-chart-pattern';
-
-export default function CustomChartBackground() {
+const ChartBackground: React.FC = () => {
   const { theme, margin, width, height, innerWidth, innerHeight } = useContext(DataContext);
 
   // early return values not available in context
   if (width == null || height == null || margin == null || theme == null) return null;
+
+  const patternId = 'xy-chart-pattern';
 
   return (
     <>
@@ -32,3 +32,5 @@ export default function CustomChartBackground() {
     </>
   );
 }
+
+export default ChartBackground;

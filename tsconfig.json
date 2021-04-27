@@ -23,6 +23,7 @@
     "paths": {
       "__fixtures__/*": ["src/__fixtures__/*"],
       "molecules/*": ["src/molecules/*"],
+      "organisms/*": ["src/organisms/*"],
       "shapes/*": ["src/atoms/shapes/*"],
       "src/*": ["src/*"],
       "tools/*": ["src/atoms/tools/*"]

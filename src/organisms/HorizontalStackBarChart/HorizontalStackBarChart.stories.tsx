@@ -7,6 +7,8 @@ export default {
   title: 'Charts',
 } as Meta;
 
-const HorizontalStackBarChartStory: Story = (args) => <HorizontalStackBarChartComponent {...args} />;
+const HorizontalStackBarChartStory: Story = (args) => (
+  <HorizontalStackBarChartComponent width={500} height={500} {...args} />
+);
 
 export const HorizontalStackBarChart = HorizontalStackBarChartStory.bind({});

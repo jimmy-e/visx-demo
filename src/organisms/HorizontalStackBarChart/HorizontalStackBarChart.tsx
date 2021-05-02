@@ -1,5 +1,5 @@
 import React from 'react';
-import XYChart from 'organisms/XYChart/XYChart';
+import XYChart from 'organisms/XYChartDupe/XYChart';
 import cityTemperatures from '__fixtures__/cityTemperatures';
 
 const HorizontalStackBarChart: React.FC = () => (

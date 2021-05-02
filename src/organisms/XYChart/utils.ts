@@ -22,19 +22,22 @@ export const getData = (
   hasMissingValues: XYChartProps['hasMissingValues'],
 ): Data => {
   const sampleData = cityTemperatures;
-  const dataMissingValues = sampleData.map((datum, index) =>
-    index === 10 || index === 11
-      ? { ...datum, 'San Francisco': 'nope', 'New York': 'notanumber', Austin: 'null' }
-      : datum,
-  );
-  const dataSmall = sampleData.slice(0, 15);
-  const dataSmallMissingValues = dataMissingValues.slice(0, 15);
+  // const dataMissingValues = sampleData.map((datum, index) => {
+  //   return index === 10 || index === 11
+  //     ? { ...datum, 'San Francisco': 'nope', 'New York': 'notanumber', Austin: 'null' }
+  //     : datum;
+  // });
 
-  if (hasFewerDatum) {
-    return hasMissingValues ? dataSmallMissingValues : dataSmall;
-  } else {
-    return hasMissingValues ? dataMissingValues : sampleData;
-  }
+  const dataSmall = sampleData.slice(0, 15);
+  // const dataSmallMissingValues = dataMissingValues.slice(0, 15);
+
+  return hasFewerDatum ? dataSmall : sampleData;
+
+  // if (hasFewerDatum) {
+  //   return hasMissingValues ? dataSmallMissingValues : dataSmall;
+  // } else {
+  //   return hasMissingValues ? dataMissingValues : sampleData;
+  // }
 };
 
 export const getTheme = (themeType: XYChartProps['themeType']): XYChartTheme => {

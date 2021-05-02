@@ -8,6 +8,7 @@ export interface XYChartProps {
   annotationType: 'circle' | 'line';
   barType?: 'default' | 'group' | 'stack';
   curveType: 'cardinal' | 'linear' | 'step';
+  data: Data;
   editAnnotationLabelPosition: boolean;
   glyphComponent?: 'circle' | 'cross' | 'star' | '🍍';
   hasFewerDatum: boolean;
@@ -33,7 +34,6 @@ export interface XYChartProps {
 export interface XYChartConfig {
   animationTrajectory: AnimationTrajectory;
   curve: CurveFactory;
-  data: Data;
   render: {
     areaSeries: boolean;
     areaStack: boolean;

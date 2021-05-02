@@ -1,11 +1,13 @@
 import React from 'react';
 import XYChart from 'organisms/XYChart/XYChart';
+import cityTemperatures from '__fixtures__/cityTemperatures';
 
 const HorizontalStackBarChart: React.FC = () => (
   <XYChart
     annotationType="circle"
     barType="stack"
     curveType="linear"
+    data={cityTemperatures}
     editAnnotationLabelPosition={false}
     hasFewerDatum={false}
     hasMissingValues={false}

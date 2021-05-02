@@ -1,4 +1,3 @@
-import cityTemperatures from '__fixtures__/cityTemperatures';
 import { CurveFactory } from 'd3-shape';
 import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
@@ -18,10 +17,11 @@ export const getCurve = (curveType: XYChartProps['curveType']): CurveFactory => 
 };
 
 export const getData = (
+  initialData: XYChartProps['data'],
   hasFewerDatum: XYChartProps['hasFewerDatum'],
   hasMissingValues: XYChartProps['hasMissingValues'],
 ): Data => {
-  const sampleData = cityTemperatures;
+  const sampleData = initialData;
   // const dataMissingValues = sampleData.map((datum, index) => {
   //   return index === 10 || index === 11
   //     ? { ...datum, 'San Francisco': 'nope', 'New York': 'notanumber', Austin: 'null' }

@@ -21,6 +21,7 @@ import useAnnotationData from './useAnnotationData';
 import useAxisConfig from './useAxisConfig';
 import useColorAccessorFactory from './useColorAccessorFactory';
 import { XYChartProps } from './types';
+import { getData } from './utils';
 import './xyChart.css';
 
 const numTicks = 4;
@@ -36,6 +37,7 @@ const XYChart: React.FC<Props> = ({
   annotationType,
   barType,
   curveType,
+  data: initialData,
   editAnnotationLabelPosition,
   glyphComponent,
   hasFewerDatum,
@@ -62,19 +64,18 @@ const XYChart: React.FC<Props> = ({
   const {
     animationTrajectory,
     curve,
-    data,
     render,
     renderHorizontally,
     theme,
   } = getConfig({
     barType,
     curveType,
-    hasFewerDatum,
-    hasMissingValues,
     lineType,
     orientation,
     themeType,
   });
+
+  const data = getData(initialData, hasFewerDatum, hasMissingValues);
 
   const {
     annotationDataIndex,

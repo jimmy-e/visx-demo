@@ -3,6 +3,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import XYChartComponent from './XYChart';
 import { XYChartProps } from './types';
+import cityTemperatures from '__fixtures__/cityTemperatures';
 
 export default {
   title: 'Charts',
@@ -84,6 +85,7 @@ XYChart.args = {
   annotationType: 'circle',
   barType: undefined,
   curveType: 'linear',
+  data: cityTemperatures,
   editAnnotationLabelPosition: false,
   glyphComponent: undefined,
   hasFewerDatum: false,

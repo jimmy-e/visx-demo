@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Grid } from "@visx/grid";
-import { Group } from "@visx/group";
-import { scaleBand, scaleLinear, scaleOrdinal } from "@visx/scale";
-import { BarStack } from "@visx/shape";
-import { useTooltip, useTooltipInPortal, defaultStyles } from "@visx/tooltip";
+import React, { useEffect, useState } from 'react';
+import ParentSize from '@visx/responsive/lib/components/ParentSize';
+import { BarStack } from '@visx/shape';
+import { Grid } from '@visx/grid';
+import { Group } from '@visx/group';
+import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
+import { useTooltip, useTooltipInPortal, defaultStyles } from '@visx/tooltip';
 import { ds } from './data';
 
 const purple1 = "#6c5efb";
@@ -18,22 +19,28 @@ const tooltipStyles = {
   color: "white"
 };
 
-export default function App({ width, height, margin = defaultMargin }) {
-  const [aaii, setAaii] = useState([]);
+interface Props {
+  height: number;
+  width: number;
+}
+
+const VerticalBarStackExpand: React.FC<Props> = ({ height, width }) => {
+  const margin = defaultMargin;
+  const [data, setData] = useState([]);
   const [sentiment, setSentiment] = useState([]);
 
   useEffect(() => {
-    let dump = ds.dataset.data.map((d) => {
+    let data = ds.map((datum) => {
       return {
-        date: d[0],
-        bullish: d[1] * 100,
-        neutral: d[2] * 100,
-        bearish: d[3] * 100
+        date: datum[0],
+        bullish: datum[1],
+        neutral: datum[2],
+        bearish: datum[3],
       };
     });
 
-    setAaii(dump);
-    setSentiment(Object.keys(dump[0]).filter((d) => d !== "date"));
+    setData(data);
+    setSentiment(Object.keys(data[0]).filter((d) => d !== "date"));
   }, []);
 
   let tooltipTimeout;
@@ -42,7 +49,7 @@ export default function App({ width, height, margin = defaultMargin }) {
     scroll: true
   });
 
-  const sentimentTotals = aaii.reduce((total, currentDate) => {
+  const sentimentTotals = data.reduce((total, currentDate) => {
     const sentimentTotal = sentiment.reduce((dayTotal, k) => {
       dayTotal += currentDate[k];
       return dayTotal;
@@ -56,7 +63,7 @@ export default function App({ width, height, margin = defaultMargin }) {
   const innerHeight = height - margin.top - margin.bottom;
   const getDate = (d) => d.date;
   const dateScale = scaleBand({
-    domain: aaii.map(getDate),
+    domain: data.map(getDate),
     range: [0, innerWidth],
     padding: 0.2
   });
@@ -96,10 +103,12 @@ export default function App({ width, height, margin = defaultMargin }) {
             yScale={aaiiScale}
             width={innerWidth}
             height={innerHeight}
+            stroke="black"
+            strokeOpacity={0.1}
             xOffset={dateScale.bandwidth() / 2}
           />
           <BarStack
-            data={aaii}
+            data={data}
             keys={sentiment}
             x={getDate}
             xScale={dateScale}
@@ -157,3 +166,17 @@ export default function App({ width, height, margin = defaultMargin }) {
     </div>
   );
 }
+
+// ----- ADDING RESPONSIVENESS ----- //
+
+const VerticalBarStackExpandContainer: React.FC = () => (
+  <ParentSize>
+    {
+      ({ height, width }) => (
+        <VerticalBarStackExpand height={height} width={width} />
+      )
+    }
+  </ParentSize>
+);
+
+export default VerticalBarStackExpandContainer;

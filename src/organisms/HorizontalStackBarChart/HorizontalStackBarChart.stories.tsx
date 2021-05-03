@@ -8,7 +8,9 @@ export default {
 } as Meta;
 
 const HorizontalStackBarChartStory: Story = (args) => (
-  <HorizontalStackBarChartComponent width={500} height={500} {...args} />
+  <div style={{ width: '50rem', height: '50rem' }}>
+    <HorizontalStackBarChartComponent {...args} />
+  </div>
 );
 
 export const HorizontalStackBarChart = HorizontalStackBarChartStory.bind({});

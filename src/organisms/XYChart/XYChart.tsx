@@ -10,7 +10,7 @@ import BarSeries from 'shapes/BarSeries/BarSeries';
 import BarStack from 'shapes/BarStack/BarStack';
 import ChartBackground from 'atoms/backgrounds/ChartBackground';
 import GlyphSeries from 'shapes/GlyphSeries/GlyphSeries';
-import Grid from 'tools/Grid/Grid';
+import Grid from 'tools/XYGrid/XYGrid';
 import LineSeries from 'shapes/LineSeries/LineSeries';
 import Tooltip from 'tools/Tooltip/Tooltip';
 import VisxXYChart from 'wrappers/XYChart/XYChart';

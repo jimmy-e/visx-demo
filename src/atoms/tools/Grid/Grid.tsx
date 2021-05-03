@@ -1,15 +1,29 @@
 import React from 'react';
-import { AnimatedGrid, Grid as StaticGrid } from '@visx/xychart';
-import { AnimatedGridProps } from '@visx/xychart/lib/components/grid/AnimatedGrid';
+import { Grid as VisxGrid } from '@visx/grid';
+import config from 'organisms/StackedBars/config';
+import { DateScale, TemperatureScale } from 'organisms/StackedBars/types';
 
-interface Props extends AnimatedGridProps {
-  isAnimated?: boolean;
+interface Props {
+  dateScale: DateScale;
+  temperatureScale: TemperatureScale;
 }
 
-const Grid: React.FC<Props> = ({ isAnimated, ...props }) => {
-  const VisxGrid = isAnimated ? AnimatedGrid : StaticGrid;
+const Grid: React.FC<Props> = ({ dateScale, temperatureScale }) => {
+  const { margin, xMax, yMax } = config.dimensions;
 
-  return <VisxGrid {...props} />;
+  return (
+    <VisxGrid
+      top={margin.top}
+      left={margin.left}
+      xScale={dateScale}
+      yScale={temperatureScale}
+      width={xMax}
+      height={yMax}
+      stroke={config.theme.grid.stroke}
+      strokeOpacity={config.theme.grid.stokeOpacity}
+      xOffset={dateScale.bandwidth() / 2}
+    />
+  );
 }
 
 export default Grid;

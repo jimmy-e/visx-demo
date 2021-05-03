@@ -41,7 +41,7 @@ const HorizontalBarStackExpand: React.FC<Props> = ({ data, height }) => {
         <BarStack
           accessors={accessors}
           data={data}
-          stackOffset="expand"
+          offset="expand"
         />
         <Tooltip
           renderTooltip={({ tooltipData, colorScale }) => (

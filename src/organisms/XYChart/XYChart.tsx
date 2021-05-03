@@ -138,7 +138,7 @@ const XYChart: React.FC<Props> = ({
             accessors={accessors}
             data={data}
             isAnimated={isAnimated}
-            stackOffset={stackOffset}
+            offfset={stackOffset}
           />
         )}
         {render.barGroup && (

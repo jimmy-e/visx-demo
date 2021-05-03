@@ -23,13 +23,12 @@ export interface Datum {
   [key: string]: number | string;
 }
 
+export type IsAnimated = boolean;
+
 export interface KeyAccessors {
   [key: string]: Accessor;
 }
 
-export type SetState<T> = Dispatch<SetStateAction<T>>;
+export type Offset = 'diverging' | 'expand' | 'wiggle';
 
-export interface Responsiveness {
-  height: number;
-  width: number;
-}
+export type SetState<T> = Dispatch<SetStateAction<T>>;

@@ -5,27 +5,26 @@ import {
   BarSeries as StaticBarSeries,
   BarStack as StaticBarStack,
 } from '@visx/xychart';
-import { Accessors, Data } from 'src/types';
-import { XYChartProps } from 'organisms/XYChart/types';
+import { Accessors, Data, IsAnimated, Offset } from 'src/types';
 
 interface Props {
   accessors: Accessors;
   data: Data;
-  isAnimated?: XYChartProps['isAnimated'];
-  stackOffset: XYChartProps['stackOffset'];
+  isAnimated?: IsAnimated;
+  offset: Offset;
 }
 
 const BarStack: React.FC<Props> = ({
   accessors,
   data,
   isAnimated,
-  stackOffset,
+  offset,
 }) => {
   const VisxBarSeries = isAnimated ? AnimatedBarSeries : StaticBarSeries;
   const VisxBarStack = isAnimated ? AnimatedBarStack : StaticBarStack;
 
   return (
-    <VisxBarStack offset={stackOffset}>
+    <VisxBarStack offset={offset}>
       <VisxBarSeries
         dataKey="New York"
         data={data}

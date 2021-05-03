@@ -2,13 +2,12 @@ import React from 'react';
 import { City } from 'src/types';
 import { RenderTooltipParams } from '@visx/xychart/lib/components/Tooltip';
 import { Accessors } from 'src/types';
-import { XYChartProps } from './types';
 
 interface Props {
   accessors: Accessors;
   // ToDo: replace `any` with correct datum typing
   colorScale: RenderTooltipParams<any>['colorScale'];
-  hasSharedTooltip: XYChartProps['hasSharedTooltip'];
+  hasSharedTooltip: boolean;
   renderHorizontally: boolean;
   // ToDo: replace `any` to correct typing
   tooltipData: any;

@@ -1,30 +1,18 @@
-import { useEffect, useState } from 'react';
-import { SetState, Datum } from 'src/types';
-import { XYChartProps } from './types';
-
-interface Props {
-  annotationKey: XYChartProps['annotationKey'];
-  data: XYChartProps['data'];
-}
+import { useState } from 'react';
+import { Data, Datum, SetState } from 'src/types';
 
 interface Return {
   annotationDataIndex: number;
-  annotationDataKey: XYChartProps['annotationKey'];
+  annotationDataKey: string;
   annotationDatum: Datum;
   setAnnotationDataIndex: SetState<number>;
-  setAnnotationDataKey: SetState<XYChartProps['annotationKey']>;
+  setAnnotationDataKey: SetState<string>;
 }
 
-const defaultAnnotationDataIndex = 13;
-
-export default ({ annotationKey, data }: Props): Return => {
-  const [annotationDataIndex, setAnnotationDataIndex] = useState<number>(defaultAnnotationDataIndex);
-  const [annotationDataKey, setAnnotationDataKey] = useState<XYChartProps['annotationKey']>(annotationKey);
+export default (data: Data): Return => {
+  const [annotationDataIndex, setAnnotationDataIndex] = useState<number>(0);
+  const [annotationDataKey, setAnnotationDataKey] = useState<string>('');
   const annotationDatum = data[annotationDataIndex];
-
-  useEffect(() => {
-    setAnnotationDataKey(annotationKey);
-  }, [annotationKey])
 
   return {
     annotationDataIndex,

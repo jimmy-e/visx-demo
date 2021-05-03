@@ -4,11 +4,9 @@ import BarStack from 'shapes/BarStack/BarStack';
 import Tooltip from 'tools/Tooltip/Tooltip';
 import XYChart from 'molecules/XYChart/XYChart';
 import { lightTheme } from '@visx/xychart';
+import { Data, Datum } from 'src/types';
 import CustomTooltip from './CustomTooltip';
-import useAccessors from './useAccessors';
 import useAnnotationData from './useAnnotationData';
-import useAxisConfig from './useAxisConfig';
-import { Data } from 'src/types';
 
 interface Props {
   data: Data;
@@ -18,10 +16,29 @@ interface Props {
 
 const HorizontalBarStackExpand: React.FC<Props> = ({ data, height }) => {
   const theme = lightTheme;
-  const renderHorizontally = true;
   const { setAnnotationDataIndex, setAnnotationDataKey } = useAnnotationData(data);
-  const axisConfig = useAxisConfig(renderHorizontally);
-  const accessors = useAccessors();
+  const axisConfig = {
+    x: { type: 'linear' },
+    y: { type: 'band', paddingInner: 0.3 },
+  }
+  const getSfTemperature = (datum: Datum) => Number(datum['San Francisco']);
+  const getNyTemperature = (datum: Datum) => Number(datum['New York']);
+  const getAustinTemperature = (datum: Datum) => Number(datum.Austin);
+  const getDate = (datum: Datum) => datum.date;
+
+  const accessors = {
+    x: {
+      Austin: getAustinTemperature,
+      'New York': getNyTemperature,
+      'San Francisco': getSfTemperature,
+    },
+    y: {
+      Austin: getDate,
+      'New York': getDate,
+      'San Francisco': getDate,
+    },
+    date: getDate,
+  }
 
   return (
     <>
@@ -34,7 +51,7 @@ const HorizontalBarStackExpand: React.FC<Props> = ({ data, height }) => {
         yScale={axisConfig.y}
         height={Math.min(400, height)}
         onPointerUp={(datum) => {
-          setAnnotationDataKey(datum.key as 'New York' | 'San Francisco' | 'Austin');
+          setAnnotationDataKey(datum.key);
           setAnnotationDataIndex(datum.index);
         }}
       >
@@ -49,7 +66,7 @@ const HorizontalBarStackExpand: React.FC<Props> = ({ data, height }) => {
               accessors={accessors}
               colorScale={colorScale}
               hasSharedTooltip
-              renderHorizontally={renderHorizontally}
+              renderHorizontally
               tooltipData={tooltipData}
             />
           )}

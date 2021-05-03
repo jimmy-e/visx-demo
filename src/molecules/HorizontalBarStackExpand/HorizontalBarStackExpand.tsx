@@ -2,70 +2,82 @@ import React from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import BarStack from 'shapes/BarStack/BarStack';
 import Tooltip from 'tools/Tooltip/Tooltip';
-import XYChart from 'molecules/XYChart/XYChart';
+import VisxXYChart from 'molecules/XYChart/XYChart';
 import { lightTheme } from '@visx/xychart';
 import CustomTooltip from './CustomTooltip';
 import useAccessors from './useAccessors';
 import useAnnotationData from './useAnnotationData';
 import useAxisConfig from './useAxisConfig';
-import { Data } from 'src/types';
+import { XYChartProps } from './types';
+import { getData } from './utils';
+import './xyChart.css';
 
-interface Props {
-  data: Data;
+interface Props extends XYChartProps {
   height: number;
   width: number;
 }
 
-const HorizontalBarStackExpand: React.FC<Props> = ({ data, height }) => {
+const HorizontalBarStackExpand: React.FC<Props> = ({
+  annotationKey,
+  data,
+  editAnnotationLabelPosition,
+  hasNegativeValues,
+  hasSharedTooltip,
+  height,
+  isAnimated,
+  stackOffset,
+}) => {
   const theme = lightTheme;
+
   const renderHorizontally = true;
-  const { setAnnotationDataIndex, setAnnotationDataKey } = useAnnotationData(data);
+
+  const { setAnnotationDataIndex, setAnnotationDataKey } = useAnnotationData({ annotationKey, data });
+
   const axisConfig = useAxisConfig(renderHorizontally);
-  const accessors = useAccessors();
+
+  const accessors = useAccessors({ hasNegativeValues, renderHorizontally });
 
   return (
     <>
       <div>
         <br />
       </div>
-      <XYChart
+      <VisxXYChart
         theme={theme}
         xScale={axisConfig.x}
         yScale={axisConfig.y}
         height={Math.min(400, height)}
-        onPointerUp={(datum) => {
-          setAnnotationDataKey(datum.key as 'New York' | 'San Francisco' | 'Austin');
-          setAnnotationDataIndex(datum.index);
+        captureEvents={!editAnnotationLabelPosition}
+        onPointerUp={d => {
+          setAnnotationDataKey(d.key as 'New York' | 'San Francisco' | 'Austin');
+          setAnnotationDataIndex(d.index);
         }}
       >
         <BarStack
           accessors={accessors}
           data={data}
-          stackOffset="expand"
+          isAnimated={isAnimated}
+          stackOffset={stackOffset}
         />
         <Tooltip
           renderTooltip={({ tooltipData, colorScale }) => (
             <CustomTooltip
               accessors={accessors}
               colorScale={colorScale}
-              hasSharedTooltip
+              hasSharedTooltip={hasSharedTooltip}
               renderHorizontally={renderHorizontally}
               tooltipData={tooltipData}
             />
           )}
         />
-      </XYChart>
+      </VisxXYChart>
     </>
   );
 }
 
 // ----- ADDING RESPONSIVENESS ----- //
 
-interface ContainerProps {
-  data: Data;
-}
-
-const HorizontalBarStackExpandContainer: React.FC<ContainerProps> = (props) => (
+const HorizontalBarStackExpandContainer: React.FC<XYChartProps> = (props) => (
   <ParentSize>
     {
       ({ height, width }) => (

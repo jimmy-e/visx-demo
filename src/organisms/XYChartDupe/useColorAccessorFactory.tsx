@@ -1,11 +1,11 @@
 import { useCallback } from 'react';
 import { DataKey, Datum } from 'src/types';
-import { XYChartConfig } from './types';
+import { XYChartProps } from './types';
 
 interface Props {
   annotationDataIndex: any;
   annotationDataKey: any;
-  data: XYChartConfig['data'];
+  data: XYChartProps['data'];
   selectedDatumPatternId: string;
 }
 

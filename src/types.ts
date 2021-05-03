@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { curveCardinal, curveLinear, curveStep } from '@visx/curve';
 
-type Accessor = (datum: Datum) => number | string;
+export type Accessor = (datum: Datum) => number | string;
 
 export interface Accessors {
   x: KeyAccessors;
@@ -28,3 +28,8 @@ export interface KeyAccessors {
 }
 
 export type SetState<T> = Dispatch<SetStateAction<T>>;
+
+export interface Responsiveness {
+  height: number;
+  width: number;
+}

@@ -6,12 +6,12 @@ import {
   BarStack as StaticBarStack,
 } from '@visx/xychart';
 import { Accessors, Data } from 'src/types';
-import { XYChartProps } from 'src/XYChart/types';
+import { XYChartProps } from 'organisms/XYChart/types';
 
 interface Props {
   accessors: Accessors;
   data: Data;
-  isAnimated: XYChartProps['isAnimated'];
+  isAnimated?: XYChartProps['isAnimated'];
   stackOffset: XYChartProps['stackOffset'];
 }
 

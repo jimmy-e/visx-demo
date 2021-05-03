@@ -6,7 +6,6 @@ import XYChart from 'wrappers/XYChart/XYChart';
 import { lightTheme } from '@visx/xychart';
 import { Data, Datum } from 'src/types';
 import CustomTooltip from './CustomTooltip';
-import useAnnotationData from './useAnnotationData';
 
 export interface Props {
   data: Data;
@@ -14,9 +13,8 @@ export interface Props {
   width: number;
 }
 
-const HorizontalBarStackExpand: React.FC<Props> = ({ data, height }) => {
+const HorizontalBarStackFull: React.FC<Props> = ({ data, height }) => {
   const theme = lightTheme;
-  const { setAnnotationDataIndex, setAnnotationDataKey } = useAnnotationData(data);
   const axisConfig = {
     x: { type: 'linear' },
     y: { type: 'band', paddingInner: 0.3 },
@@ -41,38 +39,29 @@ const HorizontalBarStackExpand: React.FC<Props> = ({ data, height }) => {
   };
 
   return (
-    <>
-      <div>
-        <br />
-      </div>
-      <XYChart
-        theme={theme}
-        xScale={axisConfig.x}
-        yScale={axisConfig.y}
-        height={Math.min(400, height)}
-        onPointerUp={(datum) => {
-          setAnnotationDataKey(datum.key);
-          setAnnotationDataIndex(datum.index);
-        }}
-      >
-        <BarStack
-          accessors={accessors}
-          data={data}
-          offset="expand"
-        />
-        <Tooltip
-          renderTooltip={({ tooltipData, colorScale }) => (
-            <CustomTooltip
-              accessors={accessors}
-              colorScale={colorScale}
-              hasSharedTooltip
-              renderHorizontally
-              tooltipData={tooltipData}
-            />
-          )}
-        />
-      </XYChart>
-    </>
+    <XYChart
+      theme={theme}
+      xScale={axisConfig.x}
+      yScale={axisConfig.y}
+      height={Math.min(400, height)}
+    >
+      <BarStack
+        accessors={accessors}
+        data={data}
+        offset="expand"
+      />
+      <Tooltip
+        renderTooltip={({ tooltipData, colorScale }) => (
+          <CustomTooltip
+            accessors={accessors}
+            colorScale={colorScale}
+            hasSharedTooltip
+            renderHorizontally
+            tooltipData={tooltipData}
+          />
+        )}
+      />
+    </XYChart>
   );
 }
 
@@ -82,14 +71,14 @@ interface ContainerProps {
   data: Data;
 }
 
-const HorizontalBarStackExpandContainer: React.FC<ContainerProps> = (props) => (
+const HorizontalBarStackFullContainer: React.FC<ContainerProps> = (props) => (
   <ParentSize>
     {
       ({ height, width }) => (
-        <HorizontalBarStackExpand height={height} width={width} {...props} />
+        <HorizontalBarStackFull height={height} width={width} {...props} />
       )
     }
   </ParentSize>
 );
 
-export default HorizontalBarStackExpandContainer;
+export default HorizontalBarStackFullContainer;

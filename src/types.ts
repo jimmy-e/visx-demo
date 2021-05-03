@@ -20,7 +20,7 @@ export type Data = Datum[];
 export type DataKey = keyof KeyAccessors;
 
 export interface Datum {
-  [key: string]: string;
+  [key: string]: number | string;
 }
 
 export interface KeyAccessors {

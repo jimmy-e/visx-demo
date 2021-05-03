@@ -5,7 +5,7 @@ import { Grid } from '@visx/grid';
 import { Group } from '@visx/group';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { useTooltip, useTooltipInPortal, defaultStyles } from '@visx/tooltip';
-import { ds } from './data';
+import { data } from './data';
 
 const purple1 = "#6c5efb";
 const purple2 = "#c998ff";
@@ -25,32 +25,22 @@ interface Props {
 }
 
 const VerticalBarStackExpand: React.FC<Props> = ({ height, width }) => {
+  const key = 'date';
   const margin = defaultMargin;
-  const [data, setData] = useState([]);
-  const [sentiment, setSentiment] = useState([]);
+  const [keys, setKeys] = useState<String[]>([]);
 
   useEffect(() => {
-    let data = ds.map((datum) => {
-      return {
-        date: datum[0],
-        bullish: datum[1],
-        neutral: datum[2],
-        bearish: datum[3],
-      };
-    });
-
-    setData(data);
-    setSentiment(Object.keys(data[0]).filter((d) => d !== "date"));
+    setKeys(Object.keys(data[0]).filter((datum) => datum !== key));
   }, []);
 
-  let tooltipTimeout;
+  let tooltipTimeout: number;
 
   const { containerRef, TooltipInPortal } = useTooltipInPortal({
     scroll: true
   });
 
   const sentimentTotals = data.reduce((total, currentDate) => {
-    const sentimentTotal = sentiment.reduce((dayTotal, k) => {
+    const sentimentTotal = keys.reduce((dayTotal, k) => {
       dayTotal += currentDate[k];
       return dayTotal;
     }, 0);
@@ -73,7 +63,7 @@ const VerticalBarStackExpand: React.FC<Props> = ({ height, width }) => {
     nice: true
   });
   const colorScale = scaleOrdinal({
-    domain: sentiment,
+    domain: keys,
     range: [purple1, purple2, purple3]
   });
 
@@ -105,11 +95,11 @@ const VerticalBarStackExpand: React.FC<Props> = ({ height, width }) => {
             height={innerHeight}
             stroke="black"
             strokeOpacity={0.1}
-            xOffset={dateScale.bandwidth() / 2}
+            // xOffset={dateScale.bandwidth() / 2}
           />
           <BarStack
             data={data}
-            keys={sentiment}
+            keys={keys}
             x={getDate}
             xScale={dateScale}
             yScale={aaiiScale}

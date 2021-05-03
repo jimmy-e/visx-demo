@@ -8,7 +8,7 @@ import { Data, Datum } from 'src/types';
 import CustomTooltip from './CustomTooltip';
 import useAnnotationData from './useAnnotationData';
 
-interface Props {
+export interface Props {
   data: Data;
   height: number;
   width: number;
@@ -38,7 +38,7 @@ const HorizontalBarStackExpand: React.FC<Props> = ({ data, height }) => {
       'San Francisco': getDate,
     },
     date: getDate,
-  }
+  };
 
   return (
     <>

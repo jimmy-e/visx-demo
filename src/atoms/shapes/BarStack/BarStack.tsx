@@ -7,18 +7,18 @@ import {
 } from '@visx/xychart';
 import { Accessors, Data, IsAnimated, Offset } from 'src/types';
 
-interface Props {
+export interface Props {
   accessors: Accessors;
   data: Data;
   isAnimated?: IsAnimated;
-  offset: Offset;
+  offset?: Offset;
 }
 
 const BarStack: React.FC<Props> = ({
   accessors,
   data,
-  isAnimated,
-  offset,
+  isAnimated = false,
+  offset = 'diverging',
 }) => {
   const VisxBarSeries = isAnimated ? AnimatedBarSeries : StaticBarSeries;
   const VisxBarStack = isAnimated ? AnimatedBarStack : StaticBarStack;

@@ -2,7 +2,7 @@ import React from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import BarStack from 'shapes/BarStack/BarStack';
 import Tooltip from 'tools/Tooltip/Tooltip';
-import XYChart from 'molecules/XYChart/XYChart';
+import XYChart from 'wrappers/XYChart/XYChart';
 import { lightTheme } from '@visx/xychart';
 import { Data, Datum } from 'src/types';
 import CustomTooltip from './CustomTooltip';

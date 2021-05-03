@@ -6,7 +6,7 @@ import { XYChartProps } from './types';
 import cityTemperatures from '__fixtures__/cityTemperatures';
 
 export default {
-  title: 'Charts',
+  title: 'organisms',
   argTypes: {
     annotationKey: {
       control: {

@@ -27,7 +27,8 @@
       "organisms/*": ["src/organisms/*"],
       "shapes/*": ["src/atoms/shapes/*"],
       "src/*": ["src/*"],
-      "tools/*": ["src/atoms/tools/*"]
+      "tools/*": ["src/atoms/tools/*"],
+      "wrappers/*": ["src/atoms/wrappers/*"]
     }
   },
   "include": [

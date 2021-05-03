@@ -13,7 +13,7 @@ import GlyphSeries from 'shapes/GlyphSeries/GlyphSeries';
 import Grid from 'tools/Grid/Grid';
 import LineSeries from 'shapes/LineSeries/LineSeries';
 import Tooltip from 'tools/Tooltip/Tooltip';
-import VisxXYChart from 'molecules/XYChart/XYChart';
+import VisxXYChart from 'wrappers/XYChart/XYChart';
 import CustomTooltip from './CustomTooltip';
 import getConfig from './getConfig';
 import useAccessors from './useAccessors';

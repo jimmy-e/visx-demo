@@ -14,7 +14,12 @@ const HorizontalBarStackExpandStory: Story<Props> = (args) => (
   </div>
 );
 
-export const HorizontalBarStackExpandChart = HorizontalBarStackExpandStory.bind({});
-HorizontalBarStackExpandChart.args = {
+export const HorizontalBarStackExpand = HorizontalBarStackExpandStory.bind({});
+HorizontalBarStackExpand.args = {
   data: cityTemperatures,
+};
+
+export const SingleHorizontalBarStackExpand = HorizontalBarStackExpandStory.bind({});
+SingleHorizontalBarStackExpand.args = {
+  data: [cityTemperatures[0]],
 };

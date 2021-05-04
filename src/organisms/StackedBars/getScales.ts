@@ -1,6 +1,6 @@
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
-import { Data } from 'src/types';
-import { CityName, ColorScale, DateScale, TemperatureScale } from './types';
+import { Data } from 'organisms/XYChart/types';
+import { ColorScale, DateScale, TemperatureScale } from './types';
 import { getDate, getKeys } from './utils';
 import config from './config';
 
@@ -9,7 +9,7 @@ export const getColorScale = (data: Data): ColorScale => {
 
   const keys = getKeys(data);
 
-  return scaleOrdinal<CityName, string>({
+  return scaleOrdinal<string, string>({
     domain: keys,
     range: [purple1, purple2, purple3],
   });

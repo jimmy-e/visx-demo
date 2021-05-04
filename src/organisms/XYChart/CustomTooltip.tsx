@@ -1,7 +1,6 @@
 import React from 'react';
-import { City } from 'src/types';
+import { Accessors, City } from 'organisms/XYChart/types';
 import { RenderTooltipParams } from '@visx/xychart/lib/components/Tooltip';
-import { Accessors } from 'src/types';
 import { XYChartProps } from './types';
 
 interface Props {

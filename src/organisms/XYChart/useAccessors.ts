@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
-import { Datum, KeyAccessors } from 'src/types';
-import { XYChartConfig, XYChartProps } from './types';
+import { Datum, KeyAccessors, XYChartConfig, XYChartProps } from 'organisms/XYChart/types';
 
 interface Props {
   hasNegativeValues: XYChartProps['hasNegativeValues'];

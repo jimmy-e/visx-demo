@@ -1,8 +1,7 @@
 import { CurveFactory } from 'd3-shape';
 import { curveLinear, curveStep, curveCardinal } from '@visx/curve';
 import { lightTheme, darkTheme, XYChartTheme } from '@visx/xychart';
-import { Data } from 'src/types';
-import { XYChartProps } from './types';
+import { Data, XYChartProps } from './types';
 import customTheme from './customTheme';
 
 export const getCurve = (curveType: XYChartProps['curveType']): CurveFactory => {

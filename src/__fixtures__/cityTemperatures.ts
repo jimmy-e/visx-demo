@@ -1,4 +1,4 @@
-import { Data } from 'src/types';
+import { Data } from 'organisms/XYChart/types';
 
 const cityTemperatures: Data = [
   { date: '2012-05-13', 'New York': '65.3', 'San Francisco': '52.0', Austin: '72.4' },

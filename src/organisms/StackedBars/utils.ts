@@ -1,5 +1,5 @@
 import { timeFormat, timeParse } from 'd3-time-format';
-import { Data, Datum } from 'src/types';
+import { Data, Datum } from 'organisms/XYChart/types';
 import { Keys } from './types';
 
 const parseDate = timeParse('%Y-%m-%d');

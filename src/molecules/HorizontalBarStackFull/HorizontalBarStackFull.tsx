@@ -4,7 +4,7 @@ import BarStack from 'shapes/BarStack/BarStack';
 import Tooltip from 'tools/Tooltip/Tooltip';
 import XYChart from 'wrappers/XYChart/XYChart';
 import { lightTheme } from '@visx/xychart';
-import { Data, Datum } from 'src/types';
+import { Data, Datum } from 'organisms/XYChart/types';
 import CustomTooltip from './CustomTooltip';
 
 export interface Props {

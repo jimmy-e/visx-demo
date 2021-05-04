@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { SetState, Datum } from 'src/types';
+import { SetState, Datum } from 'organisms/XYChart/types';
 import { XYChartProps } from './types';
 
 interface Props {

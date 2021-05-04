@@ -4,7 +4,7 @@ import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import AxisBottom from 'atoms/tools/AxisBottom/AxisBottom';
 import Background from 'atoms/tools/Background/Background';
 import Grid from 'atoms/tools/Grid/Grid';
-import StackedBars from './StackedBars';
+import BarStack from 'molecules/BatStack/BarStack';
 import Tooltip from './Tooltip';
 import config from './config';
 import { TooltipData } from './types';
@@ -43,7 +43,7 @@ const StackedBarsChart: React.FC = () => {
       <svg ref={containerRef} width={width} height={height}>
         <Background />
         <Grid dateScale={dateScale} temperatureScale={temperatureScale} />
-        <StackedBars
+        <BarStack
           colorScale={colorScale}
           data={data}
           dateScale={dateScale}

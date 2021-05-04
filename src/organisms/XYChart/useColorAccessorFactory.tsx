@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { DataKey, Datum } from 'src/types';
+import { DataKey, Datum } from 'organisms/XYChart/types';
 import { XYChartProps } from './types';
 
 interface Props {

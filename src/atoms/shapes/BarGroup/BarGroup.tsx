@@ -5,8 +5,7 @@ import {
   BarSeries as StaticBarSeries,
   BarGroup as StaticBarGroup,
 } from '@visx/xychart';
-import { Accessors, ColorAccessorFactory, Data } from 'src/types';
-import { XYChartProps } from 'src/XYChart/types';
+import { Accessors, ColorAccessorFactory, Data, XYChartProps } from 'organisms/XYChart/types';
 
 interface Props {
   accessors: Accessors;

@@ -1,10 +1,8 @@
 import React, { useCallback } from 'react';
-import { Accessors, Data, ColorAccessorFactory } from 'src/types';
+import { Accessors, Data, Datum, ColorAccessorFactory, XYChartConfig, XYChartProps } from 'organisms/XYChart/types';
 import { AnimatedGlyphSeries, GlyphSeries as StaticGlyphSeries } from '@visx/xychart';
 import { GlyphCross, GlyphDot, GlyphStar } from '@visx/glyph';
 import { GlyphProps } from '@visx/xychart/lib/types';
-import { Datum } from 'src/types';
-import { XYChartConfig, XYChartProps } from 'src/XYChart/types';
 
 interface Props {
   accessors: Accessors;

@@ -1,17 +1,17 @@
 import React from 'react';
 import { AnimatedAxis, Axis as StaticAxis } from '@visx/xychart';
 import { AnimatedAxisProps } from '@visx/xychart/lib/components/axis/AnimatedAxis';
-import { XYChartProps } from 'src/XYChart/types';
+import { XYChartProps } from 'organisms/XYChart/types';
 
 // ToDo: Repalce `any` with proper axis scale typing
 interface Props extends AnimatedAxisProps<any> {
   isAnimated: XYChartProps['isAnimated'];
 }
 
-const Axis: React.FC<Props> = ({ isAnimated, ...props }) => {
-  const VisxAxis = isAnimated ? AnimatedAxis : StaticAxis;
+const XYAxis: React.FC<Props> = ({ isAnimated, ...props }) => {
+  const Axis = isAnimated ? AnimatedAxis : StaticAxis;
 
-  return <VisxAxis {...props} />;
+  return <Axis {...props} />;
 }
 
-export default Axis;
+export default XYAxis;

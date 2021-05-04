@@ -1,10 +1,9 @@
 import React from 'react';
 import cityTemperature from '@visx/mock-data/lib/mocks/cityTemperature';
 import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
-import AxisBottom from './AxisBottom';
-import Background from './Background';
+import AxisBottom from 'atoms/tools/AxisBottom/AxisBottom';
+import Background from 'atoms/tools/Background/Background';
 import Grid from 'atoms/tools/Grid/Grid';
-import Legend from './Legend';
 import StackedBars from './StackedBars';
 import Tooltip from './Tooltip';
 import config from './config';
@@ -55,7 +54,6 @@ const StackedBarsChart: React.FC = () => {
         />
         <AxisBottom dateScale={dateScale} />
       </svg>
-      <Legend colorScale={colorScale} />
       <Tooltip
         TooltipInPortal={TooltipInPortal}
         colorScale={colorScale}

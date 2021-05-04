@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { PatternLines } from '@visx/pattern';
 import { DataContext } from '@visx/xychart';
 
-const ChartBackground: React.FC = () => {
+const XYBackground: React.FC = () => {
   const { theme, margin, width, height, innerWidth, innerHeight } = useContext(DataContext);
 
   // early return values not available in context
@@ -33,4 +33,4 @@ const ChartBackground: React.FC = () => {
   );
 }
 
-export default ChartBackground;
+export default XYBackground;

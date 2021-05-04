@@ -46,9 +46,9 @@ const StackedBarsChart: React.FC = () => {
         <BarStack
           accessor={getDate}
           data={data}
-          hideTooltip={hideTooltip}
+          // hideTooltip={hideTooltip}
           keys={keys}
-          showTooltip={showTooltip}
+          // showTooltip={showTooltip}
           stackScale={colorScale}
           xScale={dateScale}
           yScale={temperatureScale}

@@ -1,3 +1,5 @@
+import { BarGroupBar, SeriesPoint } from '@visx/shape/lib/types';
+
 // ----- ACCESSORS ----- //
 
 export type Accessor = (datum: Datum) => number | string;
@@ -13,8 +15,6 @@ export interface Datum {
 export type Keys = string[];
 
 // ----- TOOLTIP ----- //
-
-import { SeriesPoint } from '@visx/shape/lib/types';
 
 export type TooltipData = {
   bar: SeriesPoint<Datum>;
@@ -37,3 +37,6 @@ export type BandScale = ScaleBand<string>;
 export type OrdinalScale = ScaleOrdinal<string, string>;
 export type LinearScale = ScaleLinear<number>;
 
+// ----- SHAPES ----- //
+
+export type Bar = Omit<BarGroupBar<string>, 'key' | 'value'> & { bar: SeriesPoint<Datum>; key: string };

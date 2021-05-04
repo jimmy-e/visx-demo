@@ -5,7 +5,7 @@ import { Group } from '@visx/group';
 import { localPoint } from '@visx/event';
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
 import config from './config';
-import { CityName, ColorScale, DateScale, Keys, TemperatureScale, TooltipData } from './types';
+import { ColorScale, DateScale, Keys, TemperatureScale, TooltipData } from './types';
 import { getDate } from './utils';
 
 interface Props {
@@ -33,7 +33,7 @@ const StackedBars: React.FC<Props> = ({
 
   return (
     <Group top={margin.top}>
-      <BarStack<CityTemperature, CityName>
+      <BarStack<CityTemperature, string>
         data={data}
         keys={keys}
         x={getDate}

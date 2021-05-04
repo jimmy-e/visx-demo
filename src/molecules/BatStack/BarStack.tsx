@@ -7,6 +7,7 @@ import config from 'organisms/StackedBars/config';
 import {
   Accessor,
   BandScale,
+  Bar,
   Data,
   Datum,
   Keys,
@@ -15,12 +16,12 @@ import {
   TooltipData,
 } from 'src/types';
 
-interface Props {
+export interface Props {
   accessor: Accessor;
   data: Data;
-  hideTooltip: UseTooltipParams<TooltipData>['hideTooltip'];
+  hideTooltip?: UseTooltipParams<TooltipData>['hideTooltip'];
   keys: Keys;
-  showTooltip: UseTooltipParams<TooltipData>['showTooltip'];
+  showTooltip?: UseTooltipParams<TooltipData>['showTooltip'];
   stackScale: OrdinalScale;
   xScale: BandScale;
   yScale: LinearScale;
@@ -39,6 +40,31 @@ const BarStack: React.FC<Props> = ({
   let tooltipTimeout: number;
 
   const { margin } = config.dimensions;
+
+  const handleClick = (bar: Bar): void => {
+    alert(`clicked: ${JSON.stringify(bar)}`)
+  };
+
+  const handleMouseLeave = (): void => {
+    if (hideTooltip) {
+      tooltipTimeout = window.setTimeout(() => {
+        hideTooltip();
+      }, 300);
+    }
+  };
+
+  const handleMouseMove = (bar: Bar, event: React.MouseEvent<SVGRectElement>): void => {
+    if (showTooltip) {
+      if (tooltipTimeout) clearTimeout(tooltipTimeout);
+      const eventSvgCoords = localPoint(event);
+      const left = bar.x + bar.width / 2;
+      showTooltip({
+        tooltipData: bar,
+        tooltipTop: eventSvgCoords?.y,
+        tooltipLeft: left,
+      });
+    }
+  }
 
   return (
     <Group top={margin.top}>
@@ -60,22 +86,9 @@ const BarStack: React.FC<Props> = ({
                 height={bar.height}
                 width={bar.width}
                 fill={bar.color}
-                onClick={() => alert(`clicked: ${JSON.stringify(bar)}`)}
-                onMouseLeave={() => {
-                  tooltipTimeout = window.setTimeout(() => {
-                    hideTooltip();
-                  }, 300);
-                }}
-                onMouseMove={event => {
-                  if (tooltipTimeout) clearTimeout(tooltipTimeout);
-                  const eventSvgCoords = localPoint(event);
-                  const left = bar.x + bar.width / 2;
-                  showTooltip({
-                    tooltipData: bar,
-                    tooltipTop: eventSvgCoords?.y,
-                    tooltipLeft: left,
-                  });
-                }}
+                onClick={() => handleClick(bar)}
+                onMouseLeave={handleMouseLeave}
+                onMouseMove={(event) => handleMouseMove(bar, event)}
               />
             )),
           )

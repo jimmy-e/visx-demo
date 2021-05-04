@@ -44,13 +44,13 @@ const StackedBarsChart: React.FC = () => {
         <Background />
         <Grid dateScale={dateScale} temperatureScale={temperatureScale} />
         <BarStack
-          colorScale={colorScale}
           data={data}
-          dateScale={dateScale}
           hideTooltip={hideTooltip}
           keys={keys}
           showTooltip={showTooltip}
-          temperatureScale={temperatureScale}
+          stackScale={colorScale}
+          xScale={dateScale}
+          yScale={temperatureScale}
         />
         <AxisBottom dateScale={dateScale} />
       </svg>

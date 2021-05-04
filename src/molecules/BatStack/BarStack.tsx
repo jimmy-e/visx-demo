@@ -1,31 +1,38 @@
 import React from 'react';
-import { CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
 import { BarStack as VisxBarStack } from '@visx/shape';
 import { Group } from '@visx/group';
-import { localPoint } from '@visx/event';
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
+import { localPoint } from '@visx/event';
 import config from 'organisms/StackedBars/config';
-import { ColorScale, DateScale, Keys, TemperatureScale, TooltipData } from 'organisms/StackedBars/types';
 import { getDate } from 'organisms/StackedBars/utils';
+import {
+  BandScale,
+  Data,
+  Datum,
+  Keys,
+  LinearScale,
+  OrdinalScale,
+  TooltipData,
+} from 'src/types';
 
 interface Props {
-  colorScale: ColorScale;
-  data: CityTemperature[];
-  dateScale: DateScale;
+  data: Data;
   hideTooltip: UseTooltipParams<TooltipData>['hideTooltip'];
   keys: Keys;
   showTooltip: UseTooltipParams<TooltipData>['showTooltip'];
-  temperatureScale: TemperatureScale;
+  stackScale: OrdinalScale;
+  xScale: BandScale;
+  yScale: LinearScale;
 }
 
 const BarStack: React.FC<Props> = ({
-  colorScale,
   data,
-  dateScale,
   hideTooltip,
   keys,
   showTooltip,
-  temperatureScale,
+  stackScale,
+  xScale,
+  yScale,
 }) => {
   let tooltipTimeout: number;
 
@@ -33,13 +40,13 @@ const BarStack: React.FC<Props> = ({
 
   return (
     <Group top={margin.top}>
-      <VisxBarStack<CityTemperature, string>
+      <VisxBarStack<Datum, string>
         data={data}
         keys={keys}
         x={getDate}
-        xScale={dateScale}
-        yScale={temperatureScale}
-        color={colorScale}
+        xScale={xScale}
+        yScale={yScale}
+        color={stackScale}
       >
         {barStacks =>
           barStacks.map(barStack =>

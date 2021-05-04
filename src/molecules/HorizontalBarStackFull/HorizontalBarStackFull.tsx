@@ -1,6 +1,6 @@
 import React from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import BarStack from 'shapes/BarStack/BarStack';
+import XYBarStack from 'shapes/XYBarStack/XYBarStack';
 import Tooltip from 'tools/Tooltip/Tooltip';
 import XYChart from 'wrappers/XYChart/XYChart';
 import { lightTheme } from '@visx/xychart';
@@ -45,7 +45,7 @@ const HorizontalBarStackFull: React.FC<Props> = ({ data, height }) => {
       yScale={axisConfig.y}
       height={Math.min(400, height)}
     >
-      <BarStack
+      <XYBarStack
         accessors={accessors}
         data={data}
         offset="expand"

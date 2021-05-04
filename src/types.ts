@@ -1,4 +1,5 @@
 import { BarGroupBar, SeriesPoint } from '@visx/shape/lib/types';
+import { BarStack as VisxBarStack } from '@visx/shape/lib/types/barStack';
 
 // ----- ACCESSORS ----- //
 
@@ -40,3 +41,4 @@ export type LinearScale = ScaleLinear<number>;
 // ----- SHAPES ----- //
 
 export type Bar = Omit<BarGroupBar<string>, 'key' | 'value'> & { bar: SeriesPoint<Datum>; key: string };
+export type BarStack = VisxBarStack<Datum, string>;

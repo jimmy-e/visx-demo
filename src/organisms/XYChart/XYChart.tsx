@@ -7,7 +7,7 @@ import AreaStack from 'shapes/AreaStack/AreaStack';
 import Axis from 'tools/XYAxis/XYAxis';
 import BarGroup from 'shapes/BarGroup/BarGroup';
 import BarSeries from 'shapes/BarSeries/BarSeries';
-import BarStack from 'shapes/BarStack/BarStack';
+import XYBarStack from 'shapes/XYBarStack/XYBarStack';
 import ChartBackground from 'atoms/tools/XYBackground/XYBackground';
 import GlyphSeries from 'shapes/GlyphSeries/GlyphSeries';
 import Grid from 'tools/XYGrid/XYGrid';
@@ -134,7 +134,7 @@ const XYChart: React.FC<Props> = ({
           numTicks={numTicks}
         />
         {render.barStack && (
-          <BarStack
+          <XYBarStack
             accessors={accessors}
             data={data}
             isAnimated={isAnimated}

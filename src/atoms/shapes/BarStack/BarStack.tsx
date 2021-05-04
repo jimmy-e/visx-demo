@@ -1,49 +1,65 @@
 import React from 'react';
-import {
-  AnimatedBarSeries,
-  AnimatedBarStack,
-  BarSeries as StaticBarSeries,
-  BarStack as StaticBarStack,
-} from '@visx/xychart';
-import { Accessors, Data, IsAnimated, Offset } from 'organisms/XYChart/types';
+import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
+import { localPoint } from '@visx/event';
+import { Bar, BarStack, TooltipData } from 'src/types';
 
 export interface Props {
-  accessors: Accessors;
-  data: Data;
-  isAnimated?: IsAnimated;
-  offset?: Offset;
+  barStack: BarStack;
+  hideTooltip?: UseTooltipParams<TooltipData>['hideTooltip'];
+  showTooltip?: UseTooltipParams<TooltipData>['showTooltip'];
 }
 
 const BarStack: React.FC<Props> = ({
-  accessors,
-  data,
-  isAnimated = false,
-  offset = 'diverging',
+  barStack,
+  hideTooltip,
+  showTooltip,
 }) => {
-  const VisxBarSeries = isAnimated ? AnimatedBarSeries : StaticBarSeries;
-  const VisxBarStack = isAnimated ? AnimatedBarStack : StaticBarStack;
+  console.log('**************');
+  console.log(barStack);
+  console.log('**************');
+  let tooltipTimeout: number;
+
+  const handleClick = (bar: Bar): void => {
+    alert(`clicked: ${JSON.stringify(bar)}`)
+  };
+
+  const handleMouseLeave = (): void => {
+    if (hideTooltip) {
+      tooltipTimeout = window.setTimeout(() => {
+        hideTooltip();
+      }, 300);
+    }
+  };
+
+  const handleMouseMove = (bar: Bar, event: React.MouseEvent<SVGRectElement>): void => {
+    if (showTooltip) {
+      if (tooltipTimeout) clearTimeout(tooltipTimeout);
+      const eventSvgCoords = localPoint(event);
+      const left = bar.x + bar.width / 2;
+      showTooltip({
+        tooltipData: bar,
+        tooltipTop: eventSvgCoords?.y,
+        tooltipLeft: left,
+      });
+    }
+  }
 
   return (
-    <VisxBarStack offset={offset}>
-      <VisxBarSeries
-        dataKey="New York"
-        data={data}
-        xAccessor={accessors.x['New York']}
-        yAccessor={accessors.y['New York']}
-      />
-      <VisxBarSeries
-        dataKey="San Francisco"
-        data={data}
-        xAccessor={accessors.x['San Francisco']}
-        yAccessor={accessors.y['San Francisco']}
-      />
-      <VisxBarSeries
-        dataKey="Austin"
-        data={data}
-        xAccessor={accessors.x.Austin}
-        yAccessor={accessors.y.Austin}
-      />
-    </VisxBarStack>
+    <>
+      {barStack.bars.map(bar => (
+        <rect
+          key={`bar-stack-${barStack.index}-${bar.index}`}
+          x={bar.x}
+          y={bar.y}
+          height={bar.height}
+          width={bar.width}
+          fill={bar.color}
+          onClick={() => handleClick(bar)}
+          onMouseLeave={handleMouseLeave}
+          onMouseMove={(event) => handleMouseMove(bar, event)}
+        />
+      ))}
+    </>
   );
 }
 

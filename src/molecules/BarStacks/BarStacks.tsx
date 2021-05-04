@@ -48,6 +48,7 @@ const BarStacks: React.FC<Props> = ({
       {barStacks =>
         barStacks.map(barStack =>
           <BarStack
+            key={`bar-stack-${barStack.index}`}
             barStack={barStack}
             hideTooltip={hideTooltip}
             showTooltip={showTooltip}

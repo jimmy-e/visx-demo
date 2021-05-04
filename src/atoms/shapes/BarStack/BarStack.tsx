@@ -1,10 +1,11 @@
 import React from 'react';
+import { BarStack as VisxBarStack } from '@visx/shape/lib/types/barStack';
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
 import { localPoint } from '@visx/event';
-import { Bar, BarStack, TooltipData } from 'src/types';
+import { Bar, Datum, TooltipData } from 'src/types';
 
 export interface Props {
-  barStack: BarStack;
+  barStack: VisxBarStack<Datum, string>;
   hideTooltip?: UseTooltipParams<TooltipData>['hideTooltip'];
   showTooltip?: UseTooltipParams<TooltipData>['showTooltip'];
 }
@@ -14,9 +15,6 @@ const BarStack: React.FC<Props> = ({
   hideTooltip,
   showTooltip,
 }) => {
-  console.log('**************');
-  console.log(barStack);
-  console.log('**************');
   let tooltipTimeout: number;
 
   const handleClick = (bar: Bar): void => {

@@ -1,3 +1,4 @@
+* make story for individual bar stack
 * make config dynamic
 * abstract accessors  
 * abstract keys

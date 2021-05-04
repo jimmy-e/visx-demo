@@ -1,11 +1,11 @@
 import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0';
-import BarStacksComponent, { Props } from './BarStacks';
 import cityTemperatures from '__fixtures__/cityTemperatures';
 import { getDate, getKeys } from 'organisms/StackedBars/utils';
 import { getColorScale, getDateScale, getTemperatureScale } from 'organisms/StackedBars/getScales';
 import config from 'organisms/StackedBars/config';
+import BarStacksComponent, { Props } from './BarStacks';
 
 export default {
   title: 'molecules',

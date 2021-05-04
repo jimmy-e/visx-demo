@@ -1,6 +1,8 @@
+* add bar component and story
 * make story for individual bar stack
 * make config dynamic
-* abstract accessors  
+* add ability to rotate and expand bar stacks
+* abstract accessors
 * abstract keys
 * abstract scales
 * add parent size wrapper to barstack

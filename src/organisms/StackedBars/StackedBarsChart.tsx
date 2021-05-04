@@ -8,7 +8,7 @@ import BarStack from 'molecules/BatStack/BarStack';
 import Tooltip from './Tooltip';
 import config from './config';
 import { TooltipData } from './types';
-import { getKeys } from './utils';
+import { getDate, getKeys } from './utils';
 import { getColorScale, getDateScale, getTemperatureScale } from './getScales';
 import * as styles from './StackedBars.styles';
 
@@ -44,6 +44,7 @@ const StackedBarsChart: React.FC = () => {
         <Background />
         <Grid dateScale={dateScale} temperatureScale={temperatureScale} />
         <BarStack
+          accessor={getDate}
           data={data}
           hideTooltip={hideTooltip}
           keys={keys}

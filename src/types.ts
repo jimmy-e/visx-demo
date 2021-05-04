@@ -1,3 +1,7 @@
+// ----- ACCESSORS ----- //
+
+export type Accessor = (datum: Datum) => number | string;
+
 // ----- DATA ----- //
 
 export type Data = Datum[];

@@ -4,8 +4,8 @@ import { Group } from '@visx/group';
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
 import { localPoint } from '@visx/event';
 import config from 'organisms/StackedBars/config';
-import { getDate } from 'organisms/StackedBars/utils';
 import {
+  Accessor,
   BandScale,
   Data,
   Datum,
@@ -16,6 +16,7 @@ import {
 } from 'src/types';
 
 interface Props {
+  accessor: Accessor;
   data: Data;
   hideTooltip: UseTooltipParams<TooltipData>['hideTooltip'];
   keys: Keys;
@@ -26,6 +27,7 @@ interface Props {
 }
 
 const BarStack: React.FC<Props> = ({
+  accessor,
   data,
   hideTooltip,
   keys,
@@ -43,7 +45,7 @@ const BarStack: React.FC<Props> = ({
       <VisxBarStack<Datum, string>
         data={data}
         keys={keys}
-        x={getDate}
+        x={accessor}
         xScale={xScale}
         yScale={yScale}
         color={stackScale}

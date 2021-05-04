@@ -5,13 +5,14 @@ import BarStackComponent, { Props } from './BarStack';
 import cityTemperatures from '__fixtures__/cityTemperatures';
 import { getDate, getKeys } from 'organisms/StackedBars/utils';
 import { getColorScale, getDateScale, getTemperatureScale } from 'organisms/StackedBars/getScales';
+import config from 'organisms/StackedBars/config';
 
 export default {
   title: 'molecules',
 } as Meta;
 
 const BarStackStory: Story<Props> = (args) => (
-  <svg>
+  <svg height={config.dimensions.height} width={config.dimensions.width}>
     <BarStackComponent {...args} />
   </svg>
 );

@@ -1,5 +1,3 @@
-* add bar component and story
-* make story for individual bar stack
 * make config dynamic
 * add ability to rotate and expand bar stacks
 * abstract accessors
@@ -8,5 +6,6 @@
 * add parent size wrapper to barstack
   
 
+* add stories for shape/bar
 * add withParentSize wrapper
 * add lazy loading

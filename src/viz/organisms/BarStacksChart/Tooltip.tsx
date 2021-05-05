@@ -2,7 +2,7 @@ import React from 'react';
 import { TooltipInPortalProps } from '@visx/tooltip/lib/hooks/useTooltipInPortal';
 import { ColorScale, TooltipData } from './types';
 import { formatDate, getDate } from './utils';
-import * as styles from './StackedBars.styles';
+import * as styles from './BarStacksChart.styles';
 
 interface Props {
   TooltipInPortal: React.FC<TooltipInPortalProps>;

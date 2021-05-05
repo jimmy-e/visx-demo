@@ -10,9 +10,9 @@ import Tooltip from './Tooltip';
 import { TooltipData } from './types';
 import { getDate, getKeys } from './utils';
 import { getColorScale, getDateScale, getTemperatureScale } from './getScales';
-import * as styles from './StackedBars.styles';
+import * as styles from './BarStacksChart.styles';
 
-const StackedBarsChart: React.FC = () => {
+const BarStacksChart: React.FC = () => {
   const { config } = useConfigContext();
 
   const data = cityTemperature.slice(0, 12);
@@ -69,4 +69,4 @@ const StackedBarsChart: React.FC = () => {
   );
 };
 
-export default StackedBarsChart;
+export default BarStacksChart;

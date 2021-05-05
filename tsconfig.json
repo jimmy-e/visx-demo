@@ -22,13 +22,13 @@
     "baseUrl": ".",
     "paths": {
       "__fixtures__/*": ["src/__fixtures__/*"],
-      "atoms/*": ["src/atoms/*"],
-      "molecules/*": ["src/molecules/*"],
-      "organisms/*": ["src/organisms/*"],
-      "shapes/*": ["src/atoms/shapes/*"],
+      "atoms/*": ["src/viz/atoms/*"],
+      "molecules/*": ["src/viz/molecules/*"],
+      "organisms/*": ["src/viz/organisms/*"],
+      "shapes/*": ["src/viz/atoms/shapes/*"],
       "src/*": ["src/*"],
-      "tools/*": ["src/atoms/tools/*"],
-      "wrappers/*": ["src/atoms/wrappers/*"]
+      "tools/*": ["src/viz/atoms/tools/*"],
+      "wrappers/*": ["src/viz/atoms/wrappers/*"]
     }
   },
   "include": [

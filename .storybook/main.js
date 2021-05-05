@@ -14,13 +14,13 @@ module.exports = {
     config.resolve.alias = {
       ...config.resolve.alias,
       '__fixtures__': path.resolve(__dirname, '../src/__fixtures__'),
-      atoms: path.resolve(__dirname, '../src/atoms'),
-      molecules: path.resolve(__dirname, '../src/molecules'),
-      organisms: path.resolve(__dirname, '../src/organisms'),
-      shapes: path.resolve(__dirname, '../src/atoms/shapes'),
+      atoms: path.resolve(__dirname, '../src/viz/atoms'),
+      molecules: path.resolve(__dirname, '../src/viz/molecules'),
+      organisms: path.resolve(__dirname, '../src/viz/organisms'),
+      shapes: path.resolve(__dirname, '../src/viz/atoms/shapes'),
       src: path.resolve(__dirname, '../src'),
-      tools: path.resolve(__dirname, '../src/atoms/tools'),
-      wrappers: path.resolve(__dirname, '../src/atoms/wrappers'),
+      tools: path.resolve(__dirname, '../src/viz/atoms/tools'),
+      wrappers: path.resolve(__dirname, '../src/viz/atoms/wrappers'),
     };
     return config;
   },

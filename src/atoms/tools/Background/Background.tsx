@@ -1,5 +1,5 @@
 import React from 'react';
-import config from 'organisms/StackedBars/config';
+import config from 'src/config';
 
 const Background: React.FC = () => (
   <rect

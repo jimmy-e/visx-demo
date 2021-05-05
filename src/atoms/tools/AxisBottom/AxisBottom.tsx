@@ -1,6 +1,6 @@
 import React from 'react';
 import { AxisBottom as VisxAxisBottom } from '@visx/axis';
-import config from 'organisms/StackedBars/config';
+import config from 'src/config';
 import { DateScale } from 'organisms/StackedBars/types';
 import { formatDate } from 'organisms/StackedBars/utils';
 

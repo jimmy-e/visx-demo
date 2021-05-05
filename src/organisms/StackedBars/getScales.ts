@@ -2,7 +2,7 @@ import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { Data } from 'organisms/XYChart/types';
 import { ColorScale, DateScale, TemperatureScale } from './types';
 import { getDate, getKeys } from './utils';
-import config from './config';
+import config from 'src/config';
 
 export const getColorScale = (data: Data): ColorScale => {
   const { purple1, purple2, purple3 } = config.theme.colors;

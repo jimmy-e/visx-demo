@@ -6,7 +6,7 @@ import Background from 'atoms/tools/Background/Background';
 import Grid from 'atoms/tools/Grid/Grid';
 import BarStacks from 'molecules/BarStacks/BarStacks';
 import Tooltip from './Tooltip';
-import config from './config';
+import config from 'src/config';
 import { TooltipData } from './types';
 import { getDate, getKeys } from './utils';
 import { getColorScale, getDateScale, getTemperatureScale } from './getScales';

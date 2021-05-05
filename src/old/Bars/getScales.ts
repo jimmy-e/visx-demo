@@ -1,6 +1,6 @@
 import { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
 import { scaleBand, scaleLinear } from '@visx/scale';
-import config from './config';
+import config from 'src/config';
 import { Accessor, XScale, YScale } from './types';
 
 // returns the x-axis band scale

@@ -3,7 +3,7 @@ import { BarStack as VisxBarStack } from '@visx/shape';
 import { Group } from '@visx/group';
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
 import BarStack from 'shapes/BarStack/BarStack';
-import config from 'organisms/StackedBars/config';
+import config from 'src/config';
 import {
   Accessor,
   BandScale,

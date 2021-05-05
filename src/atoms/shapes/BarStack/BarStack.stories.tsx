@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import cityTemperatures from '__fixtures__/cityTemperatures';
 import { getDate, getKeys } from 'organisms/StackedBars/utils';
 import { getColorScale, getDateScale, getTemperatureScale } from 'organisms/StackedBars/getScales';
-import config from 'organisms/StackedBars/config';
+import config from 'src/config';
 import BarStacksComponent, { Props } from 'molecules/BarStacks/BarStacks';
 
 export default {

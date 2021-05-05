@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid as VisxGrid } from '@visx/grid';
-import config from 'organisms/StackedBars/config';
+import config from 'src/config';
 import { DateScale, TemperatureScale } from 'organisms/StackedBars/types';
 
 interface Props {

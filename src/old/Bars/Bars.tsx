@@ -3,7 +3,7 @@ import { Bar } from '@visx/shape';
 import { Group } from '@visx/group';
 import { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
 import { letterFrequency } from '@visx/mock-data';
-import config from './config';
+import config from 'src/config';
 import getPoints from './getPoints';
 import { getXScale, getYScale } from './getScales';
 

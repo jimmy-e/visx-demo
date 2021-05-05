@@ -4,7 +4,7 @@ import { BarStack } from '@visx/shape';
 import { Group } from '@visx/group';
 import { localPoint } from '@visx/event';
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
-import config from './config';
+import config from 'src/config';
 import { ColorScale, DateScale, Keys, TemperatureScale, TooltipData } from './types';
 import { getDate } from './utils';
 

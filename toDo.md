@@ -1,3 +1,4 @@
+* use CSF
 * make config dynamic
 * add ability to rotate and expand bar stacks
 * abstract accessors

@@ -28,6 +28,7 @@
       "organisms/*": ["src/viz/organisms/*"],
       "shapes/*": ["src/viz/atoms/shapes/*"],
       "src/*": ["src/*"],
+      "storybook/*": [".storybook/*"],
       "tools/*": ["src/viz/atoms/tools/*"],
       "wrappers/*": ["src/viz/atoms/wrappers/*"]
     }

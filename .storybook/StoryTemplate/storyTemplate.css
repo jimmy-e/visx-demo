@@ -1,0 +1,12 @@
+.fullPageContainer {
+  width: 100%;
+}
+
+.hasPadding {
+  padding: 32px;
+}
+
+.storyTemplate {
+  overflow: auto;
+  width: 100%;
+}

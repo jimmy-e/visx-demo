@@ -20,6 +20,7 @@ module.exports = {
       organisms: path.resolve(__dirname, '../src/viz/organisms'),
       shapes: path.resolve(__dirname, '../src/viz/atoms/shapes'),
       src: path.resolve(__dirname, '../src'),
+      storybook: path.resolve(__dirname, '../.storybook'),
       tools: path.resolve(__dirname, '../src/viz/atoms/tools'),
       wrappers: path.resolve(__dirname, '../src/viz/atoms/wrappers'),
     };

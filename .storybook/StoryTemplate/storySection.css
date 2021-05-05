@@ -1,0 +1,23 @@
+.childContainer {
+  margin: 12px;
+}
+
+.childrenContainer {
+  margin-left: -12px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}

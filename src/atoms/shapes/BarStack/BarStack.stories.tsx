@@ -8,7 +8,7 @@ import config from 'organisms/StackedBars/config';
 import BarStacksComponent, { Props } from 'molecules/BarStacks/BarStacks';
 
 export default {
-  title: 'atoms',
+  title: 'atoms/shapes',
 } as Meta;
 
 const BarStackStory: Story<Props> = (args) => (

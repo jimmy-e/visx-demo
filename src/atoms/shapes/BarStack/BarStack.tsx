@@ -1,11 +1,11 @@
 import React from 'react';
-import { BarStack as VisxBarStack } from '@visx/shape/lib/types/barStack';
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
 import { localPoint } from '@visx/event';
-import { Bar, Datum, TooltipData } from 'src/types';
+import { BarShape, BarStackShape, TooltipData } from 'src/types';
+import Bar from 'shapes/Bar/Bar';
 
 export interface Props {
-  barStack: VisxBarStack<Datum, string>;
+  barStack: BarStackShape;
   hideTooltip?: UseTooltipParams<TooltipData>['hideTooltip'];
   showTooltip?: UseTooltipParams<TooltipData>['showTooltip'];
 }
@@ -17,7 +17,7 @@ const BarStack: React.FC<Props> = ({
 }) => {
   let tooltipTimeout: number;
 
-  const handleClick = (bar: Bar): void => {
+  const handleClick = (bar: BarShape): void => {
     alert(`clicked: ${JSON.stringify(bar)}`)
   };
 
@@ -29,7 +29,7 @@ const BarStack: React.FC<Props> = ({
     }
   };
 
-  const handleMouseMove = (bar: Bar, event: React.MouseEvent<SVGRectElement>): void => {
+  const handleMouseMove = (bar: BarShape, event: React.MouseEvent<SVGRectElement>): void => {
     if (showTooltip) {
       if (tooltipTimeout) clearTimeout(tooltipTimeout);
       const eventSvgCoords = localPoint(event);
@@ -45,13 +45,8 @@ const BarStack: React.FC<Props> = ({
   return (
     <>
       {barStack.bars.map(bar => (
-        <rect
-          key={`bar-stack-${barStack.index}-${bar.index}`}
-          x={bar.x}
-          y={bar.y}
-          height={bar.height}
-          width={bar.width}
-          fill={bar.color}
+        <Bar
+          bar={bar}
           onClick={() => handleClick(bar)}
           onMouseLeave={handleMouseLeave}
           onMouseMove={(event) => handleMouseMove(bar, event)}

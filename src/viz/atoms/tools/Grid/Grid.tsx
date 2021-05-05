@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid as VisxGrid } from '@visx/grid';
 import { useConfigContext } from 'contexts/configContext/configContext';
-import { DateScale, TemperatureScale } from 'organisms/StackedBars/types';
+import { DateScale, TemperatureScale } from 'organisms/BarStacksChart/types';
 
 interface Props {
   dateScale: DateScale;

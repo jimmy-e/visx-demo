@@ -1,7 +1,7 @@
 import React from 'react';
 import { AxisBottom as VisxAxisBottom } from '@visx/axis';
-import { DateScale } from 'organisms/StackedBars/types';
-import { formatDate } from 'organisms/StackedBars/utils';
+import { DateScale } from 'organisms/BarStacksChart/types';
+import { formatDate } from 'organisms/BarStacksChart/utils';
 import { useConfigContext } from 'contexts/configContext/configContext';
 
 interface Props {

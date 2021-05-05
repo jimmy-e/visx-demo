@@ -2,7 +2,7 @@ import React from 'react';
 import { EuiFlexGroup, EuiFlexItem, EuiText } from '@elastic/eui';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Story } from '@storybook/react/types-6-0';
-import './storyTemplate.css';
+import './storyTemplate.scss';
 
 export interface Props {
   children: React.ReactElement | React.ReactElement[];

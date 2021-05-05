@@ -1,6 +1,6 @@
 import React from 'react';
 import { EuiSpacer, EuiText } from '@elastic/eui';
-import './storySection.css';
+import './storySection.scss';
 
 interface Props {
   direction?: 'column' | 'row';

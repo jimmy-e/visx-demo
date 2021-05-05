@@ -1,6 +1,7 @@
 import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryTemplate } from 'storybook/StoryTemplate';
 import XYChartComponent from './XYChart';
 import { XYChartProps } from './types';
 import cityTemperatures from '__fixtures__/cityTemperatures';
@@ -77,7 +78,11 @@ export default {
   },
 } as Meta;
 
-const XYChartStory: Story<XYChartProps> = (args) => <XYChartComponent {...args} />;
+const XYChartStory: Story<XYChartProps> = (args) => (
+  <StoryTemplate title="XY Chart">
+    <XYChartComponent {...args} />
+  </StoryTemplate>
+);
 
 export const XYChart = XYChartStory.bind({});
 XYChart.args = {

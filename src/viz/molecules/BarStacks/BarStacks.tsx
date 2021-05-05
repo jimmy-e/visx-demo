@@ -3,7 +3,6 @@ import { BarStack as VisxBarStack } from '@visx/shape';
 import { Group } from '@visx/group';
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
 import BarStack from 'shapes/BarStack/BarStack';
-import config from 'src/config';
 import {
   Accessor,
   BandScale,
@@ -14,6 +13,7 @@ import {
   OrdinalScale,
   TooltipData,
 } from 'src/types';
+import { useConfigContext } from 'contexts/configContext/configContext';
 
 export interface Props {
   accessor: Accessor;
@@ -35,28 +35,32 @@ const BarStacks: React.FC<Props> = ({
   stackScale,
   xScale,
   yScale,
-}) => (
-  <Group top={config.dimensions.margin.top}>
-    <VisxBarStack<Datum, string>
-      data={data}
-      keys={keys}
-      x={accessor}
-      xScale={xScale}
-      yScale={yScale}
-      color={stackScale}
-    >
-      {barStacks =>
-        barStacks.map(barStack =>
-          <BarStack
-            key={`bar-stack-${barStack.index}`}
-            barStack={barStack}
-            hideTooltip={hideTooltip}
-            showTooltip={showTooltip}
-          />
-        )
-      }
-    </VisxBarStack>
-  </Group>
-);
+}) => {
+  const { config } = useConfigContext();
+
+  return (
+    <Group top={config.dimensions.margin.top}>
+      <VisxBarStack<Datum, string>
+        data={data}
+        keys={keys}
+        x={accessor}
+        xScale={xScale}
+        yScale={yScale}
+        color={stackScale}
+      >
+        {barStacks =>
+          barStacks.map(barStack =>
+            <BarStack
+              key={`bar-stack-${barStack.index}`}
+              barStack={barStack}
+              hideTooltip={hideTooltip}
+              showTooltip={showTooltip}
+            />
+          )
+        }
+      </VisxBarStack>
+    </Group>
+  );
+};
 
 export default BarStacks;

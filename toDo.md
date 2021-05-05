@@ -1,3 +1,4 @@
+* have stacked bars use atoms
 * make src/types folder
 * make config dynamic
 * add ability to rotate and expand bar stacks

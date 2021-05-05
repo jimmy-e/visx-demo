@@ -4,14 +4,13 @@ import cityTemperatures from '__fixtures__/cityTemperatures';
 import { CSF, Story, StoryTemplate } from 'storybook/StoryTemplate';
 import { getColorScale, getDateScale, getTemperatureScale } from 'organisms/StackedBars/getScales';
 import { getDate, getKeys } from 'organisms/StackedBars/utils';
-import config from 'src/config';
 import BarStacksComponent, { Props } from 'molecules/BarStacks/BarStacks';
 
 export default CSF('atoms/shapes');
 
 const BarStackStory: Story<Props> = (args) => (
   <StoryTemplate title="Bar Stack">
-    <svg height={config.dimensions.height} width={config.dimensions.width}>
+    <svg height={400} width={400}>
       <BarStacksComponent {...args} />
     </svg>
   </StoryTemplate>

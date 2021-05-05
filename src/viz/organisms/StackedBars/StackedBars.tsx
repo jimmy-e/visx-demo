@@ -4,7 +4,7 @@ import { BarStack } from '@visx/shape';
 import { Group } from '@visx/group';
 import { localPoint } from '@visx/event';
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
-import config from 'src/config';
+import { useConfigContext } from 'contexts/configContext/configContext';
 import { ColorScale, DateScale, Keys, TemperatureScale, TooltipData } from './types';
 import { getDate } from './utils';
 
@@ -27,6 +27,8 @@ const StackedBars: React.FC<Props> = ({
   showTooltip,
   temperatureScale,
 }) => {
+  const { config } = useConfigContext();
+
   let tooltipTimeout: number;
 
   const { margin } = config.dimensions;

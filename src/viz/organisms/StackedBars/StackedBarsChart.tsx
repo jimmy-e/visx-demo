@@ -5,14 +5,16 @@ import AxisBottom from 'atoms/tools/AxisBottom/AxisBottom';
 import Background from 'atoms/tools/Background/Background';
 import Grid from 'atoms/tools/Grid/Grid';
 import BarStacks from 'molecules/BarStacks/BarStacks';
+import { useConfigContext } from 'contexts/configContext/configContext';
 import Tooltip from './Tooltip';
-import config from 'src/config';
 import { TooltipData } from './types';
 import { getDate, getKeys } from './utils';
 import { getColorScale, getDateScale, getTemperatureScale } from './getScales';
 import * as styles from './StackedBars.styles';
 
 const StackedBarsChart: React.FC = () => {
+  const { config } = useConfigContext();
+
   const data = cityTemperature.slice(0, 12);
   const keys = getKeys(data);
 

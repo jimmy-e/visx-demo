@@ -1,14 +1,15 @@
 import React from 'react';
 import { AxisBottom as VisxAxisBottom } from '@visx/axis';
-import config from 'src/config';
 import { DateScale } from 'organisms/StackedBars/types';
 import { formatDate } from 'organisms/StackedBars/utils';
+import { useConfigContext } from 'contexts/configContext/configContext';
 
 interface Props {
   dateScale: DateScale;
 }
 
 const AxisBottom: React.FC<Props> = ({ dateScale }) => {
+  const { config } = useConfigContext();
   const { yMax } = config.dimensions;
   const { purple3 } = config.theme.colors;
 

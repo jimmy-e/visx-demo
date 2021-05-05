@@ -1,5 +1,6 @@
 import { defaultStyles } from '@visx/tooltip';
-import config from 'src/config';
+// todo: replace this config import
+import config from 'contexts/configContext/defaultConfig';
 
 export const containerStyle = {
   position: 'relative',

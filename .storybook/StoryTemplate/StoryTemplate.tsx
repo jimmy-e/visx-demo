@@ -2,6 +2,7 @@ import React from 'react';
 import { EuiFlexGroup, EuiFlexItem, EuiText } from '@elastic/eui';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Story } from '@storybook/react/types-6-0';
+import MockWrapper from 'src/__mocks__/MockWrapper';
 import './storyTemplate.scss';
 
 export interface Props {
@@ -38,25 +39,27 @@ const StoryTemplate: Story<Props> = ({
   }
 
   return (
-    <div className={['storyTemplate', hasPadding ? 'hasPadding' : undefined].join(' ')}>
-      <EuiFlexGroup direction="column">
-        {title && (
-          <EuiFlexItem>
-            <EuiText>
-              <h1>{title}</h1>
-            </EuiText>
-          </EuiFlexItem>
-        )}
-        {description && (
-          <EuiFlexItem>
-            <EuiText>
-              <p>{description}</p>
-            </EuiText>
-          </EuiFlexItem>
-        )}
-        <StoryTemplateChildren>{children}</StoryTemplateChildren>
-      </EuiFlexGroup>
-    </div>
+    <MockWrapper>
+      <div className={['storyTemplate', hasPadding ? 'hasPadding' : undefined].join(' ')}>
+        <EuiFlexGroup direction="column">
+          {title && (
+            <EuiFlexItem>
+              <EuiText>
+                <h1>{title}</h1>
+              </EuiText>
+            </EuiFlexItem>
+          )}
+          {description && (
+            <EuiFlexItem>
+              <EuiText>
+                <p>{description}</p>
+              </EuiText>
+            </EuiFlexItem>
+          )}
+          <StoryTemplateChildren>{children}</StoryTemplateChildren>
+        </EuiFlexGroup>
+      </div>
+    </MockWrapper>
   );
 };
 

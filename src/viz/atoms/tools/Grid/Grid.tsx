@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid as VisxGrid } from '@visx/grid';
-import config from 'src/config';
+import { useConfigContext } from 'contexts/configContext/configContext';
 import { DateScale, TemperatureScale } from 'organisms/StackedBars/types';
 
 interface Props {
@@ -9,6 +9,7 @@ interface Props {
 }
 
 const Grid: React.FC<Props> = ({ dateScale, temperatureScale }) => {
+  const { config } = useConfigContext();
   const { margin, xMax, yMax } = config.dimensions;
 
   return (

@@ -1,4 +1,4 @@
-* make src/types folder
+* ###### make src/types folder
 * add ability to rotate and expand bar stacks
 * abstract accessors
 * abstract keys

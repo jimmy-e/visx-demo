@@ -1,6 +1,6 @@
 import React from 'react';
-import config from 'src/config';
 import { Config } from 'src/types';
+import defaultConfig from './defaultConfig';
 
 // Context State
 interface ConfigState {
@@ -9,7 +9,7 @@ interface ConfigState {
 
 // Initial Context State
 const initialConfigState: ConfigState = {
-  config,
+  config: defaultConfig,
 };
 
 // Context Object
@@ -19,7 +19,7 @@ const ConfigContext = React.createContext<ConfigState>(initialConfigState);
 export const ConfigContextProvider = (props: object): React.ReactElement => (
   <ConfigContext.Provider
     value={{
-      config,
+      config: defaultConfig,
     }}
     {...props}
   />

@@ -6,6 +6,7 @@
 * abstract scales
 * add parent size wrapper to barstack
   
+* rename and move `mockWrapper`?
 
 * add stories for shape/bar
 * add withParentSize wrapper

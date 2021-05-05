@@ -38,15 +38,20 @@ const BarStacks: React.FC<Props> = ({
 }) => {
   const { config } = useConfigContext();
 
+  console.log('****************');
+  // console.log(yScale.domain([0, 1]));
+  console.log('****************');
+
   return (
     <Group top={config.dimensions.margin.top}>
       <VisxBarStack<Datum, string>
+        color={stackScale}
         data={data}
         keys={keys}
+        offset="expand"
         x={accessor}
         xScale={xScale}
         yScale={yScale}
-        color={stackScale}
       >
         {barStacks =>
           barStacks.map(barStack =>

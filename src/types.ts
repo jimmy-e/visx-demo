@@ -5,6 +5,39 @@ import { BarStack } from '@visx/shape/lib/types/barStack';
 
 export type Accessor = (datum: Datum) => number | string;
 
+// ----- CONFIG ----- //
+
+export interface Config {
+  dimensions: {
+    height: number;
+    width: number;
+    xMax: number;
+    yMax: number;
+    margin: {
+      bottom: number;
+      left: number;
+      right: number;
+      top: number;
+    };
+  };
+  theme: {
+    background: {
+      backgroundColor: string;
+      radius: number;
+    };
+    colors: Record<string, string>;
+    grid: {
+      stroke: string;
+      strokeOpacity: number;
+    };
+    tooltip: {
+      background: string;
+      color: string;
+      minWidth: number;
+    };
+  };
+}
+
 // ----- DATA ----- //
 
 export type Data = Datum[];

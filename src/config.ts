@@ -1,3 +1,5 @@
+import { Config } from 'src/types';
+
 const measurements = {
   height: 500,
   width: 500,
@@ -9,7 +11,7 @@ const measurements = {
   },
 };
 
-export default {
+const config: Config = {
   dimensions: {
     ...measurements,
     xMax: measurements.width,
@@ -27,7 +29,7 @@ export default {
     },
     grid: {
       stroke: '#000000',
-      stokeOpacity: 0.1,
+      strokeOpacity: 0.1,
     },
     tooltip: {
       background: '#000000',
@@ -36,3 +38,5 @@ export default {
     }
   },
 };
+
+export default config;

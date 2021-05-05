@@ -1,4 +1,4 @@
-* use CSF
+* make src/types folder
 * make config dynamic
 * add ability to rotate and expand bar stacks
 * abstract accessors

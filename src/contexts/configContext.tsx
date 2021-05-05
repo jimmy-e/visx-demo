@@ -1,13 +1,15 @@
 import React from 'react';
+import config from 'src/config';
+import { Config } from 'src/types';
 
 // Context State
 interface ConfigState {
-  foo: string;
+  config: Config;
 }
 
 // Initial Context State
 const initialConfigState: ConfigState = {
-  foo: '',
+  config,
 };
 
 // Context Object
@@ -17,7 +19,7 @@ const ConfigContext = React.createContext<ConfigState>(initialConfigState);
 export const ConfigContextProvider = (props: object): React.ReactElement => (
   <ConfigContext.Provider
     value={{
-      foo: 'bar',
+      config,
     }}
     {...props}
   />

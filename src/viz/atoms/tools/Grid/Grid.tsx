@@ -20,7 +20,7 @@ const Grid: React.FC<Props> = ({ dateScale, temperatureScale }) => {
       width={xMax}
       height={yMax}
       stroke={config.theme.grid.stroke}
-      strokeOpacity={config.theme.grid.stokeOpacity}
+      strokeOpacity={config.theme.grid.strokeOpacity}
       xOffset={dateScale.bandwidth() / 2}
     />
   );

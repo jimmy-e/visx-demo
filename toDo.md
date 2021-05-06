@@ -3,6 +3,7 @@
 * abstract keys
 * abstract scales
 * add parent size wrapper to barstack
+* fix BarStacksChart.tsx
   
 * rename and move `mockWrapper`?
 * add stories for shape/bar

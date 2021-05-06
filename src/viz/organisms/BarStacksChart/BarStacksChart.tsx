@@ -49,7 +49,7 @@ const BarStacksChart: React.FC = () => {
           accessor={getDate}
           data={data}
           hideTooltip={hideTooltip}
-          keys={keys}
+          index="date"
           showTooltip={showTooltip}
           stackScale={colorScale}
           xScale={dateScale}

@@ -20,7 +20,7 @@ export const BarStacks = BarStacksStory.bind({});
 BarStacks.args = {
   accessor: getDate,
   data: cityTemperatures,
-  keys: getKeys(cityTemperatures),
+  index: 'date',
   stackScale: getColorScale(cityTemperatures),
   xScale: getDateScale(cityTemperatures),
   yScale: getTemperatureScale(cityTemperatures),

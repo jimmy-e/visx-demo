@@ -23,9 +23,9 @@ const config: Config = {
       radius: 14,
     },
     colors: {
-      purple1: '#6C5EFB',
-      purple2: '#C998FF',
-      purple3: '#A44AFE',
+      colorOne: '#6C5EFB',
+      colorTwo: '#C998FF',
+      colorThree: '#A44AFE',
     },
     grid: {
       stroke: '#000000',

@@ -16,7 +16,11 @@ export interface Config {
       backgroundColor: string;
       radius: number;
     };
-    colors: Record<string, string>;
+    colors: {
+      colorOne: string;
+      colorTwo: string;
+      colorThree: string;
+    };
     grid: {
       stroke: string;
       strokeOpacity: number;

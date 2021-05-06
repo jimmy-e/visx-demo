@@ -11,17 +11,17 @@ interface Props {
 const AxisBottom: React.FC<Props> = ({ dateScale }) => {
   const { config } = useConfigContext();
   const { yMax } = config.dimensions;
-  const { purple3 } = config.theme.colors;
+  const { colorThree } = config.theme.colors;
 
   return (
     <VisxAxisBottom
       top={yMax + config.dimensions.margin.top}
       scale={dateScale}
       tickFormat={formatDate}
-      stroke={purple3}
-      tickStroke={purple3}
+      stroke={colorThree}
+      tickStroke={colorThree}
       tickLabelProps={() => ({
-        fill: purple3,
+        fill: colorThree,
         fontSize: 11,
         textAnchor: 'middle',
       })}

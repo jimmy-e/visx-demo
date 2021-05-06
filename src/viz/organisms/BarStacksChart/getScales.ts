@@ -6,13 +6,13 @@ import { getDate, getKeys } from './utils';
 import config from 'contexts/configContext/defaultConfig';
 
 export const getColorScale = (data: Data): ColorScale => {
-  const { purple1, purple2, purple3 } = config.theme.colors;
+  const { colorOne, colorTwo, colorThree } = config.theme.colors;
 
   const keys = getKeys(data);
 
   return scaleOrdinal<string, string>({
     domain: keys,
-    range: [purple1, purple2, purple3],
+    range: [colorOne, colorTwo, colorThree],
   });
 };
 

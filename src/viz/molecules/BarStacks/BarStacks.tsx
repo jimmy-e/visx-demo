@@ -4,6 +4,7 @@ import { Group } from '@visx/group';
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
 import BarStack from 'shapes/BarStack/BarStack';
 import getKeys from 'utils/getKeys';
+import getStackScale from 'utils/getStackScale';
 import {
   Accessor,
   BandScale,
@@ -11,7 +12,6 @@ import {
   Datum,
   Keys,
   LinearScale,
-  OrdinalScale,
   TooltipData,
 } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
@@ -23,7 +23,6 @@ export interface Props {
   index: string;
   offset?: 'auto' | 'expand';
   showTooltip?: UseTooltipParams<TooltipData>['showTooltip'];
-  stackScale: OrdinalScale;
   xScale: BandScale;
   yScale: LinearScale;
 }
@@ -35,7 +34,6 @@ const BarStacks: React.FC<Props> = ({
   index,
   offset = 'auto',
   showTooltip,
-  stackScale,
   xScale,
   yScale,
 }) => {
@@ -45,6 +43,8 @@ const BarStacks: React.FC<Props> = ({
   useEffect(() => {
     setKeys(getKeys(data, index));
   }, [])
+
+  const stackScale = getStackScale(config.theme.colors, data, getKeys(data, index));
 
   return (
     <Group top={config.dimensions.margin.top}>

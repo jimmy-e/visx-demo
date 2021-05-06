@@ -51,7 +51,6 @@ const BarStacksChart: React.FC = () => {
           hideTooltip={hideTooltip}
           index="date"
           showTooltip={showTooltip}
-          stackScale={colorScale}
           xScale={dateScale}
           yScale={temperatureScale}
         />

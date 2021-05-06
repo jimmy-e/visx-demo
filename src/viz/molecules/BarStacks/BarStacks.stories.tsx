@@ -2,8 +2,8 @@ import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import cityTemperatures from '__fixtures__/cityTemperatures';
 import { CSF, Story, StoryTemplate } from 'storybook/StoryTemplate';
-import { getDate, getKeys } from 'organisms/BarStacksChart/utils';
-import { getColorScale, getDateScale, getTemperatureScale } from 'organisms/BarStacksChart/getScales';
+import { getDate } from 'organisms/BarStacksChart/utils';
+import { getDateScale, getTemperatureScale } from 'organisms/BarStacksChart/getScales';
 import BarStacksComponent, { Props } from './BarStacks';
 
 export default CSF('molecules');
@@ -21,7 +21,6 @@ BarStacks.args = {
   accessor: getDate,
   data: cityTemperatures,
   index: 'date',
-  stackScale: getColorScale(cityTemperatures),
   xScale: getDateScale(cityTemperatures),
   yScale: getTemperatureScale(cityTemperatures),
 };

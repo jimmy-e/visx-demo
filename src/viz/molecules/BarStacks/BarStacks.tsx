@@ -44,6 +44,7 @@ const BarStacks: React.FC<Props> = ({
     setKeys(getKeys(data, index));
   }, [])
 
+  // ToDo: for some reason, moving this into `useEffect` causes problems.
   const stackScale = getStackScale(config.theme.colors, data, getKeys(data, index));
 
   return (

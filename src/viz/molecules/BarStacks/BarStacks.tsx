@@ -20,6 +20,7 @@ export interface Props {
   data: Data;
   hideTooltip?: UseTooltipParams<TooltipData>['hideTooltip'];
   keys: Keys;
+  offset?: 'auto' | 'expand';
   showTooltip?: UseTooltipParams<TooltipData>['showTooltip'];
   stackScale: OrdinalScale;
   xScale: BandScale;
@@ -31,6 +32,7 @@ const BarStacks: React.FC<Props> = ({
   data,
   hideTooltip,
   keys,
+  offset = 'auto',
   showTooltip,
   stackScale,
   xScale,
@@ -41,12 +43,13 @@ const BarStacks: React.FC<Props> = ({
   return (
     <Group top={config.dimensions.margin.top}>
       <VisxBarStack<Datum, string>
+        color={stackScale}
         data={data}
         keys={keys}
+        offset={offset === 'auto' ? 'diverging' : offset}
         x={accessor}
         xScale={xScale}
         yScale={yScale}
-        color={stackScale}
       >
         {barStacks =>
           barStacks.map(barStack =>

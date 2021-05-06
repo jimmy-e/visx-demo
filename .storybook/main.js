@@ -22,6 +22,7 @@ module.exports = {
       src: path.resolve(__dirname, '../src'),
       storybook: path.resolve(__dirname, '../.storybook'),
       tools: path.resolve(__dirname, '../src/viz/atoms/tools'),
+      utils: path.resolve(__dirname, '../src/viz/utils'),
       wrappers: path.resolve(__dirname, '../src/viz/atoms/wrappers'),
     };
     return config;

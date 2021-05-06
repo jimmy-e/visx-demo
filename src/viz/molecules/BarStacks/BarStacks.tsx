@@ -3,6 +3,8 @@ import { BarStack as VisxBarStack } from '@visx/shape';
 import { Group } from '@visx/group';
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
 import BarStack from 'shapes/BarStack/BarStack';
+import getKeys from 'utils/getKeys';
+import getStackScale from 'utils/getStackScale';
 import {
   Accessor,
   BandScale,
@@ -19,7 +21,7 @@ export interface Props {
   accessor: Accessor;
   data: Data;
   hideTooltip?: UseTooltipParams<TooltipData>['hideTooltip'];
-  keys: Keys;
+  index: string;
   offset?: 'auto' | 'expand';
   showTooltip?: UseTooltipParams<TooltipData>['showTooltip'];
   stackScale: OrdinalScale;
@@ -31,7 +33,7 @@ const BarStacks: React.FC<Props> = ({
   accessor,
   data,
   hideTooltip,
-  keys,
+  index,
   offset = 'auto',
   showTooltip,
   stackScale,
@@ -39,6 +41,9 @@ const BarStacks: React.FC<Props> = ({
   yScale,
 }) => {
   const { config } = useConfigContext();
+
+  const keys = getKeys(data, index)
+  // const stackScale = getStackScale(config.theme.colors, data, keys);
 
   return (
     <Group top={config.dimensions.margin.top}>

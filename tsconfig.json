@@ -30,6 +30,7 @@
       "src/*": ["src/*"],
       "storybook/*": [".storybook/*"],
       "tools/*": ["src/viz/atoms/tools/*"],
+      "utils/*": ["src/viz/utils/*"],
       "wrappers/*": ["src/viz/atoms/wrappers/*"]
     }
   },

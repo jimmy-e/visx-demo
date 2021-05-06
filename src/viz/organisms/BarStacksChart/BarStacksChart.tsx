@@ -16,7 +16,6 @@ const BarStacksChart: React.FC = () => {
   const { config } = useConfigContext();
 
   const data = cityTemperature.slice(0, 12);
-  const keys = getKeys(data);
 
   const dateScale = getDateScale(data);
   const temperatureScale = getTemperatureScale(data);

@@ -55,7 +55,6 @@ const BarStacksChart: React.FC<Props> = ({ data, index }) => {
           hideTooltip={hideTooltip}
           index="date"
           showTooltip={showTooltip}
-          xScale={dateScale}
           yScale={temperatureScale}
         />
         <AxisBottom dateScale={dateScale} />

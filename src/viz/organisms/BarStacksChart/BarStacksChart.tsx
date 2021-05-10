@@ -1,21 +1,21 @@
 import React from 'react';
-import cityTemperature from '@visx/mock-data/lib/mocks/cityTemperature';
 import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import AxisBottom from 'atoms/tools/AxisBottom/AxisBottom';
 import Background from 'atoms/tools/Background/Background';
-import Grid from 'atoms/tools/Grid/Grid';
 import BarStacks from 'molecules/BarStacks/BarStacks';
+import Grid from 'atoms/tools/Grid/Grid';
+import cityTemperatures from '__fixtures__/cityTemperatures';
 import { useConfigContext } from 'contexts/configContext/configContext';
 import Tooltip from './Tooltip';
 import { TooltipData } from './types';
-import { getDate, getKeys } from './utils';
+import { getDate } from './utils';
 import { getColorScale, getDateScale, getTemperatureScale } from './getScales';
 import * as styles from './BarStacksChart.styles';
 
 const BarStacksChart: React.FC = () => {
   const { config } = useConfigContext();
 
-  const data = cityTemperature.slice(0, 12);
+  const data = cityTemperatures;
 
   const dateScale = getDateScale(data);
   const temperatureScale = getTemperatureScale(data);

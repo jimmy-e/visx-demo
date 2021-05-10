@@ -4,9 +4,10 @@ import AxisBottom from 'atoms/tools/AxisBottom/AxisBottom';
 import Background from 'atoms/tools/Background/Background';
 import BarStacks from 'molecules/BarStacks/BarStacks';
 import Grid from 'atoms/tools/Grid/Grid';
+import Tooltip from 'tools/Tooltip/Tooltip';
 import { Data, TooltipData } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
-import Tooltip from './Tooltip';
+import CustomTooltip from './CustomTooltip';
 import { getDate } from './utils';
 import { getColorScale, getDateScale, getTemperatureScale } from './getScales';
 import * as styles from './BarStacksChart.styles';
@@ -58,12 +59,12 @@ const BarStacksChart: React.FC<Props> = ({ data }) => {
       </svg>
       <Tooltip
         TooltipInPortal={TooltipInPortal}
-        colorScale={colorScale}
-        left={tooltipLeft}
-        tooltipData={tooltipData}
-        tooltipOpen={tooltipOpen}
-        top={tooltipTop}
-      />
+        showTooltip={!!(tooltipOpen && tooltipData)}
+        tooltipLeft={tooltipLeft}
+        tooltipTop={tooltipTop}
+      >
+        <CustomTooltip colorScale={colorScale} tooltipData={tooltipData} />
+      </Tooltip>
     </div>
   );
 };

@@ -12,7 +12,7 @@ import ChartBackground from 'atoms/tools/XYBackground/XYBackground';
 import GlyphSeries from 'shapes/GlyphSeries/GlyphSeries';
 import Grid from 'tools/XYGrid/XYGrid';
 import LineSeries from 'shapes/LineSeries/LineSeries';
-import Tooltip from 'tools/Tooltip/Tooltip';
+import Tooltip from 'tools/XYTooltip/XYTooltip';
 import VisxXYChart from 'wrappers/XYChart/XYChart';
 import CustomTooltip from './CustomTooltip';
 import getConfig from './getConfig';

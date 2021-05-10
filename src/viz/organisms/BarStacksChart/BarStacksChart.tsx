@@ -5,23 +5,26 @@ import Background from 'atoms/tools/Background/Background';
 import BarStacks from 'molecules/BarStacks/BarStacks';
 import Grid from 'atoms/tools/Grid/Grid';
 import Tooltip from 'tools/Tooltip/Tooltip';
+import getKeys from 'utils/getKeys';
+import getStackScale from 'utils/getStackScale';
 import { Data, TooltipData } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
 import CustomTooltip from './CustomTooltip';
 import { getDate } from './utils';
-import { getColorScale, getDateScale, getTemperatureScale } from './getScales';
+import { getDateScale, getTemperatureScale } from './getScales';
 import * as styles from './BarStacksChart.styles';
 
 interface Props {
   data: Data;
+  index: string;
 }
 
-const BarStacksChart: React.FC<Props> = ({ data }) => {
+const BarStacksChart: React.FC<Props> = ({ data, index }) => {
   const { config } = useConfigContext();
 
   const dateScale = getDateScale(data);
   const temperatureScale = getTemperatureScale(data);
-  const colorScale = getColorScale(data);
+  const stackScale = getStackScale(config.theme.colors, data, getKeys(data, index));
 
   const {
     tooltipOpen,
@@ -63,7 +66,7 @@ const BarStacksChart: React.FC<Props> = ({ data }) => {
         tooltipLeft={tooltipLeft}
         tooltipTop={tooltipTop}
       >
-        <CustomTooltip colorScale={colorScale} tooltipData={tooltipData} />
+        <CustomTooltip stackScale={stackScale} tooltipData={tooltipData} />
       </Tooltip>
     </div>
   );

@@ -8,6 +8,6 @@ export default CSF('organisms');
 
 export const BarStacksChart: Story = () => (
   <StoryTemplate title="Bar Stacks Chart">
-    <BarStacksComponent data={cityTemperatures} />
+    <BarStacksComponent data={cityTemperatures} index="date" />
   </StoryTemplate>
 );

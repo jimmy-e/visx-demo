@@ -1,14 +1,14 @@
 import React from 'react';
 import { AxisBottom as VisxAxisBottom } from '@visx/axis';
-import { DateScale } from 'organisms/BarStacksChart/types';
 import { formatDate } from 'organisms/BarStacksChart/utils';
 import { useConfigContext } from 'contexts/configContext/configContext';
+import { BandScale } from 'src/types';
 
 interface Props {
-  dateScale: DateScale;
+  xScale: BandScale;
 }
 
-const AxisBottom: React.FC<Props> = ({ dateScale }) => {
+const AxisBottom: React.FC<Props> = ({ xScale }) => {
   const { config } = useConfigContext();
   const { yMax } = config.dimensions;
   const { colorThree } = config.theme.colors;
@@ -16,7 +16,7 @@ const AxisBottom: React.FC<Props> = ({ dateScale }) => {
   return (
     <VisxAxisBottom
       top={yMax + config.dimensions.margin.top}
-      scale={dateScale}
+      scale={xScale}
       tickFormat={formatDate}
       stroke={colorThree}
       tickStroke={colorThree}

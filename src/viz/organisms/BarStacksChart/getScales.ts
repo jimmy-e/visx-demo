@@ -1,31 +1,9 @@
-import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
+import { scaleLinear } from '@visx/scale';
 import { Data } from 'organisms/XYChart/types';
-import { ColorScale, DateScale, TemperatureScale } from './types';
-import { getDate, getKeys } from './utils';
+import { TemperatureScale } from './types';
+import { getKeys } from './utils';
 // todo: replace this config import
 import config from 'contexts/configContext/defaultConfig';
-
-export const getColorScale = (data: Data): ColorScale => {
-  const { colorOne, colorTwo, colorThree } = config.theme.colors;
-
-  const keys = getKeys(data);
-
-  return scaleOrdinal<string, string>({
-    domain: keys,
-    range: [colorOne, colorTwo, colorThree],
-  });
-};
-
-export const getDateScale = (data: Data): DateScale => {
-  const dateScale = scaleBand<string>({
-    domain: data.map(getDate),
-    padding: 0.2,
-  });
-
-  dateScale.rangeRound([0, config.dimensions.xMax]);
-
-  return dateScale;
-}
 
 export const getTemperatureScale = (data: Data): TemperatureScale => {
   const keys = getKeys(data);

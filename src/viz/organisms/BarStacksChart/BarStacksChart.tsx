@@ -4,18 +4,19 @@ import AxisBottom from 'atoms/tools/AxisBottom/AxisBottom';
 import Background from 'atoms/tools/Background/Background';
 import BarStacks from 'molecules/BarStacks/BarStacks';
 import Grid from 'atoms/tools/Grid/Grid';
-import cityTemperatures from '__fixtures__/cityTemperatures';
+import { Data, TooltipData } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
 import Tooltip from './Tooltip';
-import { TooltipData } from './types';
 import { getDate } from './utils';
 import { getColorScale, getDateScale, getTemperatureScale } from './getScales';
 import * as styles from './BarStacksChart.styles';
 
-const BarStacksChart: React.FC = () => {
-  const { config } = useConfigContext();
+interface Props {
+  data: Data;
+}
 
-  const data = cityTemperatures;
+const BarStacksChart: React.FC<Props> = ({ data }) => {
+  const { config } = useConfigContext();
 
   const dateScale = getDateScale(data);
   const temperatureScale = getTemperatureScale(data);

@@ -1,15 +1,14 @@
 import React from 'react';
 import { Grid as VisxGrid } from '@visx/grid';
 import { useConfigContext } from 'contexts/configContext/configContext';
-import { TemperatureScale } from 'organisms/BarStacksChart/types';
-import { BandScale } from 'src/types';
+import { BandScale, LinearScale } from 'src/types';
 
 interface Props {
   xScale: BandScale;
-  temperatureScale: TemperatureScale;
+  yScale: LinearScale;
 }
 
-const Grid: React.FC<Props> = ({ temperatureScale, xScale }) => {
+const Grid: React.FC<Props> = ({ xScale, yScale }) => {
   const { config } = useConfigContext();
   const { margin, xMax, yMax } = config.dimensions;
 
@@ -18,7 +17,7 @@ const Grid: React.FC<Props> = ({ temperatureScale, xScale }) => {
       top={margin.top}
       left={margin.left}
       xScale={xScale}
-      yScale={temperatureScale}
+      yScale={yScale}
       width={xMax}
       height={yMax}
       stroke={config.theme.grid.stroke}

@@ -6,12 +6,12 @@ import BarStack from 'shapes/BarStack/BarStack';
 import getKeys from 'utils/getKeys';
 import getStackScale from 'utils/getStackScale';
 import getXScale from 'utils/getXScale';
+import getYScale from 'utils/getYScale';
 import {
   Accessor,
   Data,
   Datum,
   Keys,
-  LinearScale,
   TooltipData,
 } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
@@ -23,7 +23,6 @@ export interface Props {
   index: string;
   offset?: 'auto' | 'expand';
   showTooltip?: UseTooltipParams<TooltipData>['showTooltip'];
-  yScale: LinearScale;
 }
 
 const BarStacks: React.FC<Props> = ({
@@ -33,7 +32,6 @@ const BarStacks: React.FC<Props> = ({
   index,
   offset = 'auto',
   showTooltip,
-  yScale,
 }) => {
   const { config } = useConfigContext();
   const [keys, setKeys] = useState<Keys>();
@@ -45,6 +43,7 @@ const BarStacks: React.FC<Props> = ({
   // ToDo: for some reason, moving this into `useEffect` causes problems.
   const stackScale = getStackScale(config.theme.colors, data, getKeys(data, index));
   const xScale = getXScale(data, index, config.dimensions.xMax);
+  const yScale = getYScale(data, index, config.dimensions.yMax);
 
   return (
     <Group top={config.dimensions.margin.top}>

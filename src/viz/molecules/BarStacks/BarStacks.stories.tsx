@@ -3,7 +3,6 @@ import React from 'react';
 import cityTemperatures from '__fixtures__/cityTemperatures';
 import { CSF, Story, StoryTemplate } from 'storybook/StoryTemplate';
 import { getDate } from 'organisms/BarStacksChart/utils';
-import { getTemperatureScale } from 'organisms/BarStacksChart/getScales';
 import BarStacksComponent, { Props } from './BarStacks';
 
 export default CSF('molecules');
@@ -21,5 +20,4 @@ BarStacks.args = {
   accessor: getDate,
   data: cityTemperatures,
   index: 'date',
-  yScale: getTemperatureScale(cityTemperatures),
 };

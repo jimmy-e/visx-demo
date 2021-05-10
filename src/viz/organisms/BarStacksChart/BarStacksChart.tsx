@@ -11,8 +11,8 @@ import { Data, TooltipData } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
 import CustomTooltip from './CustomTooltip';
 import getXScale from 'utils/getXScale';
+import getYScale from 'utils/getYScale';
 import { getDate } from './utils';
-import { getTemperatureScale } from './getScales';
 import * as styles from './BarStacksChart.styles';
 
 interface Props {
@@ -24,7 +24,7 @@ const BarStacksChart: React.FC<Props> = ({ data, index }) => {
   const { config } = useConfigContext();
 
   const xScale = getXScale(data, index, config.dimensions.xMax);
-  const temperatureScale = getTemperatureScale(data);
+  const yScale = getYScale(data, index, config.dimensions.yMax);
   const stackScale = getStackScale(config.theme.colors, data, getKeys(data, index));
 
   const {
@@ -49,14 +49,13 @@ const BarStacksChart: React.FC<Props> = ({ data, index }) => {
     <div style={styles.containerStyle}>
       <svg ref={containerRef} width={width} height={height}>
         <Background />
-        <Grid xScale={xScale} temperatureScale={temperatureScale} />
+        <Grid xScale={xScale} yScale={yScale} />
         <BarStacks
           accessor={getDate}
           data={data}
           hideTooltip={hideTooltip}
           index="date"
           showTooltip={showTooltip}
-          yScale={temperatureScale}
         />
         <AxisBottom xScale={xScale} />
       </svg>

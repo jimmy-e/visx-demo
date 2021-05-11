@@ -13,6 +13,7 @@ import {
   Datum,
   Index,
   Keys,
+  Offset,
   TooltipData,
 } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
@@ -22,7 +23,7 @@ export interface Props {
   data: Data;
   hideTooltip?: UseTooltipParams<TooltipData>['hideTooltip'];
   index: Index;
-  offset?: 'auto' | 'expand';
+  offset?: Offset;
   showTooltip?: UseTooltipParams<TooltipData>['showTooltip'];
 }
 
@@ -47,7 +48,7 @@ const BarStacks: React.FC<Props> = ({
   // ToDo: for some reason, moving this into `useEffect` causes problems.
   const stackScale = getStackScale({ colors, data, index });
   const xScale = getXScale({ data, index, xMax });
-  const yScale = getYScale({ data, index, yMax });
+  const yScale = getYScale({ data, index, offset, yMax });
 
   return (
     <Group top={config.dimensions.margin.top}>

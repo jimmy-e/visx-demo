@@ -4,3 +4,5 @@ import { Datum } from './data';
 
 export type BarShape = Omit<BarGroupBar<string>, 'key' | 'value'> & { bar: SeriesPoint<Datum>; key: string };
 export type BarStackShape = BarStack<Datum, string>;
+
+export type Offset = 'auto' | 'expand';

@@ -3,18 +3,19 @@ import { Resizable as ReResizable } from 're-resizable';
 import './resizable.scss';
 
 interface Props {
-  defaultHeight?: number;
-  defaultWidth?: number;
+  size?: {
+    height: number;
+    width: number;
+  };
 }
 
 const Resizable: React.FC<Props> = ({
   children,
-  defaultHeight = 200,
-  defaultWidth = 200,
+  size = { height: 400, width: 400 },
 }) => (
   <ReResizable
     className="resizable"
-    defaultSize={{ height: defaultHeight, width: defaultWidth }}
+    defaultSize={{ height: size.height, width: size.width }}
   >
     {children}
   </ReResizable>

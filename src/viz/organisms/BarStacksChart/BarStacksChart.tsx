@@ -16,18 +16,20 @@ import * as styles from './BarStacksChart.styles';
 
 interface Props {
   data: Data;
+  height: number;
   index: Index;
+  width: number;
 }
 
-const BarStacksChart: React.FC<Props> = ({ data, index }) => {
+const BarStacksChart: React.FC<Props> = ({ data, height, index, width }) => {
   const { config } = useConfigContext();
 
-  const { xMax, yMax } = config.dimensions;
-  const { colors } = config.theme;
+  const top = height - 100;
+  const yMax = top - config.dimensions.margin.top;
 
-  const xScale = getXScale({ data, index, xMax });
-  const yScale = getYScale({ data, index, yMax });
-  const stackScale = getStackScale({ colors, data, index });
+  const xScale = getXScale({ data, index, xMax: width });
+  const yScale = getYScale({ data, index, offset: 'auto', yMax });
+  const stackScale = getStackScale({ colors: config.theme.colors, data, index });
 
   const {
     tooltipOpen,
@@ -45,21 +47,24 @@ const BarStacksChart: React.FC<Props> = ({ data, index }) => {
     scroll: true,
   });
 
-  const { height, width } = config.dimensions;
-
   return (
     <div style={styles.containerStyle}>
-      <svg ref={containerRef} width={width} height={height}>
-        <Background />
-        <Grid xScale={xScale} yScale={yScale} />
+      <svg ref={containerRef} height={height} width={width}>
+        <Background height={height} width={width} />
+        <Grid height={yMax} width={width} xScale={xScale} yScale={yScale} />
         <BarStacks
           accessor={getDate}
           data={data}
+          height={height}
           hideTooltip={hideTooltip}
           index="date"
           showTooltip={showTooltip}
+          width={width}
         />
-        <AxisBottom xScale={xScale} />
+        <AxisBottom
+          top={top}
+          xScale={xScale}
+        />
       </svg>
       <Tooltip
         TooltipInPortal={TooltipInPortal}

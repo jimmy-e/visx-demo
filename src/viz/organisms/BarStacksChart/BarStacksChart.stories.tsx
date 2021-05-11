@@ -1,13 +1,44 @@
 import React from 'react';
-// also exported from '@storybook/react' if you can deal with breaking changes in 6.1
+import { ParentSize } from '@visx/responsive';
 import cityTemperatures from '__fixtures__/cityTemperatures';
-import { CSF, Story, StoryTemplate } from 'storybook/StoryTemplate';
+import { CSF, Resizable, Story, StoryBlock, StorySection, StoryTemplate } from 'storybook/StoryTemplate';
 import BarStacksComponent from './BarStacksChart';
 
 export default CSF('organisms');
 
 export const BarStacksChart: Story = () => (
   <StoryTemplate title="Bar Stacks Chart">
-    <BarStacksComponent data={cityTemperatures} index="date" />
+    <StorySection title="Default">
+      <StoryBlock>
+        <ParentSize>
+          {
+            ({height, width}) => (
+              <BarStacksComponent
+                data={cityTemperatures}
+                height={height}
+                index="date"
+                width={width}
+              />
+            )
+          }
+        </ParentSize>
+      </StoryBlock>
+    </StorySection>
+    <StorySection title="Resizable">
+      <Resizable>
+        <ParentSize>
+          {
+            ({height, width}) => (
+              <BarStacksComponent
+                data={cityTemperatures}
+                height={height}
+                index="date"
+                width={width}
+              />
+            )
+          }
+        </ParentSize>
+      </Resizable>
+    </StorySection>
   </StoryTemplate>
 );

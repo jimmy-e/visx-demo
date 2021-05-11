@@ -1,5 +1,4 @@
 import React from 'react';
-// also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import cityTemperatures from '__fixtures__/cityTemperatures';
 import { CSF, Story, StoryTemplate } from 'storybook/StoryTemplate';
 import { getDate } from 'organisms/BarStacksChart/utils';

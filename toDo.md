@@ -1,9 +1,14 @@
+* remove height, width, xmax, and ymax from config
+* make height and width common types
+* use withParent
+
 * add ability to rotate and expand bar stacks
 * abstract accessors
 * abstract keys
 * abstract scales
 * add parent size wrapper to barstack
 * fix BarStacksChart.tsx
+* hide controls by default
   
 * rename and move `mockWrapper`?
 * add stories for shape/bar

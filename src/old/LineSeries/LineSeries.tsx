@@ -1,6 +1,6 @@
 import React from 'react';
 import { AnimatedLineSeries, LineSeries as StaticLineSeries } from '@visx/xychart';
-import { Accessors, Curve, Data, XYChartProps } from 'organisms/XYChart/types';
+import { Accessors, Curve, Data, XYChartProps } from '../XYChart/types';
 
 interface Props {
   accessors: Accessors;

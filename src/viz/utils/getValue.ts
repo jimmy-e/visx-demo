@@ -1,3 +1,3 @@
-import { Datum } from 'src/types';
+import { Datum, Index } from 'src/types';
 
-export default (datum: Datum, index: string) => String(datum[index]);
+export default (datum: Datum, index: Index) => String(datum[index]);

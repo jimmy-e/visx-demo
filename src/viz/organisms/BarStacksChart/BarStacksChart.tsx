@@ -5,9 +5,8 @@ import Background from 'atoms/tools/Background/Background';
 import BarStacks from 'molecules/BarStacks/BarStacks';
 import Grid from 'atoms/tools/Grid/Grid';
 import Tooltip from 'tools/Tooltip/Tooltip';
-import getKeys from 'utils/getKeys';
 import getStackScale from 'utils/getStackScale';
-import { Data, TooltipData } from 'src/types';
+import { Data, Index, TooltipData } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
 import CustomTooltip from './CustomTooltip';
 import getXScale from 'utils/getXScale';
@@ -17,7 +16,7 @@ import * as styles from './BarStacksChart.styles';
 
 interface Props {
   data: Data;
-  index: string;
+  index: Index;
 }
 
 const BarStacksChart: React.FC<Props> = ({ data, index }) => {

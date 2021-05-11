@@ -11,6 +11,7 @@ import {
   Accessor,
   Data,
   Datum,
+  Index,
   Keys,
   TooltipData,
 } from 'src/types';
@@ -20,7 +21,7 @@ export interface Props {
   accessor: Accessor;
   data: Data;
   hideTooltip?: UseTooltipParams<TooltipData>['hideTooltip'];
-  index: string;
+  index: Index;
   offset?: 'auto' | 'expand';
   showTooltip?: UseTooltipParams<TooltipData>['showTooltip'];
 }

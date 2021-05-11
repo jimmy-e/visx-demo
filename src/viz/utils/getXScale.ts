@@ -1,10 +1,10 @@
 import { scaleBand } from '@visx/scale';
-import { BandScale, Config, Data } from 'src/types';
+import { BandScale, Config, Data, Index } from 'src/types';
 import getValue from './getValue';
 
 interface Props {
   data: Data;
-  index: string;
+  index: Index;
   xMax: Config['dimensions']['xMax'];
 }
 

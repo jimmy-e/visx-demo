@@ -1,10 +1,10 @@
 import { scaleLinear } from '@visx/scale';
-import { Config, Data, LinearScale } from 'src/types';
+import { Config, Data, Index, LinearScale } from 'src/types';
 import getKeys from 'utils/getKeys';
 
 interface Props {
   data: Data;
-  index: string;
+  index: Index;
   yMax: Config['dimensions']['yMax'];
 }
 

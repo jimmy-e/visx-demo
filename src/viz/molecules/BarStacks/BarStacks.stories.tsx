@@ -1,6 +1,6 @@
 import React from 'react';
 import cityTemperatures from '__fixtures__/cityTemperatures';
-import { CSF, Story, StorySection, StoryTemplate } from 'storybook/StoryTemplate';
+import { CSF, Resizable, Story, StorySection, StoryTemplate } from 'storybook/StoryTemplate';
 import { getDate } from 'organisms/BarStacksChart/utils';
 import BarStacksComponent, { Props } from './BarStacks';
 
@@ -20,9 +20,11 @@ const expandArgs: Props = {
 export const BarStacks: Story = () => (
   <StoryTemplate title="Bar Stacks">
     <StorySection title="Default">
-      <svg height={400} width={400}>
-        <BarStacksComponent {...defaultArgs} />
-      </svg>
+      <Resizable>
+        <svg height={400} width={400}>
+          <BarStacksComponent {...defaultArgs} />
+        </svg>
+      </Resizable>
     </StorySection>
     <StorySection title="Offset">
       <h1>Auto</h1>

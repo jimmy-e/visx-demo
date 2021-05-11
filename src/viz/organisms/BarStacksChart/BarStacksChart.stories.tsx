@@ -1,7 +1,7 @@
 import React from 'react';
 import { ParentSize } from '@visx/responsive';
 import cityTemperatures from '__fixtures__/cityTemperatures';
-import { CSF, Resizable, Story, StorySection, StoryTemplate } from 'storybook/StoryTemplate';
+import { CSF, Resizable, Story, StoryBlock, StorySection, StoryTemplate } from 'storybook/StoryTemplate';
 import BarStacksComponent from './BarStacksChart';
 
 export default CSF('organisms');
@@ -9,7 +9,7 @@ export default CSF('organisms');
 export const BarStacksChart: Story = () => (
   <StoryTemplate title="Bar Stacks Chart">
     <StorySection title="Default">
-      <div style={{ height: '400px', width: '400px' }}>
+      <StoryBlock>
         <ParentSize>
           {
             ({height, width}) => (
@@ -22,7 +22,7 @@ export const BarStacksChart: Story = () => (
             )
           }
         </ParentSize>
-      </div>
+      </StoryBlock>
     </StorySection>
     <StorySection title="Resizable">
       <Resizable>

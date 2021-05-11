@@ -6,11 +6,9 @@ export interface Datum {
 
 export type Keys = string[];
 
-export type Index = string;
-
 export interface Payload {
   data: Data;
   meta: {
-    index: Index;
+    index: string;
   };
 }

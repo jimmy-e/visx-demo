@@ -17,6 +17,7 @@ export default (data: Data, index: string, yMax: number): LinearScale => {
 
   const yScale = scaleLinear<number>({
     domain: [0, Math.max(...values)],
+    // domain: [0, 1],
     nice: true,
   });
 

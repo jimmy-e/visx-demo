@@ -2,11 +2,13 @@ import { scaleBand } from '@visx/scale';
 import { BandScale, Config, Data } from 'src/types';
 import getValue from './getValue';
 
-export default (
-  data: Data,
-  index: string,
-  xMax: Config['dimensions']['xMax'],
-): BandScale => {
+interface Props {
+  data: Data;
+  index: string;
+  xMax: Config['dimensions']['xMax'];
+}
+
+export default ({ data, index, xMax }: Props): BandScale => {
   const xScale = scaleBand<string>({
     domain: data.map((datum) => getValue(datum, index)),
     padding: 0.2,

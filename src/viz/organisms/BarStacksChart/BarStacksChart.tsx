@@ -23,7 +23,9 @@ interface Props {
 const BarStacksChart: React.FC<Props> = ({ data, index }) => {
   const { config } = useConfigContext();
 
-  const xScale = getXScale(data, index, config.dimensions.xMax);
+  const { xMax, yMax } = config.dimensions;
+
+  const xScale = getXScale({ data, index, xMax });
   const yScale = getYScale(data, index, config.dimensions.yMax);
   const stackScale = getStackScale(config.theme.colors, data, getKeys(data, index));
 

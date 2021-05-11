@@ -41,9 +41,10 @@ const BarStacks: React.FC<Props> = ({
   }, [])
 
   const { xMax, yMax } = config.dimensions;
+  const { colors } = config.theme;
 
   // ToDo: for some reason, moving this into `useEffect` causes problems.
-  const stackScale = getStackScale(config.theme.colors, data, getKeys(data, index));
+  const stackScale = getStackScale({ colors, data, index });
   const xScale = getXScale({ data, index, xMax });
   const yScale = getYScale({ data, index, yMax });
 

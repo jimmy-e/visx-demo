@@ -24,10 +24,11 @@ const BarStacksChart: React.FC<Props> = ({ data, index }) => {
   const { config } = useConfigContext();
 
   const { xMax, yMax } = config.dimensions;
+  const { colors } = config.theme;
 
   const xScale = getXScale({ data, index, xMax });
   const yScale = getYScale({ data, index, yMax });
-  const stackScale = getStackScale(config.theme.colors, data, getKeys(data, index));
+  const stackScale = getStackScale({ colors, data, index });
 
   const {
     tooltipOpen,

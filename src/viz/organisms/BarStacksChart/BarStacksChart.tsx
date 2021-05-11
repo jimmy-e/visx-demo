@@ -51,7 +51,7 @@ const BarStacksChart: React.FC<Props> = ({ data, height, index, width }) => {
     <div style={styles.containerStyle}>
       <svg ref={containerRef} height={height} width={width}>
         <Background height={height} width={width} />
-        <Grid height={height} width={width} xScale={xScale} yScale={yScale} />
+        <Grid height={yMax} width={width} xScale={xScale} yScale={yScale} />
         <BarStacks
           accessor={getDate}
           data={data}

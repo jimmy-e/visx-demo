@@ -45,7 +45,7 @@ const BarStacks: React.FC<Props> = ({
   // ToDo: for some reason, moving this into `useEffect` causes problems.
   const stackScale = getStackScale(config.theme.colors, data, getKeys(data, index));
   const xScale = getXScale({ data, index, xMax });
-  const yScale = getYScale(data, index, config.dimensions.yMax);
+  const yScale = getYScale({ data, index, yMax });
 
   return (
     <Group top={config.dimensions.margin.top}>

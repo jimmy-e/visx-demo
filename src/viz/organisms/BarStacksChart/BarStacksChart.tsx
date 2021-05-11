@@ -26,7 +26,7 @@ const BarStacksChart: React.FC<Props> = ({ data, index }) => {
   const { xMax, yMax } = config.dimensions;
 
   const xScale = getXScale({ data, index, xMax });
-  const yScale = getYScale(data, index, config.dimensions.yMax);
+  const yScale = getYScale({ data, index, yMax });
   const stackScale = getStackScale(config.theme.colors, data, getKeys(data, index));
 
   const {

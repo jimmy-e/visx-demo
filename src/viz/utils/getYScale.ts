@@ -1,8 +1,14 @@
 import { scaleLinear } from '@visx/scale';
-import { Data, LinearScale } from 'src/types';
+import { Config, Data, LinearScale } from 'src/types';
 import getKeys from 'utils/getKeys';
 
-export default (data: Data, index: string, yMax: number): LinearScale => {
+interface Props {
+  data: Data;
+  index: string;
+  yMax: Config['dimensions']['yMax'];
+}
+
+export default ({ data, index, yMax }: Props): LinearScale => {
   const keys = getKeys(data, index);
 
   // ToDo: I could probably come up with better parameter names

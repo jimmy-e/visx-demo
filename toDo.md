@@ -1,5 +1,4 @@
 * add ability to rotate and expand bar stacks
-* work on supporting offset
 * abstract accessors
 * abstract keys
 * abstract scales

@@ -1,4 +1,3 @@
-* make height and width common types
 * use withParent
 
 * add ability to rotate and expand bar stacks

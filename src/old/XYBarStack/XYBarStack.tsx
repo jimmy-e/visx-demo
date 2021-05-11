@@ -5,7 +5,7 @@ import {
   BarSeries as StaticBarSeries,
   BarStack as StaticBarStack,
 } from '@visx/xychart';
-import { Accessors, Data, IsAnimated, Offset } from 'organisms/XYChart/types';
+import { Accessors, Data, IsAnimated, Offset } from '../XYChart/types';
 
 export interface Props {
   accessors: Accessors;

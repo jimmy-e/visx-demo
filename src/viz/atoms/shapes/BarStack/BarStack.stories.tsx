@@ -17,6 +17,6 @@ const BarStackStory: Story<Props> = (args) => (
 export const BarStack = BarStackStory.bind({});
 BarStack.args = {
   accessor: getDate,
-  data: [cityTemperatures[0]],
+  data: [cityTemperatures.data[0]],
   index: 'date',
 };

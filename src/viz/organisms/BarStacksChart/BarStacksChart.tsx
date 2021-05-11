@@ -6,7 +6,7 @@ import BarStacks from 'molecules/BarStacks/BarStacks';
 import Grid from 'atoms/tools/Grid/Grid';
 import Tooltip from 'tools/Tooltip/Tooltip';
 import getStackScale from 'utils/getStackScale';
-import { Data, Index, TooltipData } from 'src/types';
+import { Payload, TooltipData } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
 import CustomTooltip from './CustomTooltip';
 import getXScale from 'utils/getXScale';
@@ -15,21 +15,20 @@ import { getDate } from './utils';
 import * as styles from './BarStacksChart.styles';
 
 interface Props {
-  data: Data;
   height: number;
-  index: Index;
+  payload: Payload;
   width: number;
 }
 
-const BarStacksChart: React.FC<Props> = ({ data, height, index, width }) => {
+const BarStacksChart: React.FC<Props> = ({ height, payload, width }) => {
   const { config } = useConfigContext();
 
   const top = height - 100;
   const yMax = top - config.margin.top;
 
-  const xScale = getXScale({ data, index, xMax: width });
-  const yScale = getYScale({ data, index, offset: 'auto', yMax });
-  const stackScale = getStackScale({ colors: config.theme.colors, data, index });
+  const xScale = getXScale({ data: payload.data, index: payload.meta.index, xMax: width });
+  const yScale = getYScale({ data: payload.data, index: payload.meta.index, offset: 'auto', yMax });
+  const stackScale = getStackScale({ colors: config.theme.colors, data: payload.data, index: payload.meta.index });
 
   const {
     tooltipOpen,
@@ -54,10 +53,10 @@ const BarStacksChart: React.FC<Props> = ({ data, height, index, width }) => {
         <Grid height={yMax} width={width} xScale={xScale} yScale={yScale} />
         <BarStacks
           accessor={getDate}
-          data={data}
+          data={payload.data}
           height={height}
           hideTooltip={hideTooltip}
-          index="date"
+          index={payload.meta.index}
           showTooltip={showTooltip}
           width={width}
         />

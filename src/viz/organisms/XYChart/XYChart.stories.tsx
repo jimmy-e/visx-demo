@@ -90,7 +90,7 @@ XYChart.args = {
   annotationType: 'circle',
   barType: undefined,
   curveType: 'linear',
-  data: cityTemperatures,
+  data: cityTemperatures.data,
   editAnnotationLabelPosition: false,
   glyphComponent: undefined,
   hasFewerDatum: false,

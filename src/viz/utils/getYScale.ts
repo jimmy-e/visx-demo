@@ -1,12 +1,12 @@
 import { scaleLinear } from '@visx/scale';
-import { Config, Data, Index, Offset, LinearScale } from 'src/types';
+import { Data, Offset, LinearScale } from 'src/types';
 import getKeys from 'utils/getKeys';
 
 interface Props {
   data: Data;
-  index: Index;
+  index: string;
   offset: Offset;
-  yMax: Config['dimensions']['yMax'];
+  yMax: number;
 }
 
 export default ({ data, index, offset, yMax }: Props): LinearScale => {

@@ -11,9 +11,9 @@ const width = 400;
 
 const defaultArgs: Props = {
   accessor: getDate,
-  data: cityTemperatures,
+  data: cityTemperatures.data,
   height,
-  index: 'date',
+  index: cityTemperatures.meta.index,
   width,
 };
 

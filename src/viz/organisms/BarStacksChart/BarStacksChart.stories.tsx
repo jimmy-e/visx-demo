@@ -14,9 +14,8 @@ export const BarStacksChart: Story = () => (
           {
             ({height, width}) => (
               <BarStacksComponent
-                data={cityTemperatures}
                 height={height}
-                index="date"
+                payload={cityTemperatures}
                 width={width}
               />
             )
@@ -30,9 +29,8 @@ export const BarStacksChart: Story = () => (
           {
             ({height, width}) => (
               <BarStacksComponent
-                data={cityTemperatures}
                 height={height}
-                index="date"
+                payload={cityTemperatures}
                 width={width}
               />
             )

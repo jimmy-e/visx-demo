@@ -12,14 +12,14 @@ interface Props {
 
 const Grid: React.FC<Props> = ({ height, width, xScale, yScale }) => {
   const { config } = useConfigContext();
-  const { margin } = config.dimensions;
+  const { margin, theme } = config;
 
   return (
     <VisxGrid
       height={height}
       left={margin.left}
-      stroke={config.theme.grid.stroke}
-      strokeOpacity={config.theme.grid.strokeOpacity}
+      stroke={theme.grid.stroke}
+      strokeOpacity={theme.grid.strokeOpacity}
       top={margin.top}
       width={width}
       xOffset={xScale.bandwidth() / 2}

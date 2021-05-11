@@ -18,6 +18,6 @@ export const legendStyle = {
   fontSize: '14px',
   justifyContent: 'center',
   position: 'absolute',
-  top: config.dimensions.margin.top / 2 - 10,
+  top: config.margin.top / 2 - 10,
   width: '100%',
 };

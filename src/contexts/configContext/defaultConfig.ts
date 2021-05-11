@@ -1,21 +1,11 @@
 import { Config } from 'src/types';
 
-const measurements = {
-  height: 500,
-  width: 500,
+const config: Config = {
   margin: {
     bottom: 0,
     left: 0,
     right: 0,
     top: 40,
-  },
-};
-
-const config: Config = {
-  dimensions: {
-    ...measurements,
-    xMax: measurements.width,
-    yMax: measurements.height - measurements.margin.top - 100,
   },
   theme: {
     background: {

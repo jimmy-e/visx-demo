@@ -1,15 +1,9 @@
 export interface Config {
-  dimensions: {
-    height: number;
-    width: number;
-    xMax: number;
-    yMax: number;
-    margin: {
-      bottom: number;
-      left: number;
-      right: number;
-      top: number;
-    };
+  margin: {
+    bottom: number;
+    left: number;
+    right: number;
+    top: number;
   };
   theme: {
     background: {

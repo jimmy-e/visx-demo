@@ -49,10 +49,10 @@ const BarStacks: React.FC<Props> = ({
   // ToDo: for some reason, moving this into `useEffect` causes problems.
   const stackScale = getStackScale({ colors: config.theme.colors, data, index });
   const xScale = getXScale({ data, index, xMax: width });
-  const yScale = getYScale({ data, index, offset, yMax: height - config.dimensions.margin.top - 100 });
+  const yScale = getYScale({ data, index, offset, yMax: height - config.margin.top - 100 });
 
   return (
-    <Group top={config.dimensions.margin.top}>
+    <Group top={config.margin.top}>
       <VisxBarStack<Datum, string>
         color={stackScale}
         data={data}

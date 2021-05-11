@@ -1,4 +1,3 @@
-* convert temperatureScale to getYScale and delete getScales.ts
 * add ability to rotate and expand bar stacks
 * abstract accessors
 * abstract keys

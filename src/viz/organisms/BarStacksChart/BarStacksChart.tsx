@@ -16,18 +16,17 @@ import * as styles from './BarStacksChart.styles';
 
 interface Props {
   data: Data;
+  height: number;
   index: Index;
+  width: number;
 }
 
-const BarStacksChart: React.FC<Props> = ({ data, index }) => {
+const BarStacksChart: React.FC<Props> = ({ data, height, index, width }) => {
   const { config } = useConfigContext();
 
-  const { xMax, yMax } = config.dimensions;
-  const { colors } = config.theme;
-
-  const xScale = getXScale({ data, index, xMax });
-  const yScale = getYScale({ data, index, yMax });
-  const stackScale = getStackScale({ colors, data, index });
+  const xScale = getXScale({ data, index, xMax: width });
+  const yScale = getYScale({ data, index, offset: 'auto', yMax: height - config.dimensions.margin.top - 100 });
+  const stackScale = getStackScale({ colors: config.theme.colors, data, index });
 
   const {
     tooltipOpen,
@@ -45,8 +44,6 @@ const BarStacksChart: React.FC<Props> = ({ data, index }) => {
     scroll: true,
   });
 
-  const { height, width } = config.dimensions;
-
   return (
     <div style={styles.containerStyle}>
       <svg ref={containerRef} width={width} height={height}>
@@ -55,9 +52,11 @@ const BarStacksChart: React.FC<Props> = ({ data, index }) => {
         <BarStacks
           accessor={getDate}
           data={data}
+          height={height}
           hideTooltip={hideTooltip}
           index="date"
           showTooltip={showTooltip}
+          width={width}
         />
         <AxisBottom xScale={xScale} />
       </svg>

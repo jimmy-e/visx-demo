@@ -6,12 +6,16 @@ import BarStacksComponent, { Props } from './BarStacks';
 
 export default CSF('molecules');
 
+// ToDo: remove these primitives
+const height = 400;
+const width = 400;
+
 const defaultArgs: Props = {
   accessor: getDate,
   data: cityTemperatures,
-  height: 400,
+  height,
   index: 'date',
-  width: 400,
+  width,
 };
 
 const expandArgs: Props = {
@@ -23,18 +27,18 @@ export const BarStacks: Story = () => (
   <StoryTemplate title="Bar Stacks">
     <StorySection title="Default">
       <Resizable>
-        <svg height={400} width={400}>
+        <svg height={height} width={width}>
           <BarStacksComponent {...defaultArgs} />
         </svg>
       </Resizable>
     </StorySection>
     <StorySection title="Offset">
       <h1>Auto</h1>
-      <svg height={400} width={400}>
+      <svg height={height} width={width}>
         <BarStacksComponent {...defaultArgs} />
       </svg>
       <h1>Expand</h1>
-      <svg height={400} width={400}>
+      <svg height={height} width={width}>
         <BarStacksComponent {...expandArgs} />
       </svg>
     </StorySection>

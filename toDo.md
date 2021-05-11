@@ -9,3 +9,7 @@
 * add stories for shape/bar
 * add withParentSize wrapper
 * add lazy loading
+
+## Issues to be debugged
+* BarStacks.tsx
+  * scale configurations cannot be put into useEffect?

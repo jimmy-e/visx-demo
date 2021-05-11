@@ -9,7 +9,9 @@ export default CSF('molecules');
 const defaultArgs: Props = {
   accessor: getDate,
   data: cityTemperatures,
+  height: 400,
   index: 'date',
+  width: 400,
 };
 
 const expandArgs: Props = {

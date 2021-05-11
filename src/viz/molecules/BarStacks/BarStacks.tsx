@@ -21,19 +21,23 @@ import { useConfigContext } from 'contexts/configContext/configContext';
 export interface Props {
   accessor: Accessor;
   data: Data;
+  height: number;
   hideTooltip?: UseTooltipParams<TooltipData>['hideTooltip'];
   index: Index;
   offset?: Offset;
   showTooltip?: UseTooltipParams<TooltipData>['showTooltip'];
+  width: number;
 }
 
 const BarStacks: React.FC<Props> = ({
   accessor,
   data,
+  height,
   hideTooltip,
   index,
   offset = 'auto',
   showTooltip,
+  width,
 }) => {
   const { config } = useConfigContext();
   const [keys, setKeys] = useState<Keys>();
@@ -42,13 +46,10 @@ const BarStacks: React.FC<Props> = ({
     setKeys(getKeys(data, index));
   }, [])
 
-  const { xMax, yMax } = config.dimensions;
-  const { colors } = config.theme;
-
   // ToDo: for some reason, moving this into `useEffect` causes problems.
-  const stackScale = getStackScale({ colors, data, index });
-  const xScale = getXScale({ data, index, xMax });
-  const yScale = getYScale({ data, index, offset, yMax });
+  const stackScale = getStackScale({ colors: config.theme.colors, data, index });
+  const xScale = getXScale({ data, index, xMax: width });
+  const yScale = getYScale({ data, index, offset, yMax: height - config.dimensions.margin.top - 100 });
 
   return (
     <Group top={config.dimensions.margin.top}>

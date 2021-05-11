@@ -5,21 +5,21 @@ import { useConfigContext } from 'contexts/configContext/configContext';
 import { BandScale } from 'src/types';
 
 interface Props {
+  top: number;
   xScale: BandScale;
 }
 
-const AxisBottom: React.FC<Props> = ({ xScale }) => {
+const AxisBottom: React.FC<Props> = ({ top, xScale }) => {
   const { config } = useConfigContext();
-  const { yMax } = config.dimensions;
   const { colorThree } = config.theme.colors;
 
   return (
     <VisxAxisBottom
-      top={yMax + config.dimensions.margin.top}
       scale={xScale}
-      tickFormat={formatDate}
       stroke={colorThree}
+      tickFormat={formatDate}
       tickStroke={colorThree}
+      top={top}
       tickLabelProps={() => ({
         fill: colorThree,
         fontSize: 11,

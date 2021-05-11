@@ -24,8 +24,11 @@ interface Props {
 const BarStacksChart: React.FC<Props> = ({ data, height, index, width }) => {
   const { config } = useConfigContext();
 
+  const top = height - 100;
+  const yMax = top - config.dimensions.margin.top;
+
   const xScale = getXScale({ data, index, xMax: width });
-  const yScale = getYScale({ data, index, offset: 'auto', yMax: height - config.dimensions.margin.top - 100 });
+  const yScale = getYScale({ data, index, offset: 'auto', yMax });
   const stackScale = getStackScale({ colors: config.theme.colors, data, index });
 
   const {
@@ -46,9 +49,9 @@ const BarStacksChart: React.FC<Props> = ({ data, height, index, width }) => {
 
   return (
     <div style={styles.containerStyle}>
-      <svg ref={containerRef} width={width} height={height}>
-        <Background />
-        <Grid xScale={xScale} yScale={yScale} />
+      <svg ref={containerRef} height={height} width={width}>
+        <Background height={height} width={width} />
+        <Grid height={height} width={width} xScale={xScale} yScale={yScale} />
         <BarStacks
           accessor={getDate}
           data={data}
@@ -58,7 +61,10 @@ const BarStacksChart: React.FC<Props> = ({ data, height, index, width }) => {
           showTooltip={showTooltip}
           width={width}
         />
-        <AxisBottom xScale={xScale} />
+        <AxisBottom
+          top={top}
+          xScale={xScale}
+        />
       </svg>
       <Tooltip
         TooltipInPortal={TooltipInPortal}

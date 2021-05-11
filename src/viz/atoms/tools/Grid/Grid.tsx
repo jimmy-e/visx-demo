@@ -4,25 +4,27 @@ import { useConfigContext } from 'contexts/configContext/configContext';
 import { BandScale, LinearScale } from 'src/types';
 
 interface Props {
+  height: number;
+  width: number;
   xScale: BandScale;
   yScale: LinearScale;
 }
 
-const Grid: React.FC<Props> = ({ xScale, yScale }) => {
+const Grid: React.FC<Props> = ({ height, width, xScale, yScale }) => {
   const { config } = useConfigContext();
-  const { margin, xMax, yMax } = config.dimensions;
+  const { margin } = config.dimensions;
 
   return (
     <VisxGrid
-      top={margin.top}
+      height={height}
       left={margin.left}
-      xScale={xScale}
-      yScale={yScale}
-      width={xMax}
-      height={yMax}
       stroke={config.theme.grid.stroke}
       strokeOpacity={config.theme.grid.strokeOpacity}
+      top={margin.top}
+      width={width}
       xOffset={xScale.bandwidth() / 2}
+      xScale={xScale}
+      yScale={yScale}
     />
   );
 }

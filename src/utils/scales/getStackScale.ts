@@ -1,6 +1,6 @@
 import { scaleOrdinal } from '@visx/scale';
 import { Config, Data, OrdinalScale } from 'src/types';
-import getKeys from 'utils/getKeys';
+import getKeys from 'utils/keys/getKeys';
 
 interface Props {
   colors: Config['theme']['colors'];

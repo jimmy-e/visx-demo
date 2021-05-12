@@ -1,6 +1,6 @@
 import { scaleLinear } from '@visx/scale';
 import { Data, Offset, LinearScale } from 'src/types';
-import getKeys from 'utils/getKeys';
+import getKeys from 'utils/keys/getKeys';
 
 interface Props {
   data: Data;

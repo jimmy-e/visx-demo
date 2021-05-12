@@ -5,12 +5,12 @@ import Background from 'atoms/tools/Background/Background';
 import BarStacks from 'molecules/BarStacks/BarStacks';
 import Grid from 'atoms/tools/Grid/Grid';
 import Tooltip from 'tools/Tooltip/Tooltip';
-import getStackScale from 'utils/getStackScale';
+import getStackScale from 'utils/scales/getStackScale';
+import getXScale from 'utils/scales/getXScale';
+import getYScale from 'utils/scales/getYScale';
 import { Payload, TooltipData } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
 import CustomTooltip from './CustomTooltip';
-import getXScale from 'utils/getXScale';
-import getYScale from 'utils/getYScale';
 import { getDate } from './utils';
 import * as styles from './BarStacksChart.styles';
 

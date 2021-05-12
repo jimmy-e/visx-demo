@@ -3,10 +3,10 @@ import { BarStack as VisxBarStack } from '@visx/shape';
 import { Group } from '@visx/group';
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
 import BarStack from 'shapes/BarStack/BarStack';
-import getKeys from 'utils/getKeys';
-import getStackScale from 'utils/getStackScale';
-import getXScale from 'utils/getXScale';
-import getYScale from 'utils/getYScale';
+import getKeys from 'utils/keys/getKeys';
+import getStackScale from 'utils/scales/getStackScale';
+import getXScale from 'utils/scales/getXScale';
+import getYScale from 'utils/scales/getYScale';
 import {
   Accessor,
   Data,

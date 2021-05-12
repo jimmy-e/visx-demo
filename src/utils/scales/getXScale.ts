@@ -1,6 +1,5 @@
 import { scaleBand } from '@visx/scale';
 import { BandScale, Data } from 'src/types';
-import getValue from './getValue';
 
 interface Props {
   data: Data;
@@ -10,7 +9,7 @@ interface Props {
 
 export default ({ data, index, xMax }: Props): BandScale => {
   const xScale = scaleBand<string>({
-    domain: data.map((datum) => getValue(datum, index)),
+    domain: data.map((datum) => String(datum[index])),
     padding: 0.2,
   });
 

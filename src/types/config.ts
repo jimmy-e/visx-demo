@@ -1,3 +1,25 @@
+import { ShapeType } from './shapes';
+
+type Shapes = Record<ShapeType, { colors: string[]; }>
+
+interface Theme {
+  background: {
+    backgroundColor: string;
+    radius: number;
+  };
+  colors: Record<string, string>;
+  grid: {
+    stroke: string;
+    strokeOpacity: number;
+  };
+  shapes: Shapes;
+  tooltip: {
+    background: string;
+    color: string;
+    minWidth: number;
+  };
+}
+
 export interface Config {
   margin: {
     bottom: number;
@@ -5,30 +27,5 @@ export interface Config {
     right: number;
     top: number;
   };
-  theme: {
-    background: {
-      backgroundColor: string;
-      radius: number;
-    };
-    colors: {
-      barStacks: {
-        colorOne: string;
-        colorTwo: string;
-      };
-      default: {
-        colorOne: string;
-        colorTwo: string;
-        colorThree: string;
-      };
-    };
-    grid: {
-      stroke: string;
-      strokeOpacity: number;
-    };
-    tooltip: {
-      background: string;
-      color: string;
-      minWidth: number;
-    };
-  };
+  theme: Theme;
 }

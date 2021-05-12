@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BarStack as VisxBarStack } from '@visx/shape';
 import { Group } from '@visx/group';
 import { UseTooltipParams } from '@visx/tooltip/lib/hooks/useTooltip';
 import BarStack from 'shapes/BarStack/BarStack';
-import getKeys from 'utils/keys/getKeys';
 import getStackScale from 'utils/scales/getStackScale';
 import getXScale from 'utils/scales/getXScale';
 import getYScale from 'utils/scales/getYScale';
 import {
   Datum,
-  Keys,
   Offset,
   Payload,
+  ShapeType,
   TooltipData,
 } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
@@ -34,17 +33,16 @@ const BarStacks: React.FC<Props> = ({
   width,
 }) => {
   const { config } = useConfigContext();
-  const [keys, setKeys] = useState<Keys>();
-
   const { data } = payload;
   const { index } = payload.meta;
 
-  useEffect(() => {
-    setKeys(getKeys(data, index));
-  }, [])
-
   // ToDo: for some reason, moving this into `useEffect` causes problems.
-  const stackScale = getStackScale({ colors: config.theme.colors.barStacks, data, index });
+  const colors = config.theme.shapes[ShapeType.BAR_STACKS].colors.map((color) => config.theme.colors[color]);
+  const stackScale = getStackScale({
+    colors,
+    data,
+    index
+  });
   const xScale = getXScale({ data, index, xMax: width });
   const yScale = getYScale({ data, index, offset, yMax: height - config.margin.top - 100 });
   const accessor = (datum: Datum) => datum[index];
@@ -60,21 +58,16 @@ const BarStacks: React.FC<Props> = ({
         xScale={xScale}
         yScale={yScale}
       >
-        {barStacks => {
-          console.log('**************');
-          console.log(barStacks);
-          console.log('**************');
-          return (
-            barStacks.map(barStack =>
-              <BarStack
-                key={`bar-stack-${barStack.index}`}
-                barStack={barStack}
-                hideTooltip={hideTooltip}
-                showTooltip={showTooltip}
-              />
-            )
+        {barStacks =>
+          barStacks.map(barStack =>
+            <BarStack
+              key={`bar-stack-${barStack.index}`}
+              barStack={barStack}
+              hideTooltip={hideTooltip}
+              showTooltip={showTooltip}
+            />
           )
-        }}
+        }
       </VisxBarStack>
     </Group>
   );

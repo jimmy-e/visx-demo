@@ -10,5 +10,6 @@ export interface Payload {
   data: Data;
   meta: {
     index: string;
+    keys: Record<string, { label: string }>;
   };
 }

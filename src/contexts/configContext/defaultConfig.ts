@@ -13,19 +13,21 @@ const config: Config = {
       radius: 14,
     },
     colors: {
-      barStacks: {
-        colorOne: '#E0E6EB',
-        colorTwo: '#21B59A',
-      },
-      default: {
-        colorOne: '#013B6F',
-        colorTwo: '#21B59A',
-        colorThree: '#FCCAA7',
-      },
+      black: '#343741',
+      blue: '#013B6F',
+      brown: '#FCCAA7',
+      green: '#21B59A',
+      grey: '#E0E6EB',
+      white: '#FFFFFF',
     },
     grid: {
       stroke: '#000000',
       strokeOpacity: 0.1,
+    },
+    shapes: {
+      BAR_STACKS: {
+        colors: ['grey', 'green']
+      },
     },
     tooltip: {
       background: '#000000',

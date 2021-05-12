@@ -8,35 +8,36 @@ import getStackScale from 'utils/scales/getStackScale';
 import getXScale from 'utils/scales/getXScale';
 import getYScale from 'utils/scales/getYScale';
 import {
-  Data,
   Datum,
   Keys,
   Offset,
+  Payload,
   TooltipData,
 } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
 
 export interface Props {
-  data: Data;
   height: number;
   hideTooltip?: UseTooltipParams<TooltipData>['hideTooltip'];
-  index: string;
   offset?: Offset;
+  payload: Payload;
   showTooltip?: UseTooltipParams<TooltipData>['showTooltip'];
   width: number;
 }
 
 const BarStacks: React.FC<Props> = ({
-  data,
   height,
   hideTooltip,
-  index,
   offset = 'auto',
+  payload,
   showTooltip,
   width,
 }) => {
   const { config } = useConfigContext();
   const [keys, setKeys] = useState<Keys>();
+
+  const { data } = payload;
+  const { index, keyOrder } = payload.meta;
 
   useEffect(() => {
     setKeys(getKeys(data, index));
@@ -54,6 +55,7 @@ const BarStacks: React.FC<Props> = ({
         color={stackScale}
         data={data}
         keys={keys}
+        // keys={keyOrder}
         offset={offset === 'auto' ? 'diverging' : offset}
         x={accessor}
         xScale={xScale}

@@ -1,4 +1,4 @@
-import { Config } from 'src/types';
+import { Config, ShapeType } from 'src/types';
 
 const config: Config = {
   margin: {
@@ -25,8 +25,8 @@ const config: Config = {
       strokeOpacity: 0.1,
     },
     shapes: {
-      BAR_STACKS: {
-        colors: ['grey', 'green']
+      [ShapeType.BAR_STACKS]: {
+        colors: ['green', 'grey']
       },
     },
     tooltip: {

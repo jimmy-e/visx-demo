@@ -8,7 +8,7 @@ import Tooltip from 'tools/Tooltip/Tooltip';
 import getStackScale from 'utils/scales/getStackScale';
 import getXScale from 'utils/scales/getXScale';
 import getYScale from 'utils/scales/getYScale';
-import { Payload, TooltipData } from 'src/types';
+import {Payload, ShapeType, TooltipData} from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
 import CustomTooltip from './CustomTooltip';
 import * as styles from './BarStacksChart.styles';
@@ -35,8 +35,9 @@ const BarStacksChart: React.FC<Props> = ({ height, payload, width }) => {
     index: payload.meta.index,
     offset: 'auto', yMax,
   });
+  const colors = config.theme.shapes[ShapeType.BAR_STACKS].colors.map((color) => config.theme.colors[color]);
   const stackScale = getStackScale({
-    colors: config.theme.colors.default,
+    colors,
     data: payload.data,
     index: payload.meta.index,
   });

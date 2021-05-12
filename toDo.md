@@ -1,9 +1,7 @@
 * use withParent
 
-keys ... allId, byId
-
-remove getKeys util, in favor of allIds keys by payload
-
+* remove getKeys util, in favor of allIds keys by payload
+* make util to get color strings from shape colors, etc.
 * remove onClick for bar stack
   * add offset to payload as well as shape
 * add ability to rotate and expand bar stacks

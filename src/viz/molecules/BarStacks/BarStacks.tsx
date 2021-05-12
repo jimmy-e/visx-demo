@@ -37,8 +37,9 @@ const BarStacks: React.FC<Props> = ({
   const { index } = payload.meta;
 
   // ToDo: for some reason, moving this into `useEffect` causes problems.
+  const colors = config.theme.shapes[ShapeType.BAR_STACKS].colors.map((color) => config.theme.colors[color]);
   const stackScale = getStackScale({
-    colors: config.theme.shapes[ShapeType.BAR_STACKS].colors,
+    colors,
     data,
     index
   });

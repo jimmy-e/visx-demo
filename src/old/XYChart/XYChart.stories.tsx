@@ -5,7 +5,7 @@ import { XYChartProps } from './types';
 import cityTemperatures from '__fixtures__/cityTemperatures';
 
 export default CSF(
-  'old/XYChart',
+  'Old',
   {
     argTypes: {
       annotationKey: {

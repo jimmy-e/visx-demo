@@ -9,9 +9,8 @@ const height = 400;
 const width = 400;
 
 const defaultArgs: Props = {
-  data: streamEnrichment.data,
   height,
-  index: streamEnrichment.meta.index,
+  payload: streamEnrichment,
   width,
 };
 

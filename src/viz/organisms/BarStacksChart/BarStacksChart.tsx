@@ -63,10 +63,9 @@ const BarStacksChart: React.FC<Props> = ({ height, payload, width }) => {
         <Background height={height} width={width} />
         <Grid height={yMax} width={width} xScale={xScale} yScale={yScale} />
         <BarStacks
-          data={payload.data}
           height={height}
           hideTooltip={hideTooltip}
-          index={payload.meta.index}
+          payload={payload}
           showTooltip={showTooltip}
           width={width}
         />

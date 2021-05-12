@@ -14,6 +14,6 @@ export default ({ colors, data, index }: Props): OrdinalScale => {
 
   return scaleOrdinal<string, string>({
     domain: keys,
-    range: [colorOne, colorTwo],
+    range: [colorTwo, colorOne],
   });
 };

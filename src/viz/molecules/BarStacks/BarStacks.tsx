@@ -54,8 +54,7 @@ const BarStacks: React.FC<Props> = ({
       <VisxBarStack<Datum, string>
         color={stackScale}
         data={data}
-        keys={keys}
-        // keys={keyOrder}
+        keys={payload.meta.keys.allIds}
         offset={offset === 'auto' ? 'diverging' : offset}
         x={accessor}
         xScale={xScale}

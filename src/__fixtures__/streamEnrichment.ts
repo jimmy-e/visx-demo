@@ -4,7 +4,7 @@ const streamEnrichment: Payload = {
   meta: {
     index: 'bin',
     keys: {
-      allIds: ['otherStreams', 'enrichedStreams'],
+      allIds: ['enrichedStreams', 'otherStreams'],
       byId: {
         enrichedStreams: {
           label: 'Enriched Streams',

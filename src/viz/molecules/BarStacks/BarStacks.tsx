@@ -59,16 +59,21 @@ const BarStacks: React.FC<Props> = ({
         xScale={xScale}
         yScale={yScale}
       >
-        {barStacks =>
-          barStacks.map(barStack =>
-            <BarStack
-              key={`bar-stack-${barStack.index}`}
-              barStack={barStack}
-              hideTooltip={hideTooltip}
-              showTooltip={showTooltip}
-            />
+        {barStacks => {
+          console.log('**************');
+          console.log(barStacks);
+          console.log('**************');
+          return (
+            barStacks.map(barStack =>
+              <BarStack
+                key={`bar-stack-${barStack.index}`}
+                barStack={barStack}
+                hideTooltip={hideTooltip}
+                showTooltip={showTooltip}
+              />
+            )
           )
-        }
+        }}
       </VisxBarStack>
     </Group>
   );

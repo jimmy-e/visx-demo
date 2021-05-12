@@ -1,7 +1,7 @@
 import React from 'react';
 import cityTemperatures from '__fixtures__/cityTemperatures';
 import { CSF, Story, StorySection, StoryTemplate } from 'storybook/StoryTemplate';
-import { getDate } from 'organisms/BarStacksChart/utils';
+import getDate from 'utils/accessors/getDate';
 import BarStacksComponent, { Props } from './BarStacks';
 
 export default CSF('molecules');

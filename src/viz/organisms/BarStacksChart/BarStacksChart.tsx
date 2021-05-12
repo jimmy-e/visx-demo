@@ -11,7 +11,7 @@ import getYScale from 'utils/scales/getYScale';
 import { Payload, TooltipData } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
 import CustomTooltip from './CustomTooltip';
-import { getDate } from './utils';
+import getDate from 'utils/accessors/getDate';
 import * as styles from './BarStacksChart.styles';
 
 interface Props {

@@ -10,7 +10,9 @@ export interface Payload {
   data: Data;
   meta: {
     index: string;
-    keyOrder: string[];
-    keys: Record<string, { label: string }>;
+    keys: {
+      allIds: string[];
+      byId: Record<string, { label: string }>;
+    };
   };
 }

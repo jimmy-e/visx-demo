@@ -37,7 +37,7 @@ const BarStacks: React.FC<Props> = ({
   const [keys, setKeys] = useState<Keys>();
 
   const { data } = payload;
-  const { index, keyOrder } = payload.meta;
+  const { index } = payload.meta;
 
   useEffect(() => {
     setKeys(getKeys(data, index));

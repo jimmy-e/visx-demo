@@ -3,16 +3,18 @@ import { Payload } from 'src/types';
 const cityTemperatures: Payload = {
   meta: {
     index: 'date',
-    keyOrder: ['newYork', 'sanFrancisco', 'austin'],
     keys: {
-      austin: {
-        label: 'Austin',
-      },
-      newYork: {
-        label: 'New York',
-      },
-      sanFrancisco: {
-        label: 'San Francisco',
+      allIds: ['newYork', 'sanFrancisco', 'austin'],
+      byId: {
+        austin: {
+          label: 'Austin',
+        },
+        newYork: {
+          label: 'New York',
+        },
+        sanFrancisco: {
+          label: 'San Francisco',
+        },
       },
     },
   },

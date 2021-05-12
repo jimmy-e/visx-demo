@@ -3,13 +3,15 @@ import { Payload } from 'src/types';
 const streamEnrichment: Payload = {
   meta: {
     index: 'bin',
-    keyOrder: ['otherStreams', 'enrichedStreams'],
     keys: {
-      enrichedStreams: {
-        label: 'Enriched Streams',
-      },
-      otherStreams: {
-        label: 'Other Streams',
+      allIds: ['otherStreams', 'enrichedStreams'],
+      byId: {
+        enrichedStreams: {
+          label: 'Enriched Streams',
+        },
+        otherStreams: {
+          label: 'Other Streams',
+        },
       },
     },
   },

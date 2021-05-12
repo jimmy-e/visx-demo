@@ -1,6 +1,6 @@
 import React from 'react';
 import { OrdinalScale, TooltipData } from 'src/types';
-import { formatDate } from './utils';
+import formatDate from 'utils/other/formatDate';
 
 interface Props {
   stackScale: OrdinalScale;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { AxisBottom as VisxAxisBottom } from '@visx/axis';
-import { formatDate } from 'organisms/BarStacksChart/utils';
+import formatDate from 'utils/other/formatDate';
 import { useConfigContext } from 'contexts/configContext/configContext';
 import { BandScale } from 'src/types';
 

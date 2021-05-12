@@ -46,7 +46,7 @@ const BarStacks: React.FC<Props> = ({
   const stackScale = getStackScale({ colors: config.theme.colors, data, index });
   const xScale = getXScale({ data, index, xMax: width });
   const yScale = getYScale({ data, index, offset, yMax: height - config.margin.top - 100 });
-  const accessor = (datum: Datum) => datum.date;
+  const accessor = (datum: Datum) => datum[index];
 
   return (
     <Group top={config.margin.top}>

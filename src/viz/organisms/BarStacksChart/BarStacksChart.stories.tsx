@@ -16,8 +16,8 @@ export const BarStacksChart: Story = () => (
             ({height, width}) => (
               <BarStacksComponent
                 height={height}
-                payload={cityTemperatures}
-                // payload={streamEnrichment}
+                // payload={cityTemperatures}
+                payload={streamEnrichment}
                 width={width}
               />
             )

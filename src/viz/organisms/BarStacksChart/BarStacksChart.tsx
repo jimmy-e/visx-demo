@@ -11,7 +11,6 @@ import getYScale from 'utils/scales/getYScale';
 import { Payload, TooltipData } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
 import CustomTooltip from './CustomTooltip';
-import getDate from 'utils/accessors/getDate';
 import * as styles from './BarStacksChart.styles';
 
 interface Props {
@@ -52,7 +51,6 @@ const BarStacksChart: React.FC<Props> = ({ height, payload, width }) => {
         <Background height={height} width={width} />
         <Grid height={yMax} width={width} xScale={xScale} yScale={yScale} />
         <BarStacks
-          accessor={getDate}
           data={payload.data}
           height={height}
           hideTooltip={hideTooltip}

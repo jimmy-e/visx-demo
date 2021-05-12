@@ -1,7 +1,6 @@
 import React from 'react';
 import cityTemperatures from '__fixtures__/cityTemperatures';
 import { CSF, Story, StorySection, StoryTemplate } from 'storybook/StoryTemplate';
-import getDate from 'utils/accessors/getDate';
 import BarStacksComponent, { Props } from './BarStacks';
 
 export default CSF('molecules');
@@ -10,7 +9,6 @@ const height = 400;
 const width = 400;
 
 const defaultArgs: Props = {
-  accessor: getDate,
   data: cityTemperatures.data,
   height,
   index: cityTemperatures.meta.index,

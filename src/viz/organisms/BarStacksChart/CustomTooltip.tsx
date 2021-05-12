@@ -1,6 +1,5 @@
 import React from 'react';
 import { OrdinalScale, TooltipData } from 'src/types';
-import getDate from 'utils/accessors/getDate';
 import { formatDate } from './utils';
 
 interface Props {
@@ -13,6 +12,7 @@ const BarStacksChartTooltip: React.FC<Props> = ({
   tooltipData,
 }) => {
   if (tooltipData) {
+    const date = tooltipData.bar.data.date;
     return (
       <>
         <div style={{ color: stackScale(tooltipData.key) }}>
@@ -20,7 +20,7 @@ const BarStacksChartTooltip: React.FC<Props> = ({
         </div>
         <div>{tooltipData.bar.data[tooltipData.key]}℉</div>
         <div>
-          <small>{formatDate(getDate(tooltipData.bar.data))}</small>
+          <small>{formatDate(date)}</small>
         </div>
       </>
     );

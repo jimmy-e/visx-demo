@@ -8,7 +8,6 @@ import getStackScale from 'utils/scales/getStackScale';
 import getXScale from 'utils/scales/getXScale';
 import getYScale from 'utils/scales/getYScale';
 import {
-  Accessor,
   Data,
   Datum,
   Keys,
@@ -18,7 +17,6 @@ import {
 import { useConfigContext } from 'contexts/configContext/configContext';
 
 export interface Props {
-  accessor: Accessor;
   data: Data;
   height: number;
   hideTooltip?: UseTooltipParams<TooltipData>['hideTooltip'];
@@ -29,7 +27,6 @@ export interface Props {
 }
 
 const BarStacks: React.FC<Props> = ({
-  accessor,
   data,
   height,
   hideTooltip,
@@ -49,6 +46,7 @@ const BarStacks: React.FC<Props> = ({
   const stackScale = getStackScale({ colors: config.theme.colors, data, index });
   const xScale = getXScale({ data, index, xMax: width });
   const yScale = getYScale({ data, index, offset, yMax: height - config.margin.top - 100 });
+  const accessor = (datum: Datum) => datum.date;
 
   return (
     <Group top={config.margin.top}>

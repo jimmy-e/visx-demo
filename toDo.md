@@ -1,5 +1,6 @@
 * use withParent
 
+* remove onClick for bar stack
 * add ability to rotate and expand bar stacks
 * abstract accessors
 * abstract keys

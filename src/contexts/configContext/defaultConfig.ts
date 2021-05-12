@@ -13,6 +13,10 @@ const config: Config = {
       radius: 14,
     },
     colors: {
+      barStacks: {
+        colorOne: '#E0E6EB',
+        colorTwo: '#21B59A',
+      },
       default: {
         colorOne: '#013B6F',
         colorTwo: '#21B59A',

@@ -11,6 +11,10 @@ export interface Config {
       radius: number;
     };
     colors: {
+      barStacks: {
+        colorOne: string;
+        colorTwo: string;
+      };
       default: {
         colorOne: string;
         colorTwo: string;

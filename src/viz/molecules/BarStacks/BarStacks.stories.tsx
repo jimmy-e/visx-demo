@@ -1,5 +1,5 @@
 import React from 'react';
-import cityTemperatures from '__fixtures__/cityTemperatures';
+import streamEnrichment from '__fixtures__/streamEnrichment';
 import { CSF, Story, StorySection, StoryTemplate } from 'storybook/StoryTemplate';
 import BarStacksComponent, { Props } from './BarStacks';
 
@@ -9,9 +9,9 @@ const height = 400;
 const width = 400;
 
 const defaultArgs: Props = {
-  data: cityTemperatures.data,
+  data: streamEnrichment.data,
   height,
-  index: cityTemperatures.meta.index,
+  index: streamEnrichment.meta.index,
   width,
 };
 

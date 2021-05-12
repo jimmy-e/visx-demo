@@ -8,7 +8,7 @@ import Tooltip from 'tools/Tooltip/Tooltip';
 import getStackScale from 'utils/scales/getStackScale';
 import getXScale from 'utils/scales/getXScale';
 import getYScale from 'utils/scales/getYScale';
-import {Payload, ShapeType, TooltipData} from 'src/types';
+import { Payload, ShapeType, TooltipData } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
 import CustomTooltip from './CustomTooltip';
 import * as styles from './BarStacksChart.styles';

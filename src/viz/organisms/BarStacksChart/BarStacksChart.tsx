@@ -25,9 +25,21 @@ const BarStacksChart: React.FC<Props> = ({ height, payload, width }) => {
   const top = height - 100;
   const yMax = top - config.margin.top;
 
-  const xScale = getXScale({ data: payload.data, index: payload.meta.index, xMax: width });
-  const yScale = getYScale({ data: payload.data, index: payload.meta.index, offset: 'auto', yMax });
-  const stackScale = getStackScale({ colors: config.theme.colors, data: payload.data, index: payload.meta.index });
+  const xScale = getXScale({
+    data: payload.data,
+    index: payload.meta.index,
+    xMax: width,
+  });
+  const yScale = getYScale({
+    data: payload.data,
+    index: payload.meta.index,
+    offset: 'auto', yMax,
+  });
+  const stackScale = getStackScale({
+    colors: config.theme.colors.default,
+    data: payload.data,
+    index: payload.meta.index,
+  });
 
   const {
     tooltipOpen,

@@ -3,7 +3,7 @@ import { Config, Data, OrdinalScale } from 'src/types';
 import getKeys from 'utils/keys/getKeys';
 
 interface Props {
-  colors: Config['theme']['colors'];
+  colors: Config['theme']['colors']['default'];
   data: Data;
   index: string;
 }

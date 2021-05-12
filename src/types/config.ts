@@ -11,9 +11,11 @@ export interface Config {
       radius: number;
     };
     colors: {
-      colorOne: string;
-      colorTwo: string;
-      colorThree: string;
+      default: {
+        colorOne: string;
+        colorTwo: string;
+        colorThree: string;
+      };
     };
     grid: {
       stroke: string;

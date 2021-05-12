@@ -11,7 +11,7 @@ interface Props {
 
 const AxisBottom: React.FC<Props> = ({ top, xScale }) => {
   const { config } = useConfigContext();
-  const { colorThree } = config.theme.colors;
+  const { colorThree } = config.theme.colors.default;
 
   return (
     <VisxAxisBottom

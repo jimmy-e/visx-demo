@@ -13,9 +13,11 @@ const config: Config = {
       radius: 14,
     },
     colors: {
-      colorOne: '#6C5EFB',
-      colorTwo: '#C998FF',
-      colorThree: '#A44AFE',
+      default: {
+        colorOne: '#013B6F',
+        colorTwo: '#21B59A',
+        colorThree: '#FCCAA7',
+      },
     },
     grid: {
       stroke: '#000000',

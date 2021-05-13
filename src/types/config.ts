@@ -1,23 +1,26 @@
 import { ShapeType } from './shapes';
 
 type Shapes = Record<ShapeType, { colors: string[]; }>
-
-interface Theme {
+interface Tools {
   background: {
     backgroundColor: string;
     radius: number;
   };
-  colors: Record<string, string>;
   grid: {
     stroke: string;
     strokeOpacity: number;
   };
-  shapes: Shapes;
   tooltip: {
     background: string;
     color: string;
     minWidth: number;
   };
+}
+
+interface Theme {
+  colors: Record<string, string>;
+  shapes: Shapes;
+  tools: Tools;
 }
 
 export interface Config {

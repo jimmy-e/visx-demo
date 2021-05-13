@@ -8,10 +8,6 @@ const config: Config = {
     top: 40,
   },
   theme: {
-    background: {
-      backgroundColor: '#EAEDFF',
-      radius: 14,
-    },
     colors: {
       black: '#343741',
       blue: '#013B6F',
@@ -20,20 +16,26 @@ const config: Config = {
       grey: '#E0E6EB',
       white: '#FFFFFF',
     },
-    grid: {
-      stroke: '#000000',
-      strokeOpacity: 0.1,
-    },
     shapes: {
       [ShapeType.BAR_STACKS]: {
         colors: ['green', 'grey']
       },
     },
-    tooltip: {
-      background: '#000000',
-      color: '#FFFFFF',
-      minWidth: 60,
-    }
+    tools: {
+      background: {
+        backgroundColor: '#EAEDFF',
+        radius: 14,
+      },
+      grid: {
+        stroke: '#000000',
+        strokeOpacity: 0.1,
+      },
+      tooltip: {
+        background: '#000000',
+        color: '#FFFFFF',
+        minWidth: 60,
+      },
+    },
   },
 };
 

@@ -18,8 +18,8 @@ const Grid: React.FC<Props> = ({ height, width, xScale, yScale }) => {
     <VisxGrid
       height={height}
       left={margin.left}
-      stroke={theme.grid.stroke}
-      strokeOpacity={theme.grid.strokeOpacity}
+      stroke={theme.tools.grid.stroke}
+      strokeOpacity={theme.tools.grid.strokeOpacity}
       top={margin.top}
       width={width}
       xOffset={xScale.bandwidth() / 2}

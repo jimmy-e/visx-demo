@@ -1,3 +1,4 @@
+* remove BarStacksChart.styles.ts
 * use withParent
 
 * remove getKeys util, in favor of allIds keys by payload
@@ -13,6 +14,8 @@
 * add parent size wrapper to barstack
 * fix BarStacksChart.tsx
 * hide controls by default
+
+* getting negative height for attribute rects
   
 * rename and move `mockWrapper`?
 * add stories for shape/bar

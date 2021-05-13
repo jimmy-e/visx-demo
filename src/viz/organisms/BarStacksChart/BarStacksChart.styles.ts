@@ -8,9 +8,9 @@ export const containerStyle = {
 
 export const tooltipStyle = {
   ...defaultStyles,
-  minWidth: config.theme.tooltip.minWidth,
-  backgroundColor: config.theme.tooltip.background,
-  color: config.theme.tooltip.color,
+  minWidth: config.theme.tools.tooltip.minWidth,
+  backgroundColor: config.theme.tools.tooltip.background,
+  color: config.theme.tools.tooltip.color,
 };
 
 export const legendStyle = {

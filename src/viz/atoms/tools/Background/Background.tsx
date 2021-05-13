@@ -15,8 +15,8 @@ const Background: React.FC<Props> = ({ height, width }) => {
       y={0}
       height={height}
       width={width}
-      fill={config.theme.background.backgroundColor}
-      rx={config.theme.background.radius}
+      fill={config.theme.tools.background.backgroundColor}
+      rx={config.theme.tools.background.radius}
     />
   );
 };

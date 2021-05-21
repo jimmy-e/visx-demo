@@ -1,5 +1,3 @@
-* remove onClick for bar stack
-* add offset to payload as well as shape
 * add ability to rotate and expand bar stacks
 * abstract accessors
 * abstract keys

@@ -17,10 +17,6 @@ const BarStack: React.FC<Props> = ({
 }) => {
   let tooltipTimeout: number;
 
-  const handleClick = (bar: BarShape): void => {
-    alert(`clicked: ${JSON.stringify(bar)}`)
-  };
-
   const handleMouseLeave = (): void => {
     if (hideTooltip) {
       tooltipTimeout = window.setTimeout(() => {
@@ -47,7 +43,6 @@ const BarStack: React.FC<Props> = ({
       {barStack.bars.map(bar => (
         <Bar
           bar={bar}
-          onClick={() => handleClick(bar)}
           onMouseLeave={handleMouseLeave}
           onMouseMove={(event) => handleMouseMove(bar, event)}
         />

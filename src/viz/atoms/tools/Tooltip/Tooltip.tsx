@@ -23,7 +23,7 @@ const Tooltip: React.FC<Props> = ({
   const styles = {
     ...defaultStyles,
     minWidth: config.theme.tools.tooltip.minWidth,
-    backgroundColor: config.theme.tools.tooltip.background,
+    backgroundColor: config.theme.tools.tooltip.backgroundColor,
     color: config.theme.tools.tooltip.color,
   }
 

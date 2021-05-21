@@ -22,17 +22,21 @@ const config: Config = {
       },
     },
     tools: {
+      axis: {
+        color: 'black',
+        fontSize: 11,
+      },
       background: {
-        backgroundColor: '#EAEDFF',
+        backgroundColor: 'brown',
         radius: 14,
       },
       grid: {
-        stroke: '#000000',
+        stroke: 'black',
         strokeOpacity: 0.1,
       },
       tooltip: {
-        background: '#000000',
-        color: '#FFFFFF',
+        backgroundColor: 'black',
+        color: 'white',
         minWidth: 60,
       },
     },

@@ -2,6 +2,10 @@ import { ShapeType } from './shapes';
 
 type Shapes = Record<ShapeType, { colors: string[]; }>
 interface Tools {
+  axis: {
+    color: string;
+    fontSize: number;
+  },
   background: {
     backgroundColor: string;
     radius: number;
@@ -11,7 +15,7 @@ interface Tools {
     strokeOpacity: number;
   };
   tooltip: {
-    background: string;
+    backgroundColor: string;
     color: string;
     minWidth: number;
   };

@@ -1,15 +1,13 @@
 import { scaleLinear } from '@visx/scale';
-import { Data, Offset, LinearScale } from 'src/types';
-import getKeys from 'utils/keys/getKeys';
+import { Offset, Payload, LinearScale } from 'src/types';
 
 interface Props {
-  data: Data;
-  index: string;
   offset: Offset;
+  payload: Payload;
   yMax: number;
 }
 
-export default ({ data, index, offset, yMax }: Props): LinearScale => {
+export default ({ offset, payload, yMax }: Props): LinearScale => {
   let yScale: LinearScale;
 
   if (offset === 'expand') {
@@ -18,10 +16,10 @@ export default ({ data, index, offset, yMax }: Props): LinearScale => {
       nice: true,
     });
   } else {
-    const keys = getKeys(data, index);
+    const keys = payload.meta.keys.allIds;
 
     // ToDo: I could probably come up with better parameter names
-    const values = data.reduce((totals, item) => {
+    const values = payload.data.reduce((totals, item) => {
       const total = keys.reduce((keyTotal, index) => {
         keyTotal += Number(item[index]);
         return keyTotal;

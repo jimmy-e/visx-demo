@@ -29,11 +29,7 @@ const BarStacksChart: React.FC<Props> = ({ height, payload, width }) => {
     index: payload.meta.index,
     xMax: width,
   });
-  const yScale = getYScale({
-    data: payload.data,
-    index: payload.meta.index,
-    offset: 'auto', yMax,
-  });
+  const yScale = getYScale({ offset: 'auto', payload, yMax });
   const colors = config.theme.shapes[ShapeType.BAR_STACKS].colors.map((color) => config.theme.colors[color]);
   const stackScale = getStackScale(colors, payload);
 

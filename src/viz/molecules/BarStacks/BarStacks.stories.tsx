@@ -16,7 +16,16 @@ const defaultArgs: Props = {
 
 const expandArgs: Props = {
   ...defaultArgs,
-  offset: 'expand',
+  payload: {
+    ...streamEnrichment,
+    meta: {
+      ...streamEnrichment.meta,
+      shape: {
+        ...streamEnrichment.meta.shape,
+        offset: 'expand',
+      },
+    },
+  },
 }
 
 export const BarStacks: Story = () => (

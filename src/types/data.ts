@@ -1,4 +1,4 @@
-import { ShapeType } from './shapes';
+import { Offset, ShapeType } from './shapes';
 
 export type Data = Datum[];
 
@@ -17,6 +17,7 @@ export interface Payload {
       byId: Record<string, { label: string }>;
     };
     shape: {
+      offset: Offset,
       type: ShapeType;
     },
   };

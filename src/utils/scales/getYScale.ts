@@ -1,16 +1,10 @@
 import { scaleLinear } from '@visx/scale';
-import { Offset, Payload, LinearScale } from 'src/types';
+import { Payload, LinearScale } from 'src/types';
 
-interface Props {
-  offset: Offset;
-  payload: Payload;
-  yMax: number;
-}
-
-export default ({ offset, payload, yMax }: Props): LinearScale => {
+export default (payload: Payload, yMax: number): LinearScale => {
   let yScale: LinearScale;
 
-  if (offset === 'expand') {
+  if (payload.meta.shape.offset === 'expand') {
     yScale = scaleLinear<number>({
       domain: [0, 1],
       nice: true,

@@ -18,6 +18,7 @@ const cityTemperatures: Payload = {
       },
     },
     shape: {
+      offset: 'auto',
       type: ShapeType.BAR_STACKS,
     },
   },

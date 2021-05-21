@@ -6,19 +6,12 @@ import BarStack from 'shapes/BarStack/BarStack';
 import getStackScale from 'utils/scales/getStackScale';
 import getXScale from 'utils/scales/getXScale';
 import getYScale from 'utils/scales/getYScale';
-import {
-  Datum,
-  Offset,
-  Payload,
-  ShapeType,
-  TooltipData,
-} from 'src/types';
+import { Datum, Payload, ShapeType, TooltipData } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
 
 export interface Props {
   height: number;
   hideTooltip?: UseTooltipParams<TooltipData>['hideTooltip'];
-  offset?: Offset;
   payload: Payload;
   showTooltip?: UseTooltipParams<TooltipData>['showTooltip'];
   width: number;
@@ -27,7 +20,6 @@ export interface Props {
 const BarStacks: React.FC<Props> = ({
   height,
   hideTooltip,
-  offset = 'auto',
   payload,
   showTooltip,
   width,
@@ -39,7 +31,7 @@ const BarStacks: React.FC<Props> = ({
   // ToDo: for some reason, moving this into `useEffect` causes problems.
   const stackScale = getStackScale(config.theme.shapes[ShapeType.BAR_STACKS].colors, payload);
   const xScale = getXScale({ data, index, xMax: width });
-  const yScale = getYScale({ offset, payload, yMax: height - config.margin.top - 100 });
+  const yScale = getYScale(payload, height - config.margin.top - 100);
   const accessor = (datum: Datum) => datum[index];
 
   return (
@@ -48,7 +40,7 @@ const BarStacks: React.FC<Props> = ({
         color={stackScale}
         data={data}
         keys={payload.meta.keys.allIds}
-        offset={offset === 'auto' ? 'diverging' : offset}
+        offset={payload.meta.shape.offset === 'auto' ? 'diverging' : payload.meta.shape.offset}
         x={accessor}
         xScale={xScale}
         yScale={yScale}

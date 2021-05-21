@@ -1,18 +1,10 @@
 import { scaleOrdinal } from '@visx/scale';
-import { Config, Data, OrdinalScale, ShapeType } from 'src/types';
-import getKeys from 'utils/keys/getKeys';
+import { Config, OrdinalScale, Payload, ShapeType } from 'src/types';
 
-interface Props {
-  colors: Config['theme']['shapes'][ShapeType.BAR_STACKS]['colors'];
-  data: Data;
-  index: string;
-}
-
-export default ({ colors, data, index }: Props): OrdinalScale => {
-  const keys = getKeys(data, index);
-
-  return scaleOrdinal<string, string>({
-    domain: keys,
-    range: colors,
-  });
-};
+export default (
+  colors: Config['theme']['shapes'][ShapeType.BAR_STACKS]['colors'],
+  payload: Payload,
+): OrdinalScale => scaleOrdinal<string, string>({
+  domain: payload.meta.keys.allIds,
+  range: colors,
+});

@@ -37,11 +37,7 @@ const BarStacks: React.FC<Props> = ({
   const { index } = payload.meta;
 
   // ToDo: for some reason, moving this into `useEffect` causes problems.
-  const stackScale = getStackScale({
-    colors: config.theme.shapes[ShapeType.BAR_STACKS].colors,
-    data,
-    index
-  });
+  const stackScale = getStackScale(config.theme.shapes[ShapeType.BAR_STACKS].colors, payload);
   const xScale = getXScale({ data, index, xMax: width });
   const yScale = getYScale({ data, index, offset, yMax: height - config.margin.top - 100 });
   const accessor = (datum: Datum) => datum[index];

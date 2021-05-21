@@ -35,11 +35,7 @@ const BarStacksChart: React.FC<Props> = ({ height, payload, width }) => {
     offset: 'auto', yMax,
   });
   const colors = config.theme.shapes[ShapeType.BAR_STACKS].colors.map((color) => config.theme.colors[color]);
-  const stackScale = getStackScale({
-    colors,
-    data: payload.data,
-    index: payload.meta.index,
-  });
+  const stackScale = getStackScale(colors, payload);
 
   const {
     tooltipOpen,

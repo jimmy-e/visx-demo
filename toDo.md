@@ -1,4 +1,3 @@
-* remove getKeys util, in favor of allIds keys by payload
 * add axis color to config ... theme.tools...
 * convert rest of configs to use color strings
 * make util to get color strings from shape colors, etc.

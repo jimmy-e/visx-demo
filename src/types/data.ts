@@ -1,3 +1,5 @@
+import { ShapeType } from './shapes';
+
 export type Data = Datum[];
 
 export interface Datum {
@@ -14,5 +16,8 @@ export interface Payload {
       allIds: string[];
       byId: Record<string, { label: string }>;
     };
+    shape: {
+      type: ShapeType;
+    },
   };
 }

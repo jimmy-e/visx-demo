@@ -1,4 +1,4 @@
-import { Payload } from 'src/types';
+import { Payload, ShapeType } from 'src/types';
 
 const streamEnrichment: Payload = {
   meta: {
@@ -13,6 +13,9 @@ const streamEnrichment: Payload = {
           label: 'Other Streams',
         },
       },
+    },
+    shape: {
+      type: ShapeType.BAR_STACKS,
     },
   },
   data: [

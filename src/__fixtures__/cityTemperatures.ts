@@ -1,4 +1,4 @@
-import { Payload } from 'src/types';
+import { Payload, ShapeType } from 'src/types';
 
 const cityTemperatures: Payload = {
   meta: {
@@ -16,6 +16,9 @@ const cityTemperatures: Payload = {
           label: 'San Francisco',
         },
       },
+    },
+    shape: {
+      type: ShapeType.BAR_STACKS,
     },
   },
   data: [

@@ -1,5 +1,3 @@
-* use withParent
-
 * remove getKeys util, in favor of allIds keys by payload
 * add axis color to config ... theme.tools...
 * convert rest of configs to use color strings
@@ -20,6 +18,9 @@
 * add stories for shape/bar
 * add withParentSize wrapper
 * add lazy loading
+
+## Future Issues:  
+* use withParent
 
 ## Issues to be debugged
 * BarStacks.tsx

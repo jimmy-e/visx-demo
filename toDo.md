@@ -1,4 +1,3 @@
-* remove BarStacksChart.styles.ts
 * use withParent
 
 * remove getKeys util, in favor of allIds keys by payload

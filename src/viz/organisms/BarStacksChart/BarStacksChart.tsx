@@ -11,7 +11,6 @@ import getYScale from 'utils/scales/getYScale';
 import { Payload, ShapeType, TooltipData } from 'src/types';
 import { useConfigContext } from 'contexts/configContext/configContext';
 import CustomTooltip from './CustomTooltip';
-import * as styles from './BarStacksChart.styles';
 
 interface Props {
   height: number;
@@ -59,7 +58,7 @@ const BarStacksChart: React.FC<Props> = ({ height, payload, width }) => {
   });
 
   return (
-    <div style={styles.containerStyle}>
+    <>
       <svg ref={containerRef} height={height} width={width}>
         <Background height={height} width={width} />
         <Grid height={yMax} width={width} xScale={xScale} yScale={yScale} />
@@ -83,7 +82,7 @@ const BarStacksChart: React.FC<Props> = ({ height, payload, width }) => {
       >
         <CustomTooltip stackScale={stackScale} tooltipData={tooltipData} />
       </Tooltip>
-    </div>
+    </>
   );
 };
 

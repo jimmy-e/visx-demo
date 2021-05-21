@@ -18,7 +18,7 @@ const config: Config = {
     },
     shapes: {
       [ShapeType.BAR_STACKS]: {
-        colors: ['green', 'grey']
+        colors: ['green', 'grey', 'blue']
       },
     },
     tools: {

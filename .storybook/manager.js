@@ -1,6 +1,9 @@
 import { addons } from '@storybook/addons';
 
 addons.setConfig({
-  showPanel: true,
+  controls: {
+    disable: true,
+  },
   panelPosition: 'right',
+  showPanel: true,
 });

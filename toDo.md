@@ -1,8 +1,8 @@
-* add ability to rotate and expand bar stacks
-* abstract accessors
 * hide controls by default
+* abstract accessors
 * getting negative height for attribute rects
 * add stories for shape/bar
+* add ability to rotate bar stacks
 
 ## Future Issues:  
 * make storybook for axis

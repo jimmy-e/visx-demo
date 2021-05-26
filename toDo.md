@@ -1,4 +1,3 @@
-* hide controls by default
 * abstract accessors
 * getting negative height for attribute rects
 * add stories for shape/bar

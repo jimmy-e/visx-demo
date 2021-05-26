@@ -40,8 +40,9 @@ const BarStack: React.FC<Props> = ({
 
   return (
     <>
-      {barStack.bars.map(bar => (
+      {barStack.bars.map((bar, index) => (
         <Bar
+          key={`${bar.key}-${index}`}
           bar={bar}
           onMouseLeave={handleMouseLeave}
           onMouseMove={(event) => handleMouseMove(bar, event)}

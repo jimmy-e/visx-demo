@@ -1,4 +1,3 @@
-* abstract accessors
 * getting negative height for attribute rects
 * add stories for shape/bar
 * add ability to rotate bar stacks
